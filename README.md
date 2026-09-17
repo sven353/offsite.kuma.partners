@@ -1,38 +1,37 @@
-# The Barcelona Offsite Configurator
+# offsite.kuma.partners
 
-A single-page, 5-step interactive configurator for offsite.kuma.partners. Pure HTML/CSS/vanilla JS, no build step, no framework, no bulky dependencies.
+Full landing page for the Kuma Partners × Nonameyet offsite offering, with an embedded 5-step configurator. Static HTML/CSS/vanilla JS, no build step, no framework.
 
 ## Files
 
-- `index.html` — page shell, header, progress bar, and a hidden static copy of the lead form so Netlify's build bot can detect it.
-- `styles.css` — all styling. Design tokens (colors, fonts, hairline rules) are pulled directly from the live www.kuma.partners stylesheet, not invented.
-- `app.js` — step data, state management, navigation, blueprint compilation logic, and form submission.
-- `netlify.toml` — build/publish config and security headers.
-- `robots.txt` — allows indexing.
-- `assets/` — logo and favicon pulled from the live site.
+- `index.html` — the whole page: header/nav, hero, proof marquee, problem section, three formats, the configurator, the operators section, footer, plus a hidden static duplicate of the lead form for Netlify's form detection.
+- `styles.css` — this is the **real, unmodified stylesheet from www.kuma.partners**, copied verbatim (not rewritten). Every class this page uses (`.hero`, `.problem-grid`, `.tier-grid`, `.tier-featured`, `.scorecard-card`, `.scorecard-option`, `.partner-grid`, `.footer-grid`, `.footer-hubs`, button variants, etc.) comes from this file as-is.
+- `configurator.css` — supplementary only. It adds the handful of things the real stylesheet doesn't already have: the co-branded header lockup (`.logo-lockup-jv`, `.jv-sep`, `.jv-brand`), a 4-column variant of `.problem-grid` (the live site only ever uses 3), a photo slot on top of `.tier-card` for the format cards, the monospace step-numbering prefix inside the configurator, and the blueprint output layout. Nothing in here duplicates or overrides what's already in `styles.css`.
+- `app.js` — two things in one file: the same header-scroll-state and mobile-nav-toggle behavior as the live site's `site.js` (reproduced here since it can't be linked cross-origin), and the configurator itself (step data, state, blueprint compilation, Netlify Forms submission).
+- `assets/` — logo lockup and favicon (pulled from the live site), three format photos, and four photos for the "Inside the room" strip.
+
+## Reused vs. new
+
+Nearly everything on this page reuses classes that already exist in the real site's CSS: `.scorecard-card` / `.scorecard-progress` / `.scorecard-option` power the configurator (it's the same component pattern as the live site's own Leadership Friction Scorecard), `.tier-grid` / `.tier-featured` power the three formats, `.partner-grid.partner-grid-2col` powers the operators section, `.offsite-proof-grid` powers the photo strip, `.debrief-form` styling powers the lead capture fields. `configurator.css` only fills genuine gaps, it never redefines something `styles.css` already handles.
 
 ## How the blueprint logic works
 
-Each of the 5 steps stores one selection (`archetype`, `tension`, `setting`, `hospitality`, `facilitation`). After step 5, `app.js` compiles a title, four summary pills, and four detail blocks from a lookup table keyed by the tension + setting combination (see `TITLE_MATRIX` and `DELIVERABLE_MATRIX` near the top of `app.js`). Adjust the copy there directly, no other file needs to change.
+Each of the 5 steps stores one selection (`archetype`, `tension`, `setting`, `hospitality`, `facilitation`) in `app.js`. After step 5, it compiles a title, four pill tags, and four spec rows from two lookup tables: `TITLE_MATRIX` (keyed by `[tension][setting]`, 12 hand-written title combinations) and `DELIVERABLE_MATRIX` (keyed by tension, 4 deliverable phrases). Edit those tables directly to change the blueprint copy, nothing else needs to change.
 
 ## Lead capture
 
-The form posts to Netlify Forms (native, no third-party service required since this is already deploying on Netlify). Submissions appear under **Site configuration → Forms** in the Netlify dashboard, and you can wire up email notifications there (Forms → your form → Settings → Form notifications).
+Posts to Netlify Forms natively (no third-party webhook, since the site is already on Netlify). Submissions appear under **Site configuration → Forms** in the Netlify dashboard. Set up email notifications there under Forms → your form → Settings.
 
-If you'd rather route leads to Make.com, Zapier, or Formspree instead, change the `fetch("/", ...)` call inside `onSubmitLeadForm` in `app.js` to POST to that service's endpoint URL, and remove the two `data-netlify` form declarations (one in `index.html`, one rendered by `app.js`) since they're only needed for Netlify's native handling.
+## One thing flagged, not resolved
 
-## One thing flagged for review
-
-The original brief's header lockup text included a placeholder second brand name (`KUMA PARTNERS × NONAMEYET`) that reads like an unfilled template field. This build ships with just `KUMA PARTNERS` in the header until you confirm what, if anything, belongs after it.
+Every "Nonameyet" in this build (header lockup, footer copyright, the second operator's firm name) is shipped exactly as specified in the brief. Flagging it here in case it's still a placeholder rather than the final co-brand name, since it now appears in several places and would need updating everywhere at once if it changes.
 
 ## Deploying
 
-This repo is already connected to Netlify via continuous deployment, and offsite.kuma.partners is already pointed at it. If you're pushing manually rather than through a connected local clone:
+Already connected to Netlify via continuous deployment from `sven353/offsite.kuma.partners`, and offsite.kuma.partners is already pointed at it. To push manually:
 
-1. On GitHub, open `sven353/offsite.kuma.partners`.
-2. Use **Add file → Upload files**, and drag in the loose contents of this folder (not the folder itself), so `assets/` lands at the repo root alongside `index.html`.
+1. Extract this zip locally.
+2. On GitHub, open the repo and use **Add file → Upload files**, dragging in the loose contents of the extracted folder (not the folder itself), so `assets/` lands at the repo root alongside `index.html`.
 3. Commit directly to `main`.
-4. Netlify picks up the push automatically and redeploys, usually within a minute or two. Watch progress under **Deploys** in the Netlify dashboard.
-5. Once live, open **Site configuration → Forms** in Netlify to confirm the `offsite-blueprint` form was detected. If it doesn't show up, the most common cause is the hidden `<form>` in `index.html` getting stripped or edited, redeploy with it intact.
-
-No GitHub Pages or Vercel setup is needed since Netlify is already the live target for this domain.
+4. Netlify redeploys automatically, usually within a minute or two.
+5. Once live, check **Site configuration → Forms** in Netlify to confirm the `offsite-blueprint` form was detected.

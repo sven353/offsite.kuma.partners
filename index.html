@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Barcelona Offsite Configurator | Kuma Partners</title>
-<meta name="description" content="Configure a tailored executive offsite in Barcelona. Operator-led strategic alignment and friction resolution for scale-stage leadership teams.">
-<link rel="icon" href="/assets/logo-icon.png">
-<link rel="stylesheet" href="/styles.css">
+<title>Kuma Partners × Nonameyet | Operator-Led Offsites, Barcelona</title>
+<meta name="description" content="Strategic alignment and friction resolution for scale-stage companies. Turnkey executive retreats, closed-door C-suite alignment, and remote team reconnection across Barcelona and Catalan countryside estates.">
+<link rel="icon" href="assets/logo-icon.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="configurator.css">
 </head>
 <body>
 
 <!--
-  Netlify form detection note: Netlify's build bot scans the static HTML for
-  a <form> with a matching name + data-netlify="true" attribute. The real
-  form is rendered dynamically by app.js once the blueprint is compiled, so
-  this hidden duplicate exists purely so Netlify registers the form fields
-  at deploy time. Do not remove it, and keep its field names in sync with
-  the one app.js renders (see renderLeadForm in app.js).
+  Netlify form detection: the real lead form is rendered dynamically by
+  app.js once the configurator's blueprint is compiled. This hidden static
+  duplicate exists only so Netlify's build bot registers the form fields
+  at deploy time. Keep its field names in sync with renderLeadForm in
+  app.js if that ever changes.
 -->
 <form name="offsite-blueprint" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="form-name" value="offsite-blueprint">
@@ -39,34 +39,255 @@
   </select>
 </form>
 
-<header class="app-header">
-  <div class="wrap app-header-inner">
-    <a href="/" class="brand-lockup">KUMA PARTNERS</a>
-    <span id="step-counter" class="step-counter">Step 01 of 05</span>
-  </div>
-  <p class="app-subtitle wrap">Operator-led strategic alignment and friction resolution for scale-stage companies.</p>
-  <div class="progress-track">
-    <div id="progress-fill" class="progress-fill" style="width:20%"></div>
-  </div>
+<header class="site">
+  <nav class="wrap nav">
+    <a href="/" class="logo-lockup-jv">
+      <img src="assets/logo-lockup.png" alt="Kuma Partners">
+      <span class="jv-sep"></span>
+      <span class="jv-brand">NONAMEYET</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#formats">Formats</a></li>
+      <li><a href="#configurator">Configurator</a></li>
+      <li><a href="#collective">The Operators</a></li>
+      <li class="nav-mobile-only">
+        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('configurator').scrollIntoView({behavior: 'smooth'})">Build Your Offsite</button>
+      </li>
+    </ul>
+    <div class="nav-cta">
+      <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('configurator').scrollIntoView({behavior: 'smooth'})">Build Your Offsite</button>
+    </div>
+    <button type="button" class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </nav>
 </header>
 
-<main class="wrap app-main">
-  <button type="button" id="back-btn" class="back-btn" hidden>&larr; Back</button>
+<main>
 
-  <section id="configurator">
-    <div id="step-container" class="step-container"></div>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge-pill">Operator-Led Offsites · Catalonia</span>
+      <h1>Strategic alignment and friction resolution for scale-stage companies.</h1>
+      <span class="subhead">Turnkey executive retreats, closed-door C-suite alignment, and remote team reconnection across Barcelona and Catalan countryside estates.</span>
+      <div class="hero-ctas">
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('configurator').scrollIntoView({behavior: 'smooth'})">Build Your Offsite</button>
+        <a href="#formats" class="btn-link">Explore the 3 formats &rarr;</a>
+      </div>
+    </div>
   </section>
 
-  <section id="blueprint" hidden></section>
+  <section class="proof">
+    <div class="wrap">
+      <p>Trusted by operators who&rsquo;ve built at</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>TikTok</span><span>P&amp;G</span><span>IBM</span><span>Netflix</span><span>Bloomberg</span><span>constellr</span><span>Rootstock Labs</span><span>Booking.com</span>
+          <span>TikTok</span><span>P&amp;G</span><span>IBM</span><span>Netflix</span><span>Bloomberg</span><span>constellr</span><span>Rootstock Labs</span><span>Booking.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The problem</div>
+        <h2>The Offsite Paradox: High Energy, Zero Velocity on Monday</h2>
+      </div>
+      <div class="problem-grid problem-grid-4">
+        <div class="problem-col">
+          <span class="problem-index">01 &middot; The Travel Trap</span>
+          <p>Great dining and scenic views, zero intellectual architecture.</p>
+          <div class="problem-callout">Outcome: an expensive corporate vacation that leaves dysfunction untouched.</div>
+        </div>
+        <div class="problem-col">
+          <span class="problem-index">02 &middot; Artificial Harmony</span>
+          <p>C-suite peers avoid hard debates in plenary rooms; real conflict festers in hallways.</p>
+          <div class="problem-callout">Outcome: polite meetings; unaddressed friction drives attrition.</div>
+        </div>
+        <div class="problem-col">
+          <span class="problem-index">03 &middot; Theoretical Fluff</span>
+          <p>Facilitated by generic mindset coaches detached from P&amp;L and runway.</p>
+          <div class="problem-callout">Outcome: post-it notes with zero operational accountability.</div>
+        </div>
+        <div class="problem-col">
+          <span class="problem-index">04 &middot; The Monday Cliff</span>
+          <p>High bonding evaporates in 48 hours because no decision rights were codified.</p>
+          <div class="problem-callout">Outcome: teams return to identical bottlenecks by Monday morning.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formats">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Calibrated Formats</div>
+        <h2>Three Ways to Work With Us</h2>
+      </div>
+      <div class="tier-grid">
+
+        <div class="tier-card">
+          <div class="tier-card-media"><img src="assets/format-urban.jpg" alt="Urban atelier overlooking the Mediterranean, Barcelona"></div>
+          <span class="tier-label">01 &middot; Barcelona City &amp; Atelier</span>
+          <h3>Barcelona City &amp; Atelier</h3>
+          <p class="tier-subhead">15&ndash;35 people</p>
+          <ul>
+            <li>Remote-first scale-ups</li>
+            <li>Turnkey logistics + collaboration frameworks</li>
+            <li>Poblenou Atelier / Norrsken House + catamaran</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="#configurator" class="tier-cta tier-cta-outline">Build this format</a>
+          </div>
+        </div>
+
+        <div class="tier-card tier-featured">
+          <span class="tier-badge-pill">Most Requested</span>
+          <div class="tier-card-media"><img src="assets/format-masia.jpg" alt="Private Catalan Masia estate"></div>
+          <span class="tier-label">02 &middot; Strategy-to-Execution Sprint</span>
+          <h3>Strategy-to-Execution Sprint</h3>
+          <p class="tier-subhead">5&ndash;12 C-suite executives</p>
+          <ul>
+            <li>1:1 confidential intake</li>
+            <li>In-room operator mediation</li>
+            <li>RACI governance, 90-day compact</li>
+            <li>Private Catalan Masia</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="#configurator" class="tier-cta tier-cta-primary">Build this format</a>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-card-media"><img src="assets/format-winery.jpg" alt="Historic estate in Girona"></div>
+          <span class="tier-label">03 &middot; The Leadership Slow-Down</span>
+          <h3>The Leadership Slow-Down</h3>
+          <p class="tier-subhead">2&ndash;6 co-founders / exec committee</p>
+          <ul>
+            <li>Behavioral self-awareness</li>
+            <li>Relational reset under pressure</li>
+            <li>500-year-old estate in Girona</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="#configurator" class="tier-cta tier-cta-outline">Build this format</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="offsite-proof">
+        <div class="offsite-proof-header">
+          <div>
+            <div class="offsite-proof-eyebrow">Inside the room</div>
+            <p class="offsite-proof-title">Closed-door sessions across the three formats, Barcelona to the Catalan countryside.</p>
+          </div>
+        </div>
+        <div class="offsite-proof-grid">
+          <div class="offsite-proof-item"><img src="assets/proof-1.jpg" alt="Working session in a Masia courtyard"></div>
+          <div class="offsite-proof-item"><img src="assets/proof-2.jpg" alt="Closed-door strategy session"></div>
+          <div class="offsite-proof-item"><img src="assets/proof-3.jpg" alt="Collaborative working session"></div>
+          <div class="offsite-proof-item"><img src="assets/proof-4.jpg" alt="Innovation workshop wall"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="configurator">
+    <div class="wrap" style="text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">The Configurator</div>
+      <h2>Build Your Offsite</h2>
+      <p style="max-width:620px; margin:0 auto;">Five questions. One tailored blueprint, reviewed personally by Sven and Farid within 24 business hours.</p>
+
+      <div class="scorecard-card" id="configurator-app">
+        <div class="scorecard-progress">
+          <span class="sc-progress-text">Step 01 of 05</span>
+          <div class="sc-progress-bar"><div class="sc-progress-bar-fill"></div></div>
+        </div>
+        <div id="sc-steps"></div>
+        <div class="sc-nav-row" hidden>
+          <button type="button" class="sc-back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+            Back
+          </button>
+        </div>
+        <div id="sc-blueprint" class="blueprint-card" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collective">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The operators inside the room</div>
+        <h2>Former C-Suite Operators &amp; Venture Studio Designers</h2>
+      </div>
+      <div class="partner-grid partner-grid-2col">
+        <div class="partner-card">
+          <div class="avatar">SM</div>
+          <h3>Dr. Sven Mulfinger</h3>
+          <span class="role">Kuma Partners</span>
+          <p>Executive alignment specialist, former CEO and Vistage Chair. Expert in mediating leadership friction, scaling governance, and turning strategic friction into 90-day execution compacts.</p>
+        </div>
+        <div class="partner-card">
+          <div class="avatar">F</div>
+          <h3>Farid</h3>
+          <span class="role">Nonameyet</span>
+          <p>Strategic designer, fractional Chief Innovation Officer. Specialist in high-tempo product innovation, brand architecture, and collaborative environments for distributed scale-ups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer class="app-footer">
-  <div class="wrap footer-inner">
-    <span>© 2026 Kuma Partners. All rights reserved.</span>
-    <a href="mailto:contact@kuma.partners">contact@kuma.partners</a>
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="logo-lockup-jv footer-logo" style="margin-bottom:14px;">
+          <img src="assets/logo-lockup.png" alt="Kuma Partners">
+          <span class="jv-sep"></span>
+          <span class="jv-brand">NONAMEYET</span>
+        </a>
+        <p style="font-size:.92rem; color:rgba(26,26,26,.6); max-width:280px;">Operator-led executive offsites and leadership alignment for scale-stage companies.</p>
+        <a href="mailto:contact@kuma.partners" class="footer-email">contact@kuma.partners</a>
+      </div>
+      <div>
+        <h4>Engagements</h4>
+        <ul>
+          <li><a href="#formats">Barcelona City &amp; Atelier</a></li>
+          <li><a href="#formats">Strategy-to-Execution Sprint</a></li>
+          <li><a href="#formats">The Leadership Slow-Down</a></li>
+          <li><a href="#configurator">Build Your Offsite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Compliance</h4>
+        <ul>
+          <li><a href="/privacy">Privacy Policy (GDPR)</a></li>
+          <li><a href="/legal">Legal Notice / Imprint</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-hubs">
+      <span class="footer-hubs-label">International Presence</span>
+      <div class="footer-hubs-cities">
+        <span>New York</span><span>Los Angeles</span><span>London</span><span>Paris</span><span>Munich</span><span>Barcelona</span><span>Lisbon</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Kuma Partners &times; Nonameyet. All rights reserved.</span>
+      <span>offsite.kuma.partners &middot; Operating across Catalonia</span>
+    </div>
   </div>
 </footer>
 
-<script src="/app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

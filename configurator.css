@@ -1,0 +1,82 @@
+/* =========================================================================
+   configurator.css — supplementary styles ONLY.
+   Everything else on this page (header, nav, hero, proof/marquee, problem
+   grid, tier grid, partner grid, footer) uses the real, unmodified
+   styles.css from www.kuma.partners as-is. This file adds only what that
+   stylesheet doesn't already have: the JV header lockup, a 4-column
+   variant of .problem-grid, image treatment for the format cards, the
+   monospace step-numbering prefix inside the configurator, and the
+   blueprint output layout. Every color, font, spacing and radius value
+   here is pulled from the same custom properties (--navy, --teal, --cream,
+   --ink, --hairline-color) styles.css defines, nothing is invented.
+   ========================================================================= */
+
+/* Co-branded header lockup: logo + hairline separator + second wordmark */
+.logo-lockup-jv{display:flex; align-items:center; gap:14px;}
+.logo-lockup-jv img{height:37px; width:auto; display:block;}
+.jv-sep{
+  display:inline-block; width:1px; height:22px; background:var(--hairline-color);
+}
+.jv-brand{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.82rem;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
+}
+
+/* Problem section: this page uses 4 columns instead of the site default 3 */
+.problem-grid.problem-grid-4{grid-template-columns:repeat(4,1fr);}
+@media (max-width:860px){
+  .problem-grid.problem-grid-4{grid-template-columns:1fr;}
+}
+
+/* Format cards (#formats tier-grid): add a photograph above the existing
+   tier-card content, everything below the image is unmodified tier-card
+   markup and styling. */
+.tier-card-media{
+  margin:-36px -30px 24px; height:200px; overflow:hidden; border-radius:2px 2px 0 0;
+}
+.tier-card.tier-featured .tier-card-media{margin-top:-44px;}
+.tier-card-media img{width:100%; height:100%; object-fit:cover; display:block;}
+
+/* Configurator: monospace two-digit numbering prefix on each scorecard-option,
+   the base .scorecard-option styling (border, hover, selected state) is
+   entirely reused from styles.css untouched. */
+.scorecard-option{display:flex; align-items:flex-start; gap:14px;}
+.sc-option-num{
+  font-family:'SFMono-Regular', Consolas, Menlo, monospace; font-size:.82rem; font-weight:700;
+  color:var(--teal); flex-shrink:0; padding-top:1px;
+}
+.scorecard-option.selected .sc-option-num{color:var(--navy);}
+.sc-option-body{display:flex; flex-direction:column; gap:4px;}
+.sc-option-title{font-family:'Montserrat',Arial,sans-serif; font-weight:600; color:var(--navy); font-size:.98rem;}
+.sc-option-meta{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.76rem; color:var(--teal);
+  text-transform:uppercase; letter-spacing:.06em;
+}
+.sc-option-desc{font-size:.85rem; line-height:1.55; color:rgba(26,26,26,.68); font-weight:400;}
+
+/* Blueprint output, reusing the scorecard-card shell but wider */
+.blueprint-card{max-width:820px;}
+.blueprint-title{
+  font-family:'Montserrat',Arial,sans-serif; font-style:italic; font-weight:600;
+  font-size:1.9rem; color:var(--navy); text-align:center; margin-bottom:24px; text-wrap:balance;
+}
+.blueprint-pills{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:8px;}
+
+/* Reuses .offsite-specs-row / .offsite-specs-label pattern from styles.css
+   for the 4-block "Recommended Setting / Intellectual Lead / Key Monday
+   Deliverable / Hospitality Model" summary. */
+.blueprint-specs{
+  background:var(--cream); border:1px solid var(--hairline-color); border-radius:6px;
+  padding:28px 26px; margin:28px 0;
+}
+
+.restart-link{
+  display:block; text-align:center; font-size:.85rem; color:var(--navy);
+  text-decoration:none; border-bottom:1px solid rgba(40,64,80,.3); width:max-content;
+  margin:8px auto 0; padding-bottom:2px;
+}
+.restart-link:hover{border-bottom-color:var(--navy);}
+
+@media (max-width:640px){
+  .tier-card-media{height:160px;}
+}
