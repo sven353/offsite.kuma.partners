@@ -53,6 +53,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     FORMAT CARD CTAs: "Build this format" buttons jump straight to the
+     configurator. The chosen format (data-select-format) isn't currently
+     mapped to a pre-filled step, it's just a scroll target for now.
+     ----------------------------------------------------------------------- */
+  document.querySelectorAll("[data-select-format]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById("configurator");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   var STEPS = [
@@ -391,18 +403,39 @@ document.addEventListener("DOMContentLoaded", function () {
       '<input type="hidden" name="selection_facilitation" value="' + (state.selections.facilitation || "") + '">' +
       '<div class="field-row">' +
       '<div class="field"><label>Work Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>' +
-      '<div class="field"><label>Full Name</label><input type="text" name="name" placeholder="Full name"></div>' +
+      '<div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="Full name"></div>' +
       "</div>" +
       '<div class="field-row">' +
-      '<div class="field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>' +
-      '<div class="field"><label>Target Quarter</label>' +
-      '<div class="select-shell"><select name="timeline">' +
+      '<div class="field"><label>Role / Title *</label>' +
+      '<div class="select-shell"><select name="role" required>' +
+      '<option value="">Select a role</option>' +
+      '<option value="Founder / CEO">Founder / CEO</option>' +
+      '<option value="C-Suite / VP">C-Suite / VP</option>' +
+      '<option value="Head of People / HR">Head of People / HR</option>' +
+      '<option value="Chief of Staff">Chief of Staff</option>' +
+      '<option value="Investor / Board">Investor / Board</option>' +
+      '<option value="Other">Other</option>' +
+      "</select></div></div>" +
+      '<div class="field"><label>Company Name *</label><input type="text" name="company" required placeholder="Company"></div>' +
+      "</div>" +
+      '<div class="field-row">' +
+      '<div class="field"><label>Target Quarter *</label>' +
+      '<div class="select-shell"><select name="timeline" required>' +
       '<option value="">Select a timeframe</option>' +
       '<option value="Q1 2027">Q1 2027</option>' +
       '<option value="Q2 2027">Q2 2027</option>' +
       '<option value="Q3 2027">Q3 2027</option>' +
       '<option value="Q4 2027">Q4 2027</option>' +
-      '<option value="Flexible / not sure yet">Flexible / not sure yet</option>' +
+      '<option value="Specific dates in mind">Specific dates in mind</option>' +
+      "</select></div></div>" +
+      '<div class="field"><label>Approximate Budget *</label>' +
+      '<div class="select-shell"><select name="budget" required>' +
+      '<option value="">Select a range</option>' +
+      '<option value="&lt; €15,000">&lt; €15,000</option>' +
+      '<option value="€15,000 – €30,000">€15,000 – €30,000</option>' +
+      '<option value="€30,000 – €60,000">€30,000 – €60,000</option>' +
+      '<option value="€60,000 – €100,000+">€60,000 – €100,000+</option>' +
+      '<option value="Undecided / Need guidance">Undecided / Need guidance</option>' +
       "</select></div></div>" +
       "</div>" +
       '<button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Reserve Dates &amp; Request Tailored Brief</button>' +

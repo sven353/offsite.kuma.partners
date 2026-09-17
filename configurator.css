@@ -3,24 +3,20 @@
    Everything else on this page (header, nav, hero, proof/marquee, problem
    grid, tier grid, partner grid, footer) uses the real, unmodified
    styles.css from www.kuma.partners as-is. This file adds only what that
-   stylesheet doesn't already have: the JV header lockup, a 4-column
-   variant of .problem-grid, image treatment for the format cards, the
-   monospace step-numbering prefix inside the configurator, and the
-   blueprint output layout. Every color, font, spacing and radius value
+   stylesheet doesn't already have: the co-branded logo lockup wrapper, a
+   4-column variant of .problem-grid, image treatment for the format
+   cards, the monospace step-numbering prefix inside the configurator, and
+   the blueprint output layout. Every color, font, spacing and radius value
    here is pulled from the same custom properties (--navy, --teal, --cream,
    --ink, --hairline-color) styles.css defines, nothing is invented.
    ========================================================================= */
 
-/* Co-branded header lockup: logo + hairline separator + second wordmark */
-.logo-lockup-jv{display:flex; align-items:center; gap:14px;}
-.logo-lockup-jv img{height:37px; width:auto; display:block;}
-.jv-sep{
-  display:inline-block; width:1px; height:22px; background:var(--hairline-color);
-}
-.jv-brand{
-  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.82rem;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
-}
+/* Co-branded header lockup: a single combined logo image (Kuma Partners x
+   Nonameyet), pre-composited with its own hairline separator baked in as
+   pixel art rather than built from separate DOM elements. Sizing comes
+   from the inline style on the <img> itself; this rule just keeps the
+   link wrapper from adding stray flex spacing. */
+.logo-lockup-jv{display:flex; align-items:center;}
 
 /* Problem section: this page uses 4 columns instead of the site default 3 */
 .problem-grid.problem-grid-4{grid-template-columns:repeat(4,1fr);}

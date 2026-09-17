@@ -29,22 +29,35 @@
   <input type="hidden" name="selection_facilitation">
   <input type="email" name="email">
   <input type="text" name="name">
+  <select name="role">
+    <option value="Founder / CEO">Founder / CEO</option>
+    <option value="C-Suite / VP">C-Suite / VP</option>
+    <option value="Head of People / HR">Head of People / HR</option>
+    <option value="Chief of Staff">Chief of Staff</option>
+    <option value="Investor / Board">Investor / Board</option>
+    <option value="Other">Other</option>
+  </select>
   <input type="text" name="company">
   <select name="timeline">
     <option value="Q1 2027">Q1 2027</option>
     <option value="Q2 2027">Q2 2027</option>
     <option value="Q3 2027">Q3 2027</option>
     <option value="Q4 2027">Q4 2027</option>
-    <option value="Flexible / not sure yet">Flexible / not sure yet</option>
+    <option value="Specific dates in mind">Specific dates in mind</option>
+  </select>
+  <select name="budget">
+    <option value="&lt; €15,000">&lt; €15,000</option>
+    <option value="€15,000 – €30,000">€15,000 – €30,000</option>
+    <option value="€30,000 – €60,000">€30,000 – €60,000</option>
+    <option value="€60,000 – €100,000+">€60,000 – €100,000+</option>
+    <option value="Undecided / Need guidance">Undecided / Need guidance</option>
   </select>
 </form>
 
 <header class="site">
   <nav class="wrap nav">
     <a href="/" class="logo-lockup-jv">
-      <img src="assets/logo-lockup.png" alt="Kuma Partners">
-      <span class="jv-sep"></span>
-      <span class="jv-brand">NONAMEYET</span>
+      <img src="assets/logo-kuma-nonameyet.png" alt="Kuma Partners × Nonameyet" style="height: 38px; width: auto; display: block;">
     </a>
     <ul class="nav-links">
       <li><a href="#problem">The Problem</a></li>
@@ -69,7 +82,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="badge-pill">Operator-Led Offsites · Catalonia</span>
+      <span class="badge-pill">Operator-Led Offsites · Barcelona</span>
       <h1>Strategic alignment and friction resolution for scale-stage companies.</h1>
       <span class="subhead">Turnkey executive retreats, closed-door C-suite alignment, and remote team reconnection across Barcelona and Catalan countryside estates.</span>
       <div class="hero-ctas">
@@ -126,72 +139,122 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Calibrated Formats</div>
-        <h2>Three Ways to Work With Us</h2>
+        <h2>Who will join us</h2>
+        <p class="subhead">Select the operational depth and cohort composition matched to your team&rsquo;s current phase.</p>
       </div>
       <div class="tier-grid">
 
         <div class="tier-card">
-          <div class="tier-card-media"><img src="assets/format-urban.jpg" alt="Urban atelier overlooking the Mediterranean, Barcelona"></div>
-          <span class="tier-label">01 &middot; Barcelona City &amp; Atelier</span>
-          <h3>Barcelona City &amp; Atelier</h3>
-          <p class="tier-subhead">15&ndash;35 people</p>
+          <div class="tier-card-media"><img src="assets/format-winery.jpg" alt="Historic stone estate outside Girona"></div>
+          <span class="tier-label">01 &middot; The Slowing-Down Offsite</span>
+          <h3>The Slowing-Down Offsite</h3>
+          <p class="tier-subhead">2&ndash;6 co-founders / exec committee</p>
           <ul>
-            <li>Remote-first scale-ups</li>
-            <li>Turnkey logistics + collaboration frameworks</li>
-            <li>Poblenou Atelier / Norrsken House + catamaran</li>
+            <li>Behavioral self-awareness &amp; stress diagnostics</li>
+            <li>Relational reset &amp; founder dynamics under pressure</li>
+            <li>500-year-old historic stone estate outside Girona</li>
           </ul>
           <div class="tier-actions">
-            <a href="#configurator" class="tier-cta tier-cta-outline">Build this format</a>
+            <button type="button" class="btn btn-secondary btn-sm" data-select-format="slow-down">Build this format</button>
           </div>
         </div>
 
         <div class="tier-card tier-featured">
           <span class="tier-badge-pill">Most Requested</span>
           <div class="tier-card-media"><img src="assets/format-masia.jpg" alt="Private Catalan Masia estate"></div>
-          <span class="tier-label">02 &middot; Strategy-to-Execution Sprint</span>
-          <h3>Strategy-to-Execution Sprint</h3>
+          <span class="tier-label">02 &middot; Strategy to Execution Offsite</span>
+          <h3>Strategy to Execution Offsite</h3>
           <p class="tier-subhead">5&ndash;12 C-suite executives</p>
           <ul>
-            <li>1:1 confidential intake</li>
-            <li>In-room operator mediation</li>
-            <li>RACI governance, 90-day compact</li>
-            <li>Private Catalan Masia</li>
+            <li>Confidential 1:1 C-suite intake &amp; friction matrix</li>
+            <li>In-room operator mediation by former CEOs</li>
+            <li>RACI governance compact &amp; 90-day execution board</li>
+            <li>Secluded private Catalan Masia</li>
           </ul>
           <div class="tier-actions">
-            <a href="#configurator" class="tier-cta tier-cta-primary">Build this format</a>
+            <button type="button" class="btn btn-primary btn-sm" data-select-format="strategy-execution">Build this format</button>
           </div>
         </div>
 
         <div class="tier-card">
-          <div class="tier-card-media"><img src="assets/format-winery.jpg" alt="Historic estate in Girona"></div>
-          <span class="tier-label">03 &middot; The Leadership Slow-Down</span>
-          <h3>The Leadership Slow-Down</h3>
-          <p class="tier-subhead">2&ndash;6 co-founders / exec committee</p>
+          <div class="tier-card-media"><img src="assets/format-urban.jpg" alt="Urban atelier overlooking the Mediterranean, Barcelona"></div>
+          <span class="tier-label">03 &middot; Company Offsite</span>
+          <h3>Company Offsite</h3>
+          <p class="tier-subhead">12 to 100 people</p>
           <ul>
-            <li>Behavioral self-awareness</li>
-            <li>Relational reset under pressure</li>
-            <li>500-year-old estate in Girona</li>
+            <li>Remote-first &amp; distributed scale-ups</li>
+            <li>Turnkey logistics, experiential dining &amp; team cohesion</li>
+            <li>Poblenou Creative Atelier / Norrsken House + private catamaran</li>
           </ul>
           <div class="tier-actions">
-            <a href="#configurator" class="tier-cta tier-cta-outline">Build this format</a>
+            <button type="button" class="btn btn-secondary btn-sm" data-select-format="company-offsite">Build this format</button>
           </div>
         </div>
 
       </div>
+    </div>
+  </section>
 
-      <div class="offsite-proof">
-        <div class="offsite-proof-header">
-          <div>
-            <div class="offsite-proof-eyebrow">Inside the room</div>
-            <p class="offsite-proof-title">Closed-door sessions across the three formats, Barcelona to the Catalan countryside.</p>
-          </div>
+  <section id="places">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Calibrated Environments</div>
+        <h2>Three Places to Go</h2>
+        <p class="subhead">Physical environments curated specifically for strategic focus, creative friction, or team connection.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-col">
+          <span class="problem-index">01 &middot; Barcelona Downtown</span>
+          <p><strong>Setting:</strong> Urban Innovation Atelier &amp; Poblenou Loft / Norrsken House overlooking the sea.</p>
+          <p>Dynamic, walkable creative hub. Designed for cross-functional company offsites, product roadmap hackathons, and high-energy distributed team reunions.</p>
+          <div class="problem-callout">Signature amenity: private sunset Mediterranean catamaran sail and curated tapas masterclass in El Born.</div>
         </div>
-        <div class="offsite-proof-grid">
-          <div class="offsite-proof-item"><img src="assets/proof-1.jpg" alt="Working session in a Masia courtyard"></div>
-          <div class="offsite-proof-item"><img src="assets/proof-2.jpg" alt="Closed-door strategy session"></div>
-          <div class="offsite-proof-item"><img src="assets/proof-3.jpg" alt="Collaborative working session"></div>
-          <div class="offsite-proof-item"><img src="assets/proof-4.jpg" alt="Innovation workshop wall"></div>
+        <div class="problem-col">
+          <span class="problem-index">02 &middot; Catalan Masia</span>
+          <p><strong>Setting:</strong> Secluded 500-year-old historic countryside estate (Solsona / Costa Brava).</p>
+          <p>High-privacy retreat surrounded by quiet nature, with zero urban distractions. Ideal for high-stakes C-suite strategy-to-execution mediation and co-founder resets.</p>
+          <div class="problem-callout">Signature amenity: private on-site chef, open-hearth group dinners, and secluded walking trails.</div>
         </div>
+        <div class="problem-col">
+          <span class="problem-index">03 &middot; Vineyard Estate</span>
+          <p><strong>Setting:</strong> Penedès wine region estate &amp; coastal hills near Sitges.</p>
+          <p>The perfect midpoint between deep focus and sensory immersion. Designed for executive committees wanting strategic debates by day and world-class wine gastronomy by dusk.</p>
+          <div class="problem-callout">Signature amenity: private vineyard tasting, sommelier-curated cellar dining, and open-air pavilion meeting areas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="engagement">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Engagement Models</div>
+        <h2>Three Ways to Work With Us</h2>
+        <p class="subhead">From self-directed execution to fully turnkey operator moderation.</p>
+      </div>
+      <div class="tier-grid">
+
+        <div class="tier-card">
+          <span class="tier-label">01 &middot; The Self-Directed Track</span>
+          <h3>You Decide, We Facilitate</h3>
+          <p><strong>How it works:</strong> You set the strategic agenda and internal working topics. We provide the curated venue (Atelier, Masia, or Vineyard), manage 100% of the on-ground logistics, and supply targeted workshop facilitation only where needed.</p>
+          <p><strong>Best for:</strong> teams with a strong internal facilitator or People Lead who simply want the planning burden removed.</p>
+        </div>
+
+        <div class="tier-card">
+          <span class="tier-label">02 &middot; The Operator Track</span>
+          <h3>Co-Created Strategy</h3>
+          <p><strong>How it works:</strong> We conduct a lightweight pre-offsite survey to surface team tensions. Together, we co-design the strategic schedule, alternating between your internal company presentations and operator-led alignment workshops.</p>
+          <p><strong>Best for:</strong> fast-scaling teams needing experienced external steering to keep discussions on track.</p>
+        </div>
+
+        <div class="tier-card">
+          <span class="tier-label">03 &middot; The Deep Intervention</span>
+          <h3>Full Diagnostic &amp; Preparation</h3>
+          <p><strong>How it works:</strong> End-to-end intervention. We lead confidential 1:1 stakeholder discovery interviews prior to arrival, draft the Leadership Friction Matrix, moderate the hard closed-room debates, and deliver a signed 90-day binding governance compact with quarterly follow-up reviews.</p>
+          <p><strong>Best for:</strong> C-suites facing acute decision drag, co-founder friction, or post-fundraise governance bottlenecks.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -249,9 +312,7 @@
     <div class="footer-grid">
       <div>
         <a href="/" class="logo-lockup-jv footer-logo" style="margin-bottom:14px;">
-          <img src="assets/logo-lockup.png" alt="Kuma Partners">
-          <span class="jv-sep"></span>
-          <span class="jv-brand">NONAMEYET</span>
+          <img src="assets/logo-kuma-nonameyet.png" alt="Kuma Partners × Nonameyet" style="height: 38px; width: auto; display: block;">
         </a>
         <p style="font-size:.92rem; color:rgba(26,26,26,.6); max-width:280px;">Operator-led executive offsites and leadership alignment for scale-stage companies.</p>
         <a href="mailto:contact@kuma.partners" class="footer-email">contact@kuma.partners</a>
@@ -259,9 +320,9 @@
       <div>
         <h4>Engagements</h4>
         <ul>
-          <li><a href="#formats">Barcelona City &amp; Atelier</a></li>
-          <li><a href="#formats">Strategy-to-Execution Sprint</a></li>
-          <li><a href="#formats">The Leadership Slow-Down</a></li>
+          <li><a href="#formats">The Slowing-Down Offsite</a></li>
+          <li><a href="#formats">Strategy to Execution Offsite</a></li>
+          <li><a href="#formats">Company Offsite</a></li>
           <li><a href="#configurator">Build Your Offsite</a></li>
         </ul>
       </div>
@@ -283,7 +344,7 @@
 
     <div class="footer-bottom">
       <span>&copy; 2026 Kuma Partners &times; Nonameyet. All rights reserved.</span>
-      <span>offsite.kuma.partners &middot; Operating across Catalonia</span>
+      <span>offsite.kuma.partners &middot; Operating across Barcelona</span>
     </div>
   </div>
 </footer>
