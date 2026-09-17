@@ -3,10 +3,10 @@
    Everything else on this page (header, nav, hero, proof/marquee, problem
    grid, tier grid, partner grid, footer) uses the real, unmodified
    styles.css from www.kuma.partners as-is. This file adds only what that
-   stylesheet doesn't already have: the co-branded logo lockup wrapper, a
-   4-column variant of .problem-grid, image treatment for the format
-   cards, the monospace step-numbering prefix inside the configurator, and
-   the blueprint output layout. Every color, font, spacing and radius value
+   stylesheet doesn't already have: the co-branded logo lockup wrapper,
+   image treatment for the format cards, the monospace step-numbering
+   prefix inside the configurator, and the blueprint output layout. Every
+   color, font, spacing and radius value
    here is pulled from the same custom properties (--navy, --teal, --cream,
    --ink, --hairline-color) styles.css defines, nothing is invented.
    ========================================================================= */
@@ -17,12 +17,6 @@
    from the inline style on the <img> itself; this rule just keeps the
    link wrapper from adding stray flex spacing. */
 .logo-lockup-jv{display:flex; align-items:center;}
-
-/* Problem section: this page uses 4 columns instead of the site default 3 */
-.problem-grid.problem-grid-4{grid-template-columns:repeat(4,1fr);}
-@media (max-width:860px){
-  .problem-grid.problem-grid-4{grid-template-columns:1fr;}
-}
 
 /* Format cards (#formats tier-grid): add a photograph above the existing
    tier-card content, everything below the image is unmodified tier-card
