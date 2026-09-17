@@ -39,15 +39,6 @@
   .logo-nonameyet{font-size:.9rem;}
 }
 
-/* Format cards (#formats tier-grid): add a photograph above the existing
-   tier-card content, everything below the image is unmodified tier-card
-   markup and styling. */
-.tier-card-media{
-  margin:-36px -30px 24px; height:200px; overflow:hidden; border-radius:2px 2px 0 0;
-}
-.tier-card.tier-featured .tier-card-media{margin-top:-44px;}
-.tier-card-media img{width:100%; height:100%; object-fit:cover; display:block;}
-
 /* Configurator: monospace two-digit numbering prefix on each scorecard-option,
    the base .scorecard-option styling (border, hover, selected state) is
    entirely reused from styles.css untouched. */
@@ -87,10 +78,6 @@
   margin:8px auto 0; padding-bottom:2px;
 }
 .restart-link:hover{border-bottom-color:var(--navy);}
-
-@media (max-width:640px){
-  .tier-card-media{height:160px;}
-}
 
 /* Places grid (#places): photo-topped cards, one per environment. Follows
    the same visual language as .tier-card (white fill, 1px hairline

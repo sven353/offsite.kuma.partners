@@ -53,16 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
-     FORMAT CARD CTAs: "Build this format" buttons jump straight to the
-     configurator. The chosen format (data-select-format) isn't currently
-     mapped to a pre-filled step, it's just a scroll target for now.
+     FORMAT CARD CTAs: "Build this format" buttons call this directly via
+     inline onclick (exposed on window since it's referenced from markup
+     outside this closure). Jumps straight to the configurator; the chosen
+     format isn't currently mapped to a pre-filled step, it's just a
+     scroll target for now.
      ----------------------------------------------------------------------- */
-  document.querySelectorAll("[data-select-format]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var target = document.getElementById("configurator");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
+  window.selectFormatAndScroll = function (formatKey) {
+    var target = document.getElementById("configurator");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
