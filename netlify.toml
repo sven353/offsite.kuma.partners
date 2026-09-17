@@ -6,3 +6,8 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+
+# Netlify Forms: the lead-capture form is detected automatically from the
+# hidden static <form name="offsite-blueprint" data-netlify="true"> in
+# index.html. Submissions land under Site configuration -> Forms in the
+# Netlify dashboard, no extra config needed here.
