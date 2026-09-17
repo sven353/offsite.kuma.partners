@@ -56,14 +56,18 @@
 
 <header class="site">
   <nav class="wrap nav">
-    <a href="/" class="logo-lockup-jv">
-      <img src="assets/logo-kuma-nonameyet.png" alt="Kuma Partners × Nonameyet" style="height: 38px; width: auto; display: block;">
+    <a href="/" class="logo-jv" aria-label="Kuma Partners × Nonameyet">
+      <div class="logo-lockup-track">
+        <img src="assets/logo-lockup.png" alt="Kuma Partners" class="logo-kuma">
+        <span class="logo-divider" aria-hidden="true"></span>
+        <span class="logo-nonameyet">NONAMEYET</span>
+      </div>
     </a>
     <ul class="nav-links">
       <li><a href="#problem">The Problem</a></li>
-      <li><a href="#formats">Formats</a></li>
-      <li><a href="#configurator">Configurator</a></li>
-      <li><a href="#collective">The Operators</a></li>
+      <li><a href="#formats">Who Will Join Us</a></li>
+      <li><a href="#places">3 Places to Go</a></li>
+      <li><a href="#engagement-models">Ways to Work</a></li>
       <li class="nav-mobile-only">
         <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('configurator').scrollIntoView({behavior: 'smooth'})">Build Your Offsite</button>
       </li>
@@ -205,37 +209,57 @@
     </div>
   </section>
 
-  <section id="places">
+  <section id="places" style="background: var(--cream); border-bottom: 1px solid var(--hairline-color);">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Calibrated Environments</div>
         <h2>Three Places to Go</h2>
-        <p class="subhead">Physical environments curated specifically for strategic focus, creative friction, or team connection.</p>
+        <p class="subhead" style="font-size: 1.15rem; max-width: 720px; margin-bottom: 40px;">Physical environments curated specifically for strategic focus, creative friction, or team connection.</p>
       </div>
-      <div class="problem-grid">
-        <div class="problem-col">
-          <span class="problem-index">01 &middot; Barcelona Downtown</span>
-          <p><strong>Setting:</strong> Urban Innovation Atelier &amp; Poblenou Loft / Norrsken House overlooking the sea.</p>
-          <p>Dynamic, walkable creative hub. Designed for cross-functional company offsites, product roadmap hackathons, and high-energy distributed team reunions.</p>
-          <div class="problem-callout">Signature amenity: private sunset Mediterranean catamaran sail and curated tapas masterclass in El Born.</div>
+
+      <div class="places-grid">
+
+        <div class="place-card">
+          <div class="place-image">
+            <img src="assets/environments/barcelona-loft.jpeg" alt="Urban Innovation Atelier &amp; Loft in Barcelona Downtown" loading="lazy">
+          </div>
+          <div class="place-body">
+            <span class="place-index">01 &middot; Barcelona Downtown</span>
+            <p class="place-setting"><strong>Setting:</strong> Urban Innovation Atelier &amp; Poblenou Loft / Norrsken House overlooking the sea.</p>
+            <p class="place-desc">Dynamic, walkable creative hub. Designed for cross-functional company offsites, product roadmap hackathons, and high-energy distributed team reunions.</p>
+            <div class="place-amenity"><strong>Signature amenity:</strong> Private sunset Mediterranean catamaran sail and curated tapas masterclass in El Born.</div>
+          </div>
         </div>
-        <div class="problem-col">
-          <span class="problem-index">02 &middot; Catalan Masia</span>
-          <p><strong>Setting:</strong> Secluded 500-year-old historic countryside estate (Solsona / Costa Brava).</p>
-          <p>High-privacy retreat surrounded by quiet nature, with zero urban distractions. Ideal for high-stakes C-suite strategy-to-execution mediation and co-founder resets.</p>
-          <div class="problem-callout">Signature amenity: private on-site chef, open-hearth group dinners, and secluded walking trails.</div>
+
+        <div class="place-card">
+          <div class="place-image">
+            <img src="assets/environments/masia-barcelona.jpeg" alt="Historic Catalan Masia estate near Barcelona" loading="lazy">
+          </div>
+          <div class="place-body">
+            <span class="place-index">02 &middot; Catalan Masia</span>
+            <p class="place-setting"><strong>Setting:</strong> Secluded 500-year-old historic countryside estate (Solsona / Costa Brava).</p>
+            <p class="place-desc">High-privacy retreat surrounded by quiet nature, with zero urban distractions. Ideal for high-stakes C-suite strategy-to-execution mediation and co-founder resets.</p>
+            <div class="place-amenity"><strong>Signature amenity:</strong> Private on-site chef, open-hearth group dinners, and secluded walking trails.</div>
+          </div>
         </div>
-        <div class="problem-col">
-          <span class="problem-index">03 &middot; Vineyard Estate</span>
-          <p><strong>Setting:</strong> Penedès wine region estate &amp; coastal hills near Sitges.</p>
-          <p>The perfect midpoint between deep focus and sensory immersion. Designed for executive committees wanting strategic debates by day and world-class wine gastronomy by dusk.</p>
-          <div class="problem-callout">Signature amenity: private vineyard tasting, sommelier-curated cellar dining, and open-air pavilion meeting areas.</div>
+
+        <div class="place-card">
+          <div class="place-image">
+            <img src="assets/environments/barcelona-winery.jpeg" alt="Penedès Vineyard Estate near Sitges, Barcelona" loading="lazy">
+          </div>
+          <div class="place-body">
+            <span class="place-index">03 &middot; Vineyard Estate</span>
+            <p class="place-setting"><strong>Setting:</strong> Penedès wine region estate &amp; coastal hills near Sitges.</p>
+            <p class="place-desc">The perfect midpoint between deep focus and sensory immersion. Designed for executive committees wanting strategic debates by day and world-class wine gastronomy by dusk.</p>
+            <div class="place-amenity"><strong>Signature amenity:</strong> Private vineyard tasting, sommelier-curated cellar dining, and open-air pavilion meeting areas.</div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section id="engagement">
+  <section id="engagement-models">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Engagement Models</div>
@@ -321,8 +345,12 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="/" class="logo-lockup-jv footer-logo" style="margin-bottom:14px;">
-          <img src="assets/logo-kuma-nonameyet.png" alt="Kuma Partners × Nonameyet" style="height: 38px; width: auto; display: block;">
+        <a href="/" class="logo-jv footer-logo" style="margin-bottom:14px;">
+          <div class="logo-lockup-track">
+            <img src="assets/logo-lockup.png" alt="Kuma Partners" class="logo-kuma">
+            <span class="logo-divider" aria-hidden="true"></span>
+            <span class="logo-nonameyet">NONAMEYET</span>
+          </div>
         </a>
         <p style="font-size:.92rem; color:rgba(26,26,26,.6); max-width:280px;">Operator-led executive offsites and leadership alignment for scale-stage companies.</p>
         <a href="mailto:contact@kuma.partners" class="footer-email">contact@kuma.partners</a>
