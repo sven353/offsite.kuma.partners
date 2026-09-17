@@ -5,11 +5,12 @@
    styles.css from www.kuma.partners as-is. This file adds only what that
    stylesheet doesn't already have: the co-branded logo lockup (real Kuma
    mark image + hairline divider + "NONAMEYET" text wordmark), the photo
-   cards in the places grid, image treatment for the format cards, the
-   monospace step-numbering prefix inside the configurator, and the
-   blueprint output layout. Everything reuses --navy/--teal/--cream/--ink/
-   --hairline-color where it can; the two exceptions are the divider and
-   wordmark colors below, called out where they diverge from the token.
+   cards in the places grid, the cinema filmstrip in the experience gallery,
+   image treatment for the format cards, the language-delivery pills on the
+   operator cards, the monospace step-numbering prefix inside the
+   configurator, and the blueprint output layout. Everything reuses
+   --navy/--teal/--cream/--ink/--hairline-color where it can; the exceptions
+   are called out where they diverge from a token.
    ========================================================================= */
 
 /* Co-branded header/footer lockup: the real Kuma Partners mark (an <img>,
@@ -109,4 +110,91 @@
 .place-amenity strong{font-family:'Montserrat',Arial,sans-serif; font-weight:600; display:inline;}
 @media (max-width:860px){
   .places-grid{grid-template-columns:1fr; gap:32px;}
+}
+
+/* Experience gallery (#experience-gallery): a full-bleed cinema filmstrip of two
+   auto-scrolling photo tracks. The scroll/fade mechanism is the real stylesheet's
+   own .marquee/.marquee-track technique (linear-mask edge fade + a linear-infinite
+   keyframe translateX loop, paused on hover, see styles.css) — not reinvented here,
+   only re-scaled for photography and split into two opposing directions. The dark
+   navy treatment matches the site's existing full-bleed dark sections (.moat-section,
+   .contact-section in styles.css) rather than introducing a new section style. */
+.cinema-section{background:var(--navy); padding:96px 0 100px; overflow:hidden;}
+.cinema-section .eyebrow{color:rgba(255,255,255,.7);}
+.cinema-section .eyebrow::before{background:var(--teal);}
+.cinema-section h2{color:#fff;}
+
+.filmstrip-container{
+  width:100%; overflow:hidden; margin-top:36px;
+  -webkit-mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.filmstrip-container + .filmstrip-container{margin-top:20px;}
+.filmstrip-track{
+  display:flex; align-items:stretch; gap:20px; width:max-content;
+  will-change:transform;
+}
+.filmstrip-track-left{animation:filmstripScrollLeft 48s linear infinite;}
+.filmstrip-track-right{animation:filmstripScrollRight 48s linear infinite;}
+.filmstrip-container:hover .filmstrip-track{animation-play-state:paused;}
+
+.filmstrip-frame{
+  position:relative; flex-shrink:0; width:360px; aspect-ratio:16/10;
+  border-radius:2px; overflow:hidden; border:1px solid rgba(244,241,235,.15);
+}
+.filmstrip-frame img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .5s ease;
+}
+.filmstrip-frame:hover img{transform:scale(1.05);}
+.filmstrip-overlay{
+  position:absolute; left:0; right:0; bottom:0; padding:18px 18px 16px;
+  display:flex; flex-direction:column; gap:2px;
+  background:linear-gradient(to top, rgba(20,28,34,.82), rgba(20,28,34,0) 70%);
+}
+.filmstrip-tag{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.68rem;
+  letter-spacing:.1em; text-transform:uppercase; color:#fff;
+}
+.filmstrip-caption{
+  font-family:'Montserrat',Arial,sans-serif; font-style:italic; font-weight:400;
+  font-size:.88rem; color:rgba(244,241,235,.85);
+}
+
+@keyframes filmstripScrollLeft{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@keyframes filmstripScrollRight{
+  from{transform:translateX(-50%);}
+  to{transform:translateX(0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .filmstrip-track-left, .filmstrip-track-right{animation:none;}
+}
+@media (max-width:860px){
+  .filmstrip-frame{width:260px;}
+  .filmstrip-track-left, .filmstrip-track-right{animation-duration:34s;}
+}
+
+/* Operators (#collective): the card architecture itself (.partner-card-lg,
+   .partner-photo, .track-record, .client-badges, .social-row, .team-cta) is
+   all real and already existed in styles.css, dormant on this build until
+   now — the same pattern as .problem-stat and .marquee elsewhere on this
+   page. Only the bio paragraph size (to match the sibling .advisor-bio
+   pattern) and the language-delivery pills are genuinely new. */
+.partner-card-lg p{font-size:.9rem; line-height:1.55; color:rgba(26,26,26,.75); margin:0 0 4px;}
+.operator-languages{
+  display:flex; align-items:center; flex-wrap:wrap; gap:7px;
+  margin-top:2px;
+}
+.operator-languages-label{
+  font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:.78rem;
+  color:var(--navy); margin-right:2px;
+}
+.lang-pill{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.72rem;
+  letter-spacing:.04em; text-transform:uppercase; color:var(--navy);
+  background:var(--cream); border:1px solid var(--hairline-color);
+  padding:3px 8px; border-radius:2px;
 }

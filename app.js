@@ -8,13 +8,22 @@
       Netlify Forms submission for the lead capture step.
    ========================================================================= */
 
+/* Optional fallback endpoint for the lead capture form. Leave this empty to
+   keep posting to "/" for Netlify Forms' own build-time form detection,
+   which is what this site currently deploys on. Set it to a form-accepting
+   URL (Formspree, Make.com, Zapier, or similar) if this ever moves to a
+   host without native form handling, such as GitHub Pages or Vercel; the
+   submit handler below posts the same urlencoded body to whichever
+   endpoint is active, so no other code needs to change. */
+const FORM_WEBHOOK_URL = "";
+
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
   /* -----------------------------------------------------------------------
      SHARED SITE CHROME (mirrors www.kuma.partners site.js)
      ----------------------------------------------------------------------- */
-  var siteHeader = document.querySelector("header.site");
+  const siteHeader = document.querySelector("header.site");
   if (siteHeader) {
     function updateHeaderScrollState() {
       siteHeader.classList.toggle("scrolled", window.scrollY > 8);
@@ -22,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     updateHeaderScrollState();
     window.addEventListener("scroll", updateHeaderScrollState, { passive: true });
 
-    var navToggle = siteHeader.querySelector(".nav-toggle");
-    var iconMenu = siteHeader.querySelector(".nav-toggle .icon-menu");
-    var iconClose = siteHeader.querySelector(".nav-toggle .icon-close");
+    const navToggle = siteHeader.querySelector(".nav-toggle");
+    const iconMenu = siteHeader.querySelector(".nav-toggle .icon-menu");
+    const iconClose = siteHeader.querySelector(".nav-toggle .icon-close");
 
     function setSvgHidden(el, isHidden) {
       if (!el) return;
@@ -34,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (navToggle) {
       navToggle.addEventListener("click", function () {
-        var isOpen = siteHeader.classList.toggle("nav-open");
+        const isOpen = siteHeader.classList.toggle("nav-open");
         navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
         setSvgHidden(iconMenu, isOpen);
         setSvgHidden(iconClose, !isOpen);
@@ -53,21 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
-     FORMAT CARD CTAs: "Build this format" buttons call this directly via
-     inline onclick (exposed on window since it's referenced from markup
-     outside this closure). Jumps straight to the configurator; the chosen
-     format isn't currently mapped to a pre-filled step, it's just a
-     scroll target for now.
-     ----------------------------------------------------------------------- */
-  window.selectFormatAndScroll = function (formatKey) {
-    var target = document.getElementById("configurator");
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
-  var STEPS = [
+  const STEPS = [
     {
       key: "archetype",
       title: "Who is entering the room?",
@@ -212,13 +209,13 @@ document.addEventListener("DOMContentLoaded", function () {
   /* -----------------------------------------------------------------------
      BLUEPRINT COMPILATION
      ----------------------------------------------------------------------- */
-  var TITLE_MATRIX = {
+  const TITLE_MATRIX = {
     governance: { masia: "Executive Strategy Masia Sprint", urban: "Strategy Atelier Intensive", winery: "Coastal Governance Retreat" },
     friction: { masia: "Founder Reset Masia Retreat", urban: "Urban Founder Realignment", winery: "Penedès Trust Retreat" },
     innovation: { masia: "Masia Innovation Sprint", urban: "Barcelona Urban Innovation Atelier", winery: "Coastal Innovation Lab" },
     remote: { masia: "Masia Culture Reset", urban: "Urban Momentum Atelier", winery: "Penedès Reconnection Retreat" },
   };
-  var DELIVERABLE_MATRIX = {
+  const DELIVERABLE_MATRIX = {
     governance: "Signed Binding 90-Day Board Compact & Decision RACI",
     friction: "Signed Binding Peer Compact",
     innovation: "Validated Roadmap & GTM Stress-Test Brief",
@@ -226,19 +223,19 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function findOption(stepKey, optionId) {
-    var step = STEPS.find(function (s) { return s.key === stepKey; });
+    const step = STEPS.find(function (s) { return s.key === stepKey; });
     return step.options.find(function (o) { return o.id === optionId; });
   }
 
   function compileBlueprint(selections) {
-    var tensionId = selections.tension;
-    var settingId = selections.setting;
-    var titleCore = (TITLE_MATRIX[tensionId] && TITLE_MATRIX[tensionId][settingId]) || "Tailored Executive Offsite";
+    const tensionId = selections.tension;
+    const settingId = selections.setting;
+    const titleCore = (TITLE_MATRIX[tensionId] && TITLE_MATRIX[tensionId][settingId]) || "Tailored Executive Offsite";
 
-    var settingOpt = findOption("setting", settingId);
-    var tensionOpt = findOption("tension", tensionId);
-    var hospitalityOpt = findOption("hospitality", selections.hospitality);
-    var facilitationOpt = findOption("facilitation", selections.facilitation);
+    const settingOpt = findOption("setting", settingId);
+    const tensionOpt = findOption("tension", tensionId);
+    const hospitalityOpt = findOption("hospitality", selections.hospitality);
+    const facilitationOpt = findOption("facilitation", selections.facilitation);
 
     return {
       title: "The " + titleCore,
@@ -260,12 +257,12 @@ document.addEventListener("DOMContentLoaded", function () {
   /* -----------------------------------------------------------------------
      CONFIGURATOR STATE + RENDER
      ----------------------------------------------------------------------- */
-  var configuratorRoot = document.getElementById("configurator-app");
+  const configuratorRoot = document.getElementById("configurator-app");
   if (!configuratorRoot) return;
 
-  var state = { stepIndex: 0, selections: {} };
+  const state = { stepIndex: 0, selections: {} };
 
-  var els = {
+  const els = {
     progressText: configuratorRoot.querySelector(".sc-progress-text"),
     progressFill: configuratorRoot.querySelector(".sc-progress-bar-fill"),
     backRow: configuratorRoot.querySelector(".sc-nav-row"),
@@ -275,18 +272,18 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function renderStep() {
-    var step = STEPS[state.stepIndex];
-    var pct = Math.round(((state.stepIndex + 1) / STEPS.length) * 100);
+    const step = STEPS[state.stepIndex];
+    const pct = Math.round(((state.stepIndex + 1) / STEPS.length) * 100);
 
     els.progressText.textContent = "Step 0" + (state.stepIndex + 1) + " of 0" + STEPS.length + " · " + step.metaLabel;
     els.progressFill.style.width = pct + "%";
     els.backRow.hidden = state.stepIndex === 0;
 
-    var selectedId = state.selections[step.key];
+    const selectedId = state.selections[step.key];
 
-    var optionsHTML = step.options
+    const optionsHTML = step.options
       .map(function (opt) {
-        var isSelected = opt.id === selectedId;
+        const isSelected = opt.id === selectedId;
         return (
           '<button type="button" class="scorecard-option' + (isSelected ? " selected" : "") + '" data-option-id="' + opt.id + '" aria-pressed="' + isSelected + '">' +
           '<span class="sc-option-num">' + opt.num + " &middot;</span>" +
@@ -311,8 +308,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function onSelectOption(e) {
-    var btn = e.currentTarget;
-    var step = STEPS[state.stepIndex];
+    const btn = e.currentTarget;
+    const step = STEPS[state.stepIndex];
     state.selections[step.key] = btn.dataset.optionId;
 
     els.stepsWrap.querySelectorAll(".scorecard-option").forEach(function (c) { c.classList.remove("selected"); });
@@ -338,20 +335,49 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     FORMAT CARD CTAs: "Build this format" buttons call this directly via
+     inline onclick (exposed on window since it's referenced from markup
+     outside this closure, and defined here rather than earlier in the file
+     so it can close over STEPS/state/renderStep/configuratorRoot, all of
+     which exist by this point). Pre-selects the matching team archetype for
+     Step 1 and jumps straight to Step 2 (tension), rather than just
+     scrolling to an empty configurator.
+     ----------------------------------------------------------------------- */
+  const FORMAT_ARCHETYPE_MAP = {
+    "slow-down": "cofounders",
+    "strategy-execution": "csuite",
+    "company-offsite": "scaleup",
+  };
+
+  window.selectFormatAndScroll = function (formatKey) {
+    const archetypeId = FORMAT_ARCHETYPE_MAP[formatKey];
+    if (archetypeId) {
+      state.selections = { archetype: archetypeId };
+      state.stepIndex = 1;
+      els.blueprintWrap.hidden = true;
+      els.blueprintWrap.innerHTML = "";
+      els.stepsWrap.hidden = false;
+      renderStep();
+    }
+    const target = document.getElementById("configurator");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  /* -----------------------------------------------------------------------
      BLUEPRINT + LEAD FORM
      ----------------------------------------------------------------------- */
   function showBlueprint() {
-    var bp = compileBlueprint(state.selections);
+    const bp = compileBlueprint(state.selections);
 
     els.stepsWrap.hidden = true;
     els.backRow.hidden = true;
     els.blueprintWrap.hidden = false;
 
-    var pillsHTML = bp.pills
+    const pillsHTML = bp.pills
       .map(function (p) { return '<span class="track-record"><span>' + p.label + ": " + p.value + "</span></span>"; })
       .join("");
 
-    var specsHTML = bp.specs
+    const specsHTML = bp.specs
       .map(function (b) {
         return (
           '<div class="offsite-specs-row">' +
@@ -390,7 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderLeadForm(bp) {
-    var wrap = document.getElementById("lead-form-wrap");
+    const wrap = document.getElementById("lead-form-wrap");
     wrap.innerHTML =
       '<form id="lead-form" class="debrief-form" name="offsite-blueprint" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="border-top:1px solid var(--hairline-color); padding-top:28px; margin-top:8px;">' +
       '<input type="hidden" name="form-name" value="offsite-blueprint">' +
@@ -447,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function encodeFormData(form) {
-    var data = new FormData(form);
+    const data = new FormData(form);
     return Array.from(data.entries())
       .map(function (kv) { return encodeURIComponent(kv[0]) + "=" + encodeURIComponent(kv[1]); })
       .join("&");
@@ -455,15 +481,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function onSubmitLeadForm(e) {
     e.preventDefault();
-    var form = e.currentTarget;
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var errorEl = document.getElementById("form-error");
+    const form = e.currentTarget;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const errorEl = document.getElementById("form-error");
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
     if (errorEl) errorEl.hidden = true;
 
-    fetch("/", {
+    const endpoint = FORM_WEBHOOK_URL || "/";
+
+    fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encodeFormData(form),
@@ -477,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showConfirmation() {
-    var wrap = document.getElementById("lead-form-wrap");
+    const wrap = document.getElementById("lead-form-wrap");
     wrap.innerHTML =
       '<div class="debrief-success" style="padding-top:20px;">' +
       "<h3>Your blueprint is on its way.</h3>" +
