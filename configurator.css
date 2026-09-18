@@ -309,3 +309,15 @@
   font-size:.88rem; line-height:1.55; color:rgba(26,26,26,.8);
   margin:0 0 18px; padding-bottom:16px; border-bottom:1px solid var(--hairline-color);
 }
+
+/* partners.html manifesto pull-quote. The dark full-bleed shell itself is the
+   real, dormant .moat-section (eyebrow/h2/p on navy, already defined in
+   styles.css, never used on this build until now), reused as-is rather than
+   the new .manifesto-section the brief proposed. Nothing in the real
+   stylesheet does a set-off pull-quote though, so this one small rule is
+   genuinely new: a left-border teal accent on an italic paragraph, matching
+   the accent-border vocabulary .standard-banner already uses elsewhere. */
+.moat-pull-quote{
+  border-left:3px solid var(--teal); padding-left:20px; font-style:italic;
+  color:rgba(255,255,255,.9); font-size:1.1rem; line-height:1.6; margin-top:8px;
+}
