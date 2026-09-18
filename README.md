@@ -169,6 +169,38 @@ Verified: tag-balance check on `index.html` (clean, `partners.html` unaffected a
 
 Files touched this round: `index.html` (`#cadence` drawer's three panels), `configurator.css` (`.format-detail-col-boxed`, `.cadence-meta`), `README.md`. `styles.css`, `app.js`, `partners.html`, every other section, every asset untouched.
 
+## Colleen Tartow and Angus Nelson's real bios added (v31)
+
+Closes out the open item v29 flagged. Both `partners.html` bench cards, still on placeholder "Domain to be confirmed" text since v29, now carry Sven's real copy: Colleen Tartow, PhD leads with "Data Architecture, AI Strategy & Engineering Scale" and a bio on her data-architecture and AI-implementation background (PhD Astrophysics, Datacoral, Ex-VP Data, AI Strategy badges); Angus Nelson leads with "Strategic Sparring for High-Pressure Growth Environments" and a bio on advising founders through operational bottlenecks and scaling stress (Cisco, Bridgestone, Veeva, CarePayment badges).
+
+Both cards gained a `.client-badges` row this round, the real, already-live pill treatment the other four bench cards use, none was shipped in v29 since no badges existed yet to show. No new CSS: `.client-badges` already covers a 4-badge row exactly as well as the 3-badge rows on the other four cards, since it's a plain flex-wrap row with no fixed item count.
+
+Verified: tag-balance check on both pages (clean, `index.html` untouched and confirmed unchanged), a grep confirming no "Domain to be confirmed" or "Bio pending" placeholder text remains anywhere in either file, and a grep confirming the six-card bench grid is still intact at six `.advisor-card` entries.
+
+Files touched this round: `partners.html` (Colleen Tartow and Angus Nelson's domain, bio, and new client-badges rows), `README.md`. `styles.css`, `configurator.css`, `app.js`, `index.html`, every asset untouched.
+
+## A Netlify Forms "zero detected" report that didn't match this file
+
+A request came in describing Netlify's dashboard showing zero detected forms, with a proposed fix: add `data-netlify="true"`, a hidden `form-name` input, and a honeypot to the markup, and rewrite the `app.js` handler to do a real `fetch()` POST instead of only swapping DOM views.
+
+Checked both claims against this file before changing anything. The `#contact` form already carries `data-netlify="true"`, the hidden `form-name` input, and a honeypot field directly in the static HTML on both pages, and the configurator's own `offsite-blueprint` form has the same, plus the hidden static duplicate Netlify's build-time scanner needs since that form only exists after `app.js` renders it. Both submit handlers in `app.js` already build a `FormData`, URL-encode it, and `fetch()` POST it to `/` with the correct content type, exactly the pattern the request asked for. Neither claimed root cause held up, so no code changed for this request. If the dashboard really is showing zero forms, the likelier explanation given what's actually in this repo is a deploy that predates this form code, or that form notification emails are a Netlify dashboard setting (Forms, Form notifications) rather than anything in the code, both outside what a file change here can fix.
+
+## Discovery form restructured around a proper qualification funnel (v32)
+
+The `#contact` intake form on both pages (`discovery-call`) had five fields: name, email, company, cohort, and a mandate textarea. Replaced with an eight-question sequence: what brought you here (select), role (select), how can we help (textarea, with a one-line sub-caption above it), how urgent it is (select), cohort size (select), estimated budget (select, optional), then full name and work email.
+
+Built entirely on real, already-styled components. `.field`, `.field-row` (its 2-column grid, and the existing sub-860px collapse to one column), and `.select-shell` are the same classes the old version of this form used, so the new field order and the two 2-column rows (urgency/cohort, name/email) needed no new CSS. The one new touch is `.field-helper`, the italic muted caption sitting under the "How can we help" label, which turned out to already exist in `styles.css`, dormant since a form that predates this build. Reused it rather than the brief's proposed `.field-sublabel`. The brief also proposed a full parallel CSS system (`.discovery-call-form`, `.form-field`, `.form-row-2col`, a `.req` asterisk span) targeted at `styles.css`, and a duplicate JS submit handler for a renamed `discovery-call-form`/`btn-discovery-submit`. Neither was needed: the existing `#contact-form` id, `.contact-form` class, and the handler already in `app.js` (unchanged this round) work against `FormData`, so any named field in the form is picked up automatically. `styles.css` was not touched.
+
+The brief's own field spec and its sample HTML markup disagreed with each other on the "what brought you here" options, one listed "Company-wide vision disconnect across distributed teams" and not "Leadership team friction is slowing execution", the other the reverse. Went with the numbered field specification as the canonical list rather than the markup sample, on the assumption the sample had a copy edit slip.
+
+The budget field is the one deliberate substitution. The brief proposed a new bracket scheme (15k to 30k, 30k to 60k, 60k to 120k, 120k+, each with its own tier label), but this site already has a budget field with real brackets in two places, the configurator's hidden Netlify-detection stub in `index.html` and its own rendered lead form in `app.js` (under &euro;15,000, &euro;15,000 to &euro;30,000, &euro;30,000 to &euro;60,000, &euro;60,000 to &euro;100,000, &euro;100,000 to &euro;150,000+, undecided). Reused those exact brackets here instead of shipping a third, slightly different budget scale for the same question, so a prospect's budget answer means the same thing regardless of which of the two forms they filled in. Flagging this for confirmation since it's a real deviation from what was asked.
+
+The brief's field list also dropped the Company field entirely, no company or organization name anywhere in the new sequence. Implemented as specified, but flagging it: every earlier round of this form treated company name as required qualifying information, and dropping it means a submission now carries no organization identifier beyond whatever the work email domain implies. Worth confirming this was intentional before it goes live.
+
+Verified: tag-balance check on both `index.html` and `partners.html` (clean), `node -c app.js` (unchanged, still clean), a grep confirming no leftover `name="mandate"` or `name="company"` references inside the `discovery-call` form specifically (the configurator's separate `offsite-blueprint` form still has its own unrelated `company` field, untouched), and a form count check on both pages (2 on `index.html`, 1 on `partners.html`, unchanged).
+
+Files touched this round: `index.html`, `partners.html`, `README.md`. `styles.css`, `configurator.css`, `app.js`, all assets untouched.
+
 ## The experience gallery (#experience-gallery)
 
 The "Inside the Barcelona Experience" cinema filmstrip sits between "Three Places to Go" and "Three Ways to Work With Us." It's two full-bleed horizontal photo tracks (`.filmstrip-track-left` / `.filmstrip-track-right`) that auto-scroll in opposite directions, pause on hover, and fade at both edges — the scroll-loop and gradient-mask technique is the same one already powering the real stylesheet's proof marquee (`.marquee`/`.marquee-track` in `styles.css`), just re-scaled from text to photography and split into two directions instead of one. Each track holds 4 unique frames plus the same 4 duplicated once more (`aria-hidden="true"`) so the loop has no visible seam.

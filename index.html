@@ -1304,27 +1304,75 @@
           <form id="contact-form" class="contact-form" name="discovery-call" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="discovery-call">
             <p style="position:absolute; left:-9999px;"><label>Do not fill this out: <input name="bot-field"></label></p>
-            <div class="field-row">
-              <div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="e.g. Dr. Sven Mulfinger"></div>
-              <div class="field"><label>Corporate Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>
+            <div class="field">
+              <label>What Brought You Here? *</label>
+              <div class="select-shell"><select name="trigger_context" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Co-founder or C-suite alignment is breaking down">Co-founder or C-suite alignment is breaking down</option>
+                <option value="Decisions are getting stuck and execution is slowing">Decisions are getting stuck and execution is slowing</option>
+                <option value="Product, GTM, or functional silos are creating friction">Product, GTM, or functional silos are creating friction</option>
+                <option value="We need a high-stakes leadership or board offsite">We need a high-stakes leadership or board offsite</option>
+                <option value="We're navigating a major scaling or post-fundraise transition">We're navigating a major scaling or post-fundraise transition</option>
+                <option value="Company-wide vision disconnect across distributed teams">Company-wide vision disconnect across distributed teams</option>
+                <option value="I have a specific situation I want to discuss">I have a specific situation I want to discuss</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label>What's Your Role? *</label>
+              <div class="select-shell"><select name="role" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Founder / Co-Founder / CEO">Founder / Co-Founder / CEO</option>
+                <option value="C-Suite / Managing Director (COO, CRO, CFO, CTO, CPO)">C-Suite / Managing Director (COO, CRO, CFO, CTO, CPO)</option>
+                <option value="Chief of Staff / VP Strategy / People Partner">Chief of Staff / VP Strategy / People Partner</option>
+                <option value="Board Member / Venture Partner / Lead Investor">Board Member / Venture Partner / Lead Investor</option>
+                <option value="Other Leadership Role">Other Leadership Role</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label>How Can We Help? *</label>
+              <span class="field-helper">Give us the version you'd tell a trusted advisor.</span>
+              <textarea name="context_notes" rows="3" required placeholder="Describe the core dynamic, operational friction, co-founder tension, or specific outcomes you need delivered in Barcelona."></textarea>
             </div>
             <div class="field-row">
-              <div class="field"><label>Company &amp; Stage</label><input type="text" name="company" placeholder="e.g. Series B Fintech (40 FTE)"></div>
-              <div class="field"><label>Estimated Cohort Size *</label>
-                <div class="select-shell"><select name="cohort" required>
-                  <option value="" disabled selected>Select cohort range</option>
-                  <option value="2-6 cofounders">2&ndash;6 Leaders (Founder / ExCo Reset)</option>
-                  <option value="5-14 csuite">5&ndash;14 Leaders (Strategy to Execution)</option>
-                  <option value="15-50 scaleup">15&ndash;50 Leaders (Scaled Leadership)</option>
-                  <option value="50-100+ company">50&ndash;100+ Leaders (Full Company Momentum)</option>
+              <div class="field">
+                <label>How Urgent Is It? *</label>
+                <div class="select-shell"><select name="urgency" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="We're dealing with it now">We're dealing with it now</option>
+                  <option value="We need to address it within the next 30 days">We need to address it within the next 30 days</option>
+                  <option value="We see something developing and want to get ahead of it">We see something developing and want to get ahead of it</option>
+                  <option value="We're exploring options">We're exploring options</option>
+                </select></div>
+              </div>
+              <div class="field">
+                <label>For How Many People? *</label>
+                <div class="select-shell"><select name="cohort_size" required>
+                  <option value="" disabled selected>Select cohort size</option>
+                  <option value="2-6 people">2&ndash;6 people (Founder / Executive Committee Reset)</option>
+                  <option value="5-14 people">5&ndash;14 people (C-Suite &amp; Key Functional Leads)</option>
+                  <option value="15-30 people">15&ndash;30 people (Expanded Leadership Bench)</option>
+                  <option value="30-60 people">30&ndash;60 people (Departmental / Cross-Functional Sprints)</option>
+                  <option value="60-100+ people">60&ndash;100+ people (Full Company Momentum Offsite)</option>
                 </select></div>
               </div>
             </div>
             <div class="field">
-              <label>Core Mandate or Primary Friction *</label>
-              <textarea name="mandate" rows="4" required placeholder="What is the critical bottleneck or strategic shift the team needs to solve in Barcelona?"></textarea>
+              <label>Estimated Budget</label>
+              <div class="select-shell"><select name="budget_range">
+                <option value="" disabled selected>Select indicative range</option>
+                <option value="&lt; €15,000">&lt; €15,000</option>
+                <option value="€15,000 – €30,000">€15,000 – €30,000</option>
+                <option value="€30,000 – €60,000">€30,000 – €60,000</option>
+                <option value="€60,000 – €100,000">€60,000 – €100,000</option>
+                <option value="€100,000 – €150,000+">€100,000 – €150,000+</option>
+                <option value="Undecided / Need guidance">Undecided / Need guidance</option>
+              </select></div>
             </div>
-            <button type="submit" class="btn btn-primary">Request Discovery Call <span class="arrow">&rarr;</span></button>
+            <div class="field-row">
+              <div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="e.g. John Doe"></div>
+              <div class="field"><label>Work Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Talk to a Managing Partner <span class="arrow">&rarr;</span></button>
             <p class="contact-form-microcopy">Direct confidential response within 24 business hours. No junior sales reps.</p>
             <p class="contact-form-error" id="contact-form-error" hidden>Something went wrong sending your request. Please try again, or email <a href="mailto:contact@kuma.partners">contact@kuma.partners</a> directly.</p>
           </form>
