@@ -500,7 +500,8 @@ document.addEventListener("DOMContentLoaded", function () {
       '<option value="&lt; €15,000">&lt; €15,000</option>' +
       '<option value="€15,000 – €30,000">€15,000 – €30,000</option>' +
       '<option value="€30,000 – €60,000">€30,000 – €60,000</option>' +
-      '<option value="€60,000 – €100,000+">€60,000 – €100,000+</option>' +
+      '<option value="€60,000 – €100,000">€60,000 – €100,000</option>' +
+      '<option value="€100,000 – €150,000+">€100,000 – €150,000+</option>' +
       '<option value="Undecided / Need guidance">Undecided / Need guidance</option>' +
       "</select></div></div>" +
       "</div>" +
