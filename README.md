@@ -201,6 +201,16 @@ Verified: tag-balance check on both `index.html` and `partners.html` (clean), `n
 
 Files touched this round: `index.html`, `partners.html`, `README.md`. `styles.css`, `configurator.css`, `app.js`, all assets untouched.
 
+## "What brought you here" simplified to five plain options (v33)
+
+Sven flagged that v32's seven "what brought you here" options read like a general leadership-consulting diagnostic quiz rather than a question about booking an executive offsite: too many options, too much VC/startup jargon (GTM, post-fundraise transition), and none of them actually anchored to the decision someone's making by filling out the form.
+
+Replaced with five: We need to align as a leadership team. We're heading into a major strategic decision. We want dedicated time away from day-to-day operations. Something specific is creating friction we need to work through. Just exploring what this could look like. Same field (`trigger_context`, required select), same markup, same `.select-shell` styling, only the option list changed. No CSS or JS touched.
+
+Verified: tag-balance check on both pages (clean), `node -c app.js` (unchanged), and a grep confirming the five new option values are present on both pages and none of v32's seven old options remain.
+
+Files touched this round: `index.html`, `partners.html`, `README.md`. `styles.css`, `configurator.css`, `app.js`, all assets untouched.
+
 ## The experience gallery (#experience-gallery)
 
 The "Inside the Barcelona Experience" cinema filmstrip sits between "Three Places to Go" and "Three Ways to Work With Us." It's two full-bleed horizontal photo tracks (`.filmstrip-track-left` / `.filmstrip-track-right`) that auto-scroll in opposite directions, pause on hover, and fade at both edges — the scroll-loop and gradient-mask technique is the same one already powering the real stylesheet's proof marquee (`.marquee`/`.marquee-track` in `styles.css`), just re-scaled from text to photography and split into two directions instead of one. Each track holds 4 unique frames plus the same 4 duplicated once more (`aria-hidden="true"`) so the loop has no visible seam.
