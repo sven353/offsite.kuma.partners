@@ -198,3 +198,58 @@
   background:var(--cream); border:1px solid var(--hairline-color);
   padding:3px 8px; border-radius:2px;
 }
+
+/* Hero editorial variant (.hero-editorial): the desktop layout (badge, title,
+   subhead, metrics strip) is set with inline styles directly on the markup,
+   matching how every other section on this page handles one-off spacing and
+   width (see .subhead overrides in #places, #problem, #collective). Only
+   the typeface treatment and the mobile breakpoints, which need to win over
+   those inline desktop styles, are genuinely new rules and live here rather
+   than in styles.css. The !important flags in the mobile block are load-
+   bearing, not a habit: an inline style attribute always outranks an
+   external stylesheet rule on specificity alone, !important or not, so
+   without it these breakpoints would have no effect against the inline
+   desktop values. */
+.hero-editorial .hero-title{
+  font-family:'Montserrat',Arial,sans-serif;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+
+@media (max-width:860px){
+  .hero-editorial{
+    padding:64px 0 48px !important;
+  }
+  .hero-editorial .hero-title{
+    font-size:2.35rem !important;
+    line-height:1.18 !important;
+  }
+  .hero-editorial .subhead{
+    font-size:1.1rem !important;
+    margin-bottom:28px !important;
+  }
+  .hero-metrics-strip{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:20px !important;
+    margin-top:40px !important;
+  }
+  .hero-metrics-strip > div:nth-child(even){
+    border-left:1px solid var(--hairline-color) !important;
+    padding-left:20px !important;
+  }
+  .hero-metrics-strip > div:nth-child(3){
+    border-left:none !important;
+    padding-left:0 !important;
+  }
+}
+
+@media (max-width:540px){
+  .hero-metrics-strip{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+  }
+  .hero-metrics-strip > div{
+    border-left:none !important;
+    padding-left:0 !important;
+  }
+}
