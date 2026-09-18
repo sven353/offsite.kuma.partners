@@ -4,10 +4,10 @@ Full landing page for the Kuma Partners × Nonameyet offsite offering, with an e
 
 ## Files
 
-- `index.html` — the whole page: header/nav, hero, proof marquee, problem section, formats ("Who will join us"), places ("Three Places to Go"), the experience gallery cinema filmstrip, engagement models ("Three Ways to Work With Us"), the configurator, the operators section, footer, plus a hidden static duplicate of the lead form for Netlify's form detection.
+- `index.html` — the whole page: header/nav, hero, proof marquee, problem section, formats ("Who will join us"), places ("Three Places to Go"), cadence ("Choose Your Cadence"), the experience gallery cinema filmstrip, engagement models ("Three Ways to Work With Us"), the FAQ accordion, the configurator, the operators section, footer, plus a hidden static duplicate of the lead form for Netlify's form detection.
 - `styles.css` — this is the **real, unmodified stylesheet from www.kuma.partners**, copied verbatim (not rewritten). Every class this page uses (`.hero`, `.problem-grid`, `.tier-grid`, `.tier-featured`, `.scorecard-card`, `.scorecard-option`, `.partner-grid`, `.footer-grid`, `.footer-hubs`, button variants, `.field`/`.field-row`/`.select-shell`, `.marquee`/`.marquee-track`, etc.) comes from this file as-is.
 - `configurator.css` — supplementary only. It adds the handful of things the real stylesheet doesn't already have: the co-branded logo lockup (real Kuma mark image + hairline divider + "NONAMEYET" text), the photo cards in the places grid, the two-track cinema filmstrip in the experience gallery, the monospace step-numbering prefix inside the configurator, and the blueprint output layout. Nothing in here duplicates or overrides what's already in `styles.css`.
-- `app.js` — two things in one file: the same header-scroll-state and mobile-nav-toggle behavior as the live site's `site.js` (reproduced here since it can't be linked cross-origin), and the configurator itself (step data, state, blueprint compilation, Netlify Forms submission). Also exposes `window.selectFormatAndScroll()`, called from the "Build this format" buttons' inline `onclick`, which scrolls to the configurator.
+- `app.js` — two things in one file: the same header-scroll-state and mobile-nav-toggle behavior as the live site's `site.js` (reproduced here since it can't be linked cross-origin), and the configurator itself (step data, state, blueprint compilation, Netlify Forms submission). Also exposes `window.selectFormatAndScroll()` (the "Build this format" buttons) and `window.selectCadenceAndScroll()` (the "Select N-Day Cadence" buttons), both called from inline `onclick`, plus a click handler that drives the `#faq` accordion's open/close state.
 - `assets/` — the real Kuma Partners logo lockup and favicon; `assets/formats/` with the three format-card photos (a working session outdoors, an executive strategy session, a large all-hands); `assets/environments/` with the three places photos (Barcelona loft, Catalan Masia, vineyard estate); `assets/gallery/` with the eight experience-gallery filmstrip photos (see "The experience gallery" below for how each slot was actually filled); `assets/team/` with the two operator headshots (Sven, Farid).
 
 ## Reused vs. new
@@ -43,6 +43,16 @@ The other 6 slots were filled with the closest available stand-ins from generic 
 - `08-compact-delivery.jpeg` — the Camp Nou stadium interior (a large formal venue; no signing moment). This is the weakest match of the eight.
 
 Two of the ten photos (a Sagrada Família aerial and a Barcelona beach aerial) weren't used at all — nothing in the brief pointed to where they'd go. Given the brand brief explicitly avoids generic stock-photo imagery, I'd treat this section as a placeholder pass rather than final: the next real photography delivery should prioritize the 6 loose-match slots above, especially the compact-signing frame.
+
+## The cadence section (#cadence)
+
+New "Choose Your Cadence" section sitting between "Three Places to Go" and the experience gallery: three duration options (2, 3, and 5 days), each with an operational rhythm, a "Key Monday Deliverable" callout, and a CTA that scrolls to the configurator.
+
+Checked styles.css first, as always, and this one needed no new CSS at all: `.tier-grid`/`.tier-card`/`.tier-card.tier-featured`/`.tier-badge-pill`/`.tier-label`/`.tier-subhead`/`.tier-deliverable`/`.tier-deliverable-label`/`.tier-actions` are the exact same component already powering both the formats section and engagement-models section, plus a "Key Monday Deliverable" callout pattern (`.tier-deliverable`) that was itself sitting dormant, unused anywhere on the build until now, and is a near-exact fit for the brief's own "Key Monday Deliverable" block. The original request's oversized duration numeral and its own hand-rolled `.cadence-*` CSS block were dropped in favor of this real, already-shipped card pattern (the same overline-kicker-plus-heading hierarchy `.tier-label`/`h3` already use for the numbered formats), the same call made for the operators section in v8 and the FAQ in v11.
+
+`window.selectCadenceAndScroll()` was added to `app.js` alongside `selectFormatAndScroll`. Unlike the format cards, there's no duration/cadence step in the 5-step configurator to pre-select, so it's a plain scroll to `#configurator`, matching what was actually requested; the `cadenceKey` argument is accepted but unused, left in case a real duration step gets added to the configurator later. Verified with a jsdom check that the function exists on `window` and calls `scrollIntoView` on click.
+
+The pasted spec again carried broken citation-marker artifacts through the copy, stripped out before anything was written, and its one em dash was rewritten to match Sven's standing no-em-dash preference.
 
 ## The FAQ section (#faq)
 

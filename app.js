@@ -391,6 +391,19 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /* -----------------------------------------------------------------------
+     CADENCE CARD CTAs: "Select N-Day Cadence" buttons in #cadence call this
+     via inline onclick, same reasoning as selectFormatAndScroll above
+     (window-exposed, defined here so it's in scope alongside it). There is
+     no duration/cadence step in the configurator to pre-select, so this
+     is a plain scroll; cadenceKey is accepted (not read) so a future step
+     can be added here without touching the markup that calls it.
+     ----------------------------------------------------------------------- */
+  window.selectCadenceAndScroll = function (cadenceKey) {
+    const target = document.getElementById("configurator");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  /* -----------------------------------------------------------------------
      BLUEPRINT + LEAD FORM
      ----------------------------------------------------------------------- */
   function showBlueprint() {
