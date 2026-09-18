@@ -368,17 +368,15 @@ document.addEventListener("DOMContentLoaded", function () {
      so it can close over STEPS/state/renderStep/configuratorRoot, all of
      which exist by this point). Pre-selects the matching team archetype for
      Step 1 and jumps straight to Step 2 (tension), rather than just
-     scrolling to an empty configurator.
+     scrolling to an empty configurator. The #formats markup (v17) now calls
+     this with the archetype id directly ("cofounders" / "csuite" /
+     "scaleup"), the same ids STEPS[0]'s options already use, so there is no
+     longer a separate format-key-to-archetype lookup table to keep in sync.
      ----------------------------------------------------------------------- */
-  const FORMAT_ARCHETYPE_MAP = {
-    "slow-down": "cofounders",
-    "strategy-execution": "csuite",
-    "company-offsite": "scaleup",
-  };
+  const VALID_ARCHETYPES = ["cofounders", "csuite", "scaleup"];
 
-  window.selectFormatAndScroll = function (formatKey) {
-    const archetypeId = FORMAT_ARCHETYPE_MAP[formatKey];
-    if (archetypeId) {
+  window.selectFormatAndScroll = function (archetypeId) {
+    if (VALID_ARCHETYPES.indexOf(archetypeId) !== -1) {
       state.selections = { archetype: archetypeId };
       state.stepIndex = 1;
       els.blueprintWrap.hidden = true;

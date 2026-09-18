@@ -120,11 +120,35 @@ The brief's pasted spec wrapped nearly every URL in markdown link syntax (`[url]
 
 Verified: the JSON-LD block parses with a JSON parser and reports 2 `@graph` entries (`ProfessionalService`, `FAQPage` with 10 `mainEntity` items), `sitemap.xml` parses as well-formed XML, no markdown-link artifacts remain anywhere in the three files, and a jsdom load confirms the new `<title>`/canonical/OG tags render and the `#faq` accordion still shows all 10 items.
 
+## ProfessionalService schema warnings cleared (v18)
+
+The Schema.org validator flagged two warnings on the `ProfessionalService` entity in the JSON-LD `@graph`: no `image` and no `telephone`. Both added directly to that entity. `image` reuses `assets/environments/masia-barcelona.jpeg`, the same photo already doing OG/Twitter share-image duty for this page, since it's already the one representative "this is what it is" shot on the site.
+
+**`telephone` is a placeholder, not a real number.** `+34930000000` was supplied in the brief and shipped as given, but it reads as a filled-in template value (all zeros after the Barcelona area code) rather than Kuma's actual line. Confirm the real number before push, same unverified-detail treatment as `nonameyet.com` in v16 and Farid's placeholder LinkedIn since v8. Shipping a fabricated phone number in production structured data is worth catching before it goes live, since it's the kind of detail a search engine or a caller would actually try to use.
+
+The brief's JSON snippet wrapped `@id`, `url`, `image`, and both `provider` URLs in markdown link syntax (`[url](url)`), the same paste artifact as v16; stripped to plain URLs before writing, since JSON string values don't parse markdown.
+
+Verified: the full JSON-LD block still parses cleanly with a JSON parser (2 `@graph` entries), the `ProfessionalService` entity now carries both `image` and `telephone`, and the index.html tag-balance check stays clean.
+
+Files touched this round: `index.html` (`<head>` JSON-LD block only). Everything else untouched.
+
+## Calibrated Formats refactor (v17)
+
+The `#formats` section was reframed from a "who will join us" list to a cohort-and-mandate structure: each card now names a room size (`2-6 co-founders`, `5-14 C-suite`, `15-100+ cross-functional`) and a one-line operational mandate, ahead of its feature list. Format 01 repositions around horizon-scanning and founder stamina against 3-5 year disruption instead of a generic reset pitch. Formats 02 and 03 now read as a 3-tier organizational ladder (founder pair up through full company), rather than three unrelated offerings.
+
+The update brief proposed a new hand-rolled component system for this (`.formats-grid`, `.format-card`, `.format-image-wrapper`, `.format-num-tag`, `.format-feature-list`, and so on) with matching CSS for `styles.css`. None of that shipped. The section already ran on `.tier-grid`/`.tier-card`/`.tier-badge-pill`/`.tier-label`/`.tier-subhead`/`.place-image`/`.tier-actions`, the same component system `#cadence` and `#engagement-models` use, so the refactor rebuilt the copy and structure inside those existing classes instead of introducing a parallel one. `styles.css` was not touched, same rule as every prior round: it stays the real, unmodified kuma.partners stylesheet, and any new CSS goes in `configurator.css`. The only new rule needed was `.tier-mandate`, for the one-line italic mandate summary under each card's subhead.
+
+The brief's feature-list bullets used a hand-drawn em dash (`content: "-";`) as the bullet glyph. Shipped instead with the real `.tier-card ul li::before{content:"✓"}` checkmark already in `styles.css` and already used by every other tier-card on the page, both to avoid introducing an em dash (Sven's standing no-em-dash rule applies to CSS-generated content, not just prose) and to avoid a second bullet treatment competing with the site's existing one. The brief's subhead copy also contained one literal em dash in running text ("required-from"), rewritten to a colon.
+
+The brief's proposed `window.selectFormatAndScroll` rewrite for `app.js` was a functional regression: it dropped the `state.stepIndex = 1` jump and the `els.blueprintWrap`/`els.stepsWrap` visibility toggling that make the button jump straight to Step 2 with the archetype pre-selected (verified behavior since v9), leaving only a plain scroll-to-configurator. Shipped instead: the same verified jump-and-preselect behavior, simplified only to accept the archetype id directly instead of going through the now-removed `FORMAT_ARCHETYPE_MAP` translation table, since the new markup already calls it with `'cofounders'`/`'csuite'`/`'scaleup'`.
+
+Verified: tag balance across the standard tag set, `configurator.css` brace balance, `node -c app.js`, and a jsdom load that clicks each of the three "Build this format" buttons and confirms it jumps to Step 2 with the corresponding archetype pre-selected (checked by simulating a Back-button click and reading which Step 1 option carries the `selected` class), plus that an unrecognized archetype id scrolls without throwing.
+
 ## How the blueprint logic works
 
 Each of the 5 configurator steps stores one selection (`archetype`, `tension`, `setting`, `hospitality`, `facilitation`) in `app.js`. After step 5, it compiles a title, four pill tags, and four spec rows from two lookup tables: `TITLE_MATRIX` (keyed by `[tension][setting]`, 12 hand-written title combinations) and `DELIVERABLE_MATRIX` (keyed by tension, 4 deliverable phrases). Edit those tables directly to change the blueprint copy, nothing else needs to change.
 
-The three "Build this format" buttons in the formats section (`onclick="selectFormatAndScroll('slow-down' | 'strategy-execution' | 'company-offsite')"`) now pre-select the matching Step 1 archetype and jump straight to Step 2: slow-down to cofounders, strategy-execution to csuite, company-offsite to scaleup. The map lives in `FORMAT_ARCHETYPE_MAP` near the top of `app.js`, right before where `selectFormatAndScroll` is defined.
+The three "Build this format" buttons in the formats section (`onclick="selectFormatAndScroll('cofounders' | 'csuite' | 'scaleup')"`) pre-select the matching Step 1 archetype and jump straight to Step 2. As of v17 the buttons pass the archetype id directly, the same ids `STEPS[0]`'s options already use, so `selectFormatAndScroll` just checks membership in `VALID_ARCHETYPES` near the top of `app.js` rather than translating through a separate lookup table.
 
 ## Lead capture
 

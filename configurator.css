@@ -295,3 +295,17 @@
    apply; .client-badges' own margin-top:16px is overridden by source order (this file
    loads after styles.css), no !important needed. */
 .immersion-meta{margin-top:auto; padding-top:18px; border-top:1px solid rgba(40,64,80,.1);}
+
+/* Calibrated Formats (#formats), v17 refactor. The card shell, badge, label,
+   subhead, image treatment, and action row are all the real, already-live
+   .tier-grid/.tier-card/.tier-badge-pill/.tier-label/.tier-subhead/
+   .place-image/.tier-actions components (formats was their original use
+   back in v3; cadence and engagement-models reuse the same system). The
+   list checkmarks are the real .tier-card ul li::before{content:"✓"} rule
+   in styles.css, not a new bullet glyph. The only genuinely new element is
+   the italic one-line mandate summary under the subhead on each card. */
+.tier-mandate{
+  font-family:'Montserrat',Arial,sans-serif; font-style:italic; font-weight:400;
+  font-size:.88rem; line-height:1.55; color:rgba(26,26,26,.8);
+  margin:0 0 18px; padding-bottom:16px; border-bottom:1px solid var(--hairline-color);
+}
