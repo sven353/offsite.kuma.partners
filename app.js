@@ -89,6 +89,51 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* -----------------------------------------------------------------------
+     DISCOVERY CALL INTAKE (#contact): a native Netlify Forms submission,
+     shared verbatim between index.html and partners.html, both of which
+     carry the same #contact section. Unlike the configurator's lead form
+     (rendered by renderLeadForm() further down, which needs a hidden
+     static duplicate for Netlify's build-time detection since its real
+     form only exists after JS runs), this form is written directly into
+     the static HTML on both pages, so Netlify picks it up with no
+     duplicate needed. Progressive enhancement only: the AJAX submit below
+     swaps in an inline confirmation instead of a full-page reload, but the
+     form works as a plain Netlify Forms POST without it.
+     ----------------------------------------------------------------------- */
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const errorEl = document.getElementById("contact-form-error");
+      const successEl = document.getElementById("contact-success");
+      const data = new FormData(contactForm);
+      const body = Array.from(data.entries())
+        .map(function (kv) { return encodeURIComponent(kv[0]) + "=" + encodeURIComponent(kv[1]); })
+        .join("&");
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+      if (errorEl) errorEl.hidden = true;
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body,
+      })
+        .then(function () {
+          contactForm.hidden = true;
+          if (successEl) successEl.hidden = false;
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Request Discovery Call →";
+          if (errorEl) errorEl.hidden = false;
+        });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [

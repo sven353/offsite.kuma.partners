@@ -1052,6 +1052,59 @@
     </div>
   </section>
 
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Direct Partner Intake</div>
+        <h2>Schedule an Executive Discovery Call</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <p>Speak directly with one of our managing partners. Tell us about your executive cohort, tentative dates, and the primary commercial or relational friction you need resolved.</p>
+          <ul class="contact-reassurance">
+            <li><strong>Direct response.</strong> Sven or Farid personally review every request within 24 business hours.</li>
+            <li><strong>No junior sales reps.</strong> You speak with a managing partner from the first call.</li>
+            <li><strong>Limited quarterly intake.</strong> We cap new engagements each quarter to protect delivery quality.</li>
+          </ul>
+          <div class="contact-direct-email">Prefer email? Write directly to <a href="mailto:contact@kuma.partners">contact@kuma.partners</a>.</div>
+        </div>
+        <div class="contact-form-shell">
+          <form id="contact-form" class="contact-form" name="discovery-call" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="discovery-call">
+            <p style="position:absolute; left:-9999px;"><label>Do not fill this out: <input name="bot-field"></label></p>
+            <div class="field-row">
+              <div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="e.g. Dr. Sven Mulfinger"></div>
+              <div class="field"><label>Corporate Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Company &amp; Stage</label><input type="text" name="company" placeholder="e.g. Series B Fintech (40 FTE)"></div>
+              <div class="field"><label>Estimated Cohort Size *</label>
+                <div class="select-shell"><select name="cohort" required>
+                  <option value="" disabled selected>Select cohort range</option>
+                  <option value="2-6 cofounders">2&ndash;6 Leaders (Founder / ExCo Reset)</option>
+                  <option value="5-14 csuite">5&ndash;14 Leaders (Strategy to Execution)</option>
+                  <option value="15-50 scaleup">15&ndash;50 Leaders (Scaled Leadership)</option>
+                  <option value="50-100+ company">50&ndash;100+ Leaders (Full Company Momentum)</option>
+                </select></div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Core Mandate or Primary Friction *</label>
+              <textarea name="mandate" rows="4" required placeholder="What is the critical bottleneck or strategic shift the team needs to solve in Barcelona?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Request Discovery Call <span class="arrow">&rarr;</span></button>
+            <p class="contact-form-microcopy">Direct confidential response within 24 business hours. No junior sales reps.</p>
+            <p class="contact-form-error" id="contact-form-error" hidden>Something went wrong sending your request. Please try again, or email <a href="mailto:contact@kuma.partners">contact@kuma.partners</a> directly.</p>
+          </form>
+          <div class="contact-success" id="contact-success" hidden>
+            <h3>Request received.</h3>
+            <p>Sven or Farid will follow up directly within 24 business hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site">
