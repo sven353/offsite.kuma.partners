@@ -200,16 +200,16 @@
 }
 
 /* Hero editorial variant (.hero-editorial): the desktop layout (badge, title,
-   subhead, metrics strip) is set with inline styles directly on the markup,
-   matching how every other section on this page handles one-off spacing and
-   width (see .subhead overrides in #places, #problem, #collective). Only
-   the typeface treatment and the mobile breakpoints, which need to win over
-   those inline desktop styles, are genuinely new rules and live here rather
-   than in styles.css. The !important flags in the mobile block are load-
-   bearing, not a habit: an inline style attribute always outranks an
-   external stylesheet rule on specificity alone, !important or not, so
-   without it these breakpoints would have no effect against the inline
-   desktop values. */
+   subhead) is set with inline styles directly on the markup, matching how
+   every other section on this page handles one-off spacing and width (see
+   .subhead overrides in #places, #problem, #collective). Only the typeface
+   treatment and the mobile breakpoints, which need to win over those inline
+   desktop styles, are genuinely new rules and live here rather than in
+   styles.css. The !important flags in the mobile block are load-bearing,
+   not a habit: an inline style attribute always outranks an external
+   stylesheet rule on specificity alone, !important or not, so without it
+   these breakpoints would have no effect against the inline desktop
+   values. */
 .hero-editorial .hero-title{
   font-family:'Montserrat',Arial,sans-serif;
   font-weight:700;
@@ -228,29 +228,48 @@
     font-size:1.1rem !important;
     margin-bottom:28px !important;
   }
-  .hero-metrics-strip{
-    grid-template-columns:repeat(2,1fr) !important;
-    gap:20px !important;
-    margin-top:40px !important;
-  }
-  .hero-metrics-strip > div:nth-child(even){
-    border-left:1px solid var(--hairline-color) !important;
-    padding-left:20px !important;
-  }
-  .hero-metrics-strip > div:nth-child(3){
-    border-left:none !important;
-    padding-left:0 !important;
-  }
 }
 
-@media (max-width:540px){
-  .hero-metrics-strip{
-    grid-template-columns:1fr !important;
-    gap:16px !important;
+/* Hero geographic radius strip (v20). Replaces the old 4-column
+   .hero-metrics-strip, which mixed the "5 Languages" metric in with three
+   location facts. Facilitator language coverage already has its own home in
+   #collective (.operator-languages-label / .lang-pill), so this strip now
+   carries only the three-ring geography story: city center, wine country
+   and coast, mountain seclusion. Built as real classes rather than inline
+   styles, since this component has clean, reusable structure (unlike the
+   hero title/subhead/badge above, which stay one-off) and belongs in
+   configurator.css rather than styles.css since it is new markup, not part
+   of the real kuma.partners stylesheet. */
+.hero-geo-strip{
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--hairline-color);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:32px;
+}
+.geo-col{
+  position:relative;
+}
+.geo-col:not(:first-child){
+  border-left:1px solid var(--hairline-color); padding-left:32px;
+}
+.geo-tag{
+  display:block; font-family:'Lato',Arial,sans-serif; font-size:.72rem;
+  font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--teal); margin-bottom:4px;
+}
+.geo-title{
+  display:block; font-family:'Montserrat',Arial,sans-serif; font-size:1.15rem;
+  font-weight:700; color:var(--navy); margin-bottom:6px; line-height:1.25;
+}
+.geo-desc{
+  font-size:.85rem; line-height:1.5; color:rgba(26,26,26,.75); margin:0;
+}
+
+@media (max-width:860px){
+  .hero-geo-strip{
+    grid-template-columns:1fr; gap:24px; margin-top:40px;
   }
-  .hero-metrics-strip > div{
-    border-left:none !important;
-    padding-left:0 !important;
+  .geo-col:not(:first-child){
+    border-left:none; padding-left:0; border-top:1px solid var(--hairline-color);
+    padding-top:20px;
   }
 }
 
