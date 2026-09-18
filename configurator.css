@@ -199,6 +199,20 @@
   padding:3px 8px; border-radius:2px;
 }
 
+/* Principal partner cards (v22): bottom-locking the language/social-row footer so
+   cards with different bio lengths (Sven's five-language block vs. Luisa's two)
+   still line up at the same baseline across a row, on both #collective (index.html)
+   and the Principal Partners grid on partners.html. .partner-card-lg's own look
+   (white fill, navy top border, padding) is real and untouched; only the flex
+   mechanics needed for bottom-locking are added here, not the brief's own
+   background/border/padding redesign, which would have fought the real
+   stylesheet's established card look. .partner-photo is sized up slightly
+   (56px -> 72px) for every card that uses it, including Vincent Az&eacute;'s
+   initials fallback on partners.html, so all four cards share one baseline. */
+.partner-card-lg{display:flex; flex-direction:column; height:100%;}
+.partner-photo{width:72px; height:72px; margin-bottom:16px;}
+.card-bottom-lock{margin-top:auto; width:100%;}
+
 /* Hero editorial variant (.hero-editorial): the desktop layout (badge, title,
    subhead) is set with inline styles directly on the markup, matching how
    every other section on this page handles one-off spacing and width (see
