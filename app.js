@@ -62,6 +62,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     FAQ ACCORDION (#faq): the real stylesheet's .faq-item/.faq-question/
+     .faq-answer classes drive a JS-toggled "open" state rather than native
+     <details>, so the collapse animates via a grid-template-rows transition
+     (see .faq-answer in styles.css) instead of the browser's own disclosure
+     behavior. One item open at a time, closing the others, matching the
+     live site's own accordion pattern.
+     ----------------------------------------------------------------------- */
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    const question = item.querySelector(".faq-question");
+    if (!question) return;
+    question.addEventListener("click", function () {
+      const willOpen = !item.classList.contains("open");
+      const faqList = item.closest(".faq");
+      if (faqList) {
+        faqList.querySelectorAll(".faq-item.open").forEach(function (openItem) {
+          if (openItem === item) return;
+          openItem.classList.remove("open");
+          const openQuestion = openItem.querySelector(".faq-question");
+          if (openQuestion) openQuestion.setAttribute("aria-expanded", "false");
+        });
+      }
+      item.classList.toggle("open", willOpen);
+      question.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+  });
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
