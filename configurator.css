@@ -286,3 +286,12 @@
   font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin:0;
 }
 .standard-banner p{margin:0; font-size:.92rem; line-height:1.55; color:rgba(26,26,26,.8); max-width:980px;}
+
+/* Social anchors (#immersions). The whole card shell is the real, already-thrice-used
+   .tier-grid/.tier-card (formats, cadence, engagement-models) with plain <p> body copy,
+   same as the engagement-models cards. The pill row reuses .client-badges verbatim for
+   its visual treatment (monochrome, uppercase, bordered) and only gains the bottom-pin
+   + top-hairline behavior here, via a second class on the same element so both rules
+   apply; .client-badges' own margin-top:16px is overridden by source order (this file
+   loads after styles.css), no !important needed. */
+.immersion-meta{margin-top:auto; padding-top:18px; border-top:1px solid rgba(40,64,80,.1);}
