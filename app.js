@@ -134,6 +134,44 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     CALIBRATED FORMATS DETAIL DRAWER (#formats, index.html only): each
+     tier-card's "Inspect full scope" toggle (the real .tier-cta-sub text
+     button) swaps which single .format-detail-panel is shown in the
+     full-width drawer below the grid, and highlights the matching card.
+     Mirrors the FAQ accordion's single-open-at-a-time class toggle above
+     rather than a hand-rolled inline style.display swap. "Build this
+     format" keeps its own separate onclick (selectFormatAndScroll,
+     defined further down) and is untouched by this block.
+     ----------------------------------------------------------------------- */
+  const formatToggles = document.querySelectorAll("[data-format-toggle]");
+  if (formatToggles.length) {
+    const formatCards = document.querySelectorAll("[data-format]");
+    const formatPanels = document.querySelectorAll("[data-format-detail]");
+
+    function activateFormat(formatId) {
+      formatCards.forEach(function (card) {
+        card.classList.toggle("format-card-active", card.getAttribute("data-format") === formatId);
+      });
+      formatToggles.forEach(function (btn) {
+        btn.setAttribute("aria-expanded", btn.getAttribute("data-format-toggle") === formatId ? "true" : "false");
+      });
+      formatPanels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-format-detail") !== formatId;
+      });
+    }
+
+    formatToggles.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activateFormat(btn.getAttribute("data-format-toggle"));
+        if (window.innerWidth <= 860) {
+          const panel = document.getElementById("format-detail-panel");
+          if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
