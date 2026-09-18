@@ -477,6 +477,47 @@
   .format-detail-columns{grid-template-columns:1fr; gap:28px;}
 }
 
+/* #cadence drawer agendas, v30. Sven asked for an explicit Day 0 arrival
+   evening across all three cadences (so Day 1 opens fresh at 08:30/09:00
+   rather than mid-travel), a firm 18:00 departure anchor on the last
+   working day, the 3-day agenda restructured to three full operational
+   days plus a dedicated half-day Catalan immersion, and the 5-day agenda
+   restructured into three phases (Strategy Days 1-2, Leadership &
+   Immersion Day 3, Execution & Roadmaps Days 4-5) instead of two.
+
+   The brief's own markup proposed a full parallel system for this
+   (.agenda-timeline-grid/.agenda-day-block/.agenda-schedule/
+   .cadence-meta-badge/.agenda-subhead-pill) with its CSS aimed at
+   styles.css directly. None of it shipped: styles.css never gets
+   edited, and the real v23/v28 drawer shell this page already runs on
+   (.format-detail-head/.format-detail-columns/.format-detail-columns-3col
+   /.format-detail-col/.outcomes-list) covers the same ground. The
+   arrival/duration/departure summary line under each panel's h3 reuses
+   .lang-pill verbatim (built v8, still live at #collective, reused a
+   third time here) rather than a new .cadence-meta-badge, since the
+   brief's own proposed values (3px 8px padding, 2px radius, cream fill,
+   hairline border) are functionally the same rule already sitting in
+   this file. The "Day 0" sub-label nested above Day 1's own heading in
+   the 3-day and 5-day panels reuses .case-docket-badge a second time
+   within the same panel rather than a new .agenda-subhead-pill. The
+   brief's em-dash (&#8212;) list-bullet glyph was dropped in favor of
+   the real .outcomes-list checkmark, both per Sven's standing no-em-dash
+   rule and because every other list in this drawer already speaks that
+   checkmark language. The one new rule is .format-detail-col-boxed: a
+   cream/hairline/2px-radius box, matching this build's house corner
+   radius rather than .case-docket-outcome's 16px (that component is
+   tuned for a single centered stat, not a dense multi-item list), needed
+   because the 2-day panel's first column and the 5-day panel's outer
+   columns now stack two distinct day-blocks each and need a visual
+   seam between them. */
+.format-detail-col-boxed{
+  background:var(--cream); border:1px solid var(--hairline-color);
+  border-radius:2px; padding:22px 20px;
+}
+.format-detail-col-boxed + .format-detail-col-boxed{margin-top:20px;}
+.format-detail-col-boxed h4{margin-top:0;}
+.cadence-meta{margin-top:10px;}
+
 /* partners.html manifesto pull-quote. The dark full-bleed shell itself is the
    real, dormant .moat-section (eyebrow/h2/p on navy, already defined in
    styles.css, never used on this build until now), reused as-is rather than
