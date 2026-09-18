@@ -543,7 +543,7 @@
       <div class="section-head">
         <div class="eyebrow">Tempo &amp; Commitment</div>
         <h2>Choose Your Cadence</h2>
-        <p class="subhead" style="font-size: 1.15rem; max-width: 720px; margin-bottom: 40px;">Select the operational depth required, from an acute 48-hour surgical alignment to a comprehensive five-day strategic reset.</p>
+        <p class="subhead" style="font-size: 1.15rem; max-width: 720px; margin-bottom: 40px;">Select the operational depth required. Open any cadence below to inspect a sample day-by-day agenda.</p>
       </div>
 
       <div class="tier-grid">
@@ -554,9 +554,9 @@
           <p class="tier-subhead">48 hours &middot; high-intensity alignment</p>
           <p class="tier-mandate">Focused, closed-room mediation to unblock critical bottlenecks, resolve executive friction, and secure immediate decision rights.</p>
           <ul>
-            <li>Pre-arrival stakeholder intake and an anonymized friction diagnostic</li>
-            <li>Two 4-hour closed-room plenary mediation and alignment sessions</li>
-            <li>A facilitator-steered working dinner to close out lingering departmental friction</li>
+            <li>Pre-arrival friction-matrix diagnostic</li>
+            <li>Two 4-hour closed-room plenary sessions</li>
+            <li>Facilitator-steered working dinner</li>
           </ul>
           <div class="card-bottom-lock">
             <div class="tier-deliverable">
@@ -564,21 +564,21 @@
               <p>Ratified RACI matrix, unblocked decision rights, and operational green lights.</p>
             </div>
             <div class="tier-actions">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="selectCadenceAndScroll('2-days')">Select 2-Day Cadence</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-cadence-toggle="2-days" aria-expanded="false">Inspect Sample Agenda <span class="format-toggle-icon">&darr;</span></button>
             </div>
           </div>
         </div>
 
-        <div class="tier-card tier-featured" data-cadence="3-days">
+        <div class="tier-card tier-featured format-card-active" data-cadence="3-days">
           <span class="tier-badge-pill">Most Effective</span>
           <span class="tier-label">02 &middot; Three-Day Cadence</span>
           <h3>The Complete Intervention</h3>
           <p class="tier-subhead">72 hours &middot; strategic and experiential depth</p>
           <p class="tier-mandate">The reference standard: deep strategic debate paired with secluded Catalan social anchors to restore cross-functional trust.</p>
           <ul>
-            <li>A comprehensive friction-matrix review, RACI alignment, and roadmap stress-test</li>
-            <li>A full-day commercial sprint followed by an open-hearth masia dinner and wine pairing</li>
-            <li>A binding 90-day execution compact lock-in and a private coastal catamaran debrief</li>
+            <li>Friction-matrix review &amp; roadmap stress-test</li>
+            <li>Open-hearth masia dinner &amp; wine pairing</li>
+            <li>Signed 90-day compact &amp; catamaran debrief</li>
           </ul>
           <div class="card-bottom-lock">
             <div class="tier-deliverable">
@@ -586,7 +586,7 @@
               <p>The signed 90-day compact, a re-aligned commercial roadmap, and rebuilt team trust.</p>
             </div>
             <div class="tier-actions">
-              <button type="button" class="btn btn-primary btn-sm" onclick="selectCadenceAndScroll('3-days')">Select 3-Day Cadence</button>
+              <button type="button" class="btn btn-primary btn-sm" data-cadence-toggle="3-days" aria-expanded="true">Viewing Agenda Below <span class="format-toggle-icon">&uarr;</span></button>
             </div>
           </div>
         </div>
@@ -597,9 +597,9 @@
           <p class="tier-subhead">Full week &middot; comprehensive organizational reset</p>
           <p class="tier-mandate">Complete immersion for distributed leadership teams, uniting company-wide vision with functional sprint execution.</p>
           <ul>
-            <li>Parallel executive steering and functional-team breakout sprint tracks</li>
-            <li>A full-day product innovation lab, AI governance roadmap, and GTM stress-test</li>
-            <li>An exclusive multi-day buyout of a private countryside masia with structured immersions</li>
+            <li>Parallel executive &amp; functional sprint tracks</li>
+            <li>Product &amp; AI governance roadmap lab</li>
+            <li>Multi-day private estate buyout</li>
           </ul>
           <div class="card-bottom-lock">
             <div class="tier-deliverable">
@@ -607,7 +607,104 @@
               <p>A full operating-system overhaul, department sprint charters, and a unified culture.</p>
             </div>
             <div class="tier-actions">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="selectCadenceAndScroll('5-days')">Select 5-Day Cadence</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-cadence-toggle="5-days" aria-expanded="false">Inspect Sample Agenda <span class="format-toggle-icon">&darr;</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="format-detail" id="cadence-detail-panel">
+
+        <div class="format-detail-panel" data-cadence-detail="2-days" hidden>
+          <div class="format-detail-head">
+            <div>
+              <span class="case-docket-badge">48-Hour Sample Flow</span>
+              <h3>The Surgical Sprint (Two-Day Cadence)</h3>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="selectCadenceAndScroll('2-days')">Select 2-Day Cadence &rarr;</button>
+          </div>
+          <div class="format-detail-columns">
+            <div class="format-detail-col">
+              <h4>Day 1 &middot; Arrival &amp; Friction Matrix</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>14:00 &middot; Private Check-In:</strong> Arrival at the private countryside estate near Girona, with a quiet hour to settle before the room opens.</li>
+                <li><strong>15:30 &middot; Plenary Session 1:</strong> The anonymized friction matrix goes on the table, naming the turf wars nobody names out loud.</li>
+                <li><strong>18:30 &middot; Debrief Walk:</strong> Facilitated one-on-one walks through the estate grounds to defuse what the room surfaced.</li>
+                <li><strong>20:00 &middot; Steered Dinner:</strong> A Catalan dinner with the facilitator guiding peer reflection, not small talk.</li>
+              </ul>
+            </div>
+            <div class="format-detail-col">
+              <h4>Day 2 &middot; Mediation &amp; Lock-In</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>08:30 &middot; Plenary Session 2:</strong> Decision-rights arbitration, RACI assignment, and the budget trade-offs nobody wanted to raise first.</li>
+                <li><strong>12:30 &middot; Working Lunch:</strong> Sub-team alignment continues informally over a light Mediterranean lunch.</li>
+                <li><strong>14:00 &middot; The Compact Sign-Off:</strong> Single-threaded ownership finalized and the 90-day compact signed in the room.</li>
+                <li><strong>16:30 &middot; Departure:</strong> Private transport back to Barcelona.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="format-detail-panel" data-cadence-detail="3-days">
+          <div class="format-detail-head">
+            <div>
+              <span class="case-docket-badge">72-Hour Sample Flow &middot; Most Effective Cadence</span>
+              <h3>The Complete Intervention (Three-Day Cadence)</h3>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="selectCadenceAndScroll('3-days')">Select 3-Day Cadence &rarr;</button>
+          </div>
+          <div class="format-detail-columns format-detail-columns-3col">
+            <div class="format-detail-col">
+              <h4>Day 1 &middot; Intake &amp; Grounding</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>15:00 &middot; Arrival:</strong> Check-in at a private Penedès estate buyout.</li>
+                <li><strong>16:30 &middot; Context &amp; Diagnosis:</strong> Survey data reviewed and the strategic bottleneck mapped out directly.</li>
+                <li><strong>20:00 &middot; Open-Hearth Dinner:</strong> Fire-cooked dinner in the estate courtyard with a private sommelier tasting.</li>
+              </ul>
+            </div>
+            <div class="format-detail-col">
+              <h4>Day 2 &middot; Strategic Architecture</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>09:00 &middot; Plenary Sprint:</strong> The 12-month roadmap stress-tested against AI disruption and market compression.</li>
+                <li><strong>14:00 &middot; Governance &amp; RACI:</strong> Departmental silos broken down, single-threaded owners assigned.</li>
+                <li><strong>20:30 &middot; Private Chef Dinner:</strong> Unstructured time, deliberately left off the agenda.</li>
+              </ul>
+            </div>
+            <div class="format-detail-col">
+              <h4>Day 3 &middot; Compact &amp; Coastal Sail</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>09:00 &middot; Ratification:</strong> Formal sign-off on the 90-day execution compact and board commitments.</li>
+                <li><strong>13:30 &middot; Port Vell Transfer:</strong> Private transport to the Barcelona harbor.</li>
+                <li><strong>15:00 &middot; Catamaran Debrief:</strong> A three-hour sail along the coastline, closing the room informally as the sun sets.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="format-detail-panel" data-cadence-detail="5-days" hidden>
+          <div class="format-detail-head">
+            <div>
+              <span class="case-docket-badge">Full-Week Sample Flow</span>
+              <h3>The Transformational Reset (Five-Day Cadence)</h3>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="selectCadenceAndScroll('5-days')">Select 5-Day Cadence &rarr;</button>
+          </div>
+          <div class="format-detail-columns">
+            <div class="format-detail-col">
+              <h4>Days 1&ndash;2 &middot; Plenary Alignment</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>Day 1 &middot; Urban Assembly:</strong> All-hands vision kickoff at Poblenou Creative Atelier or Norrsken House Barcelona.</li>
+                <li><strong>Day 2 &middot; Strategic Horizon:</strong> A whole-team address on three-year market dynamics, then transfer to the mountain estate.</li>
+              </ul>
+            </div>
+            <div class="format-detail-col">
+              <h4>Days 3&ndash;5 &middot; Pod Sprints &amp; Anchors</h4>
+              <ul class="outcomes-list outcomes-list-1col">
+                <li><strong>Days 3&ndash;4 &middot; Dual-Track Pods:</strong> Functional sprints (engineering, product, go-to-market) moderated by Kuma&rsquo;s senior operator bench.</li>
+                <li><strong>Day 4 (evening) &middot; Open-Fire Gathering:</strong> Large-scale hearth dining with live music and informal debriefs.</li>
+                <li><strong>Day 5 &middot; Synthesis &amp; Rollout:</strong> Department sprint charters consolidated; return transit to the airport.</li>
+              </ul>
             </div>
           </div>
         </div>

@@ -186,6 +186,57 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     CHOOSE YOUR CADENCE DETAIL DRAWER (#cadence, index.html only, v28):
+     the exact same pattern as the CALIBRATED FORMATS drawer above, applied
+     to a second section rather than reimplemented. Each cadence card's
+     single toggle both selects which .format-detail-panel (data-cadence-
+     detail) shows in the shared drawer below the grid and is itself the
+     open/closed indicator, swapping .btn-secondary/.btn-primary and its
+     own label/arrow exactly as activateFormat does. The 3-day cadence
+     opens by default, matching its "Most Effective" badge and mirroring
+     how the C-suite format opens by default above. Locking in a cadence
+     now happens from the drawer's own "Select N-Day Cadence" button
+     (selectCadenceAndScroll, defined further down), once that cadence's
+     agenda is open, the same trade as #formats' "Configure this format"
+     replacing "Build this format" in v26.
+     ----------------------------------------------------------------------- */
+  const cadenceToggles = document.querySelectorAll("[data-cadence-toggle]");
+  if (cadenceToggles.length) {
+    const cadenceCards = document.querySelectorAll("[data-cadence]");
+    const cadencePanels = document.querySelectorAll("[data-cadence-detail]");
+    const CADENCE_TOGGLE_LABELS = {
+      closed: 'Inspect Sample Agenda <span class="format-toggle-icon">&darr;</span>',
+      open: 'Viewing Agenda Below <span class="format-toggle-icon">&uarr;</span>',
+    };
+
+    function activateCadence(cadenceId) {
+      cadenceCards.forEach(function (card) {
+        card.classList.toggle("format-card-active", card.getAttribute("data-cadence") === cadenceId);
+      });
+      cadenceToggles.forEach(function (btn) {
+        const isOpen = btn.getAttribute("data-cadence-toggle") === cadenceId;
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        btn.classList.toggle("btn-primary", isOpen);
+        btn.classList.toggle("btn-secondary", !isOpen);
+        btn.innerHTML = isOpen ? CADENCE_TOGGLE_LABELS.open : CADENCE_TOGGLE_LABELS.closed;
+      });
+      cadencePanels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-cadence-detail") !== cadenceId;
+      });
+    }
+
+    cadenceToggles.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activateCadence(btn.getAttribute("data-cadence-toggle"));
+        if (window.innerWidth <= 860) {
+          const panel = document.getElementById("cadence-detail-panel");
+          if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [

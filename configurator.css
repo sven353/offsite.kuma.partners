@@ -411,12 +411,49 @@
    the column grid are genuinely new, there's no full-width detail-panel
    component anywhere in the real stylesheet to borrow. */
 [data-format]{position:relative;}
-[data-format].format-card-active{
+[data-format].format-card-active,
+[data-cadence].format-card-active{
   border-color: var(--teal);
   box-shadow: 0 16px 36px -18px rgba(40,64,80,.28);
 }
 .card-bottom-lock .outcomes-list{margin:0 0 18px; padding-left:0;}
 
+/* #cadence, v28 refactor. Sven asked for the exact interaction pattern
+   #formats already runs: compact cards up top, one full-width detail
+   drawer below the grid with a concrete day-by-day agenda for whichever
+   cadence is open, and a single toggle button whose fill/label/arrow is
+   the open-closed indicator. Rather than build a parallel
+   .cadence-summary-card/.cadence-detail-drawer/.agenda-schedule system
+   as proposed, the #cadence cards stay exactly what they already were
+   (.tier-card, unchanged since v3/v12/v25, no shell swap needed since
+   these cards were never the ones with the pill-wrapping problem
+   #formats had), and the drawer itself is the real #formats drawer
+   (.format-detail/.format-detail-head/.format-detail-columns/
+   .case-docket-badge/.outcomes-list, all v23) reused wholesale for a
+   second section, not rebuilt under cadence-specific names. A card and
+   its own open agenda panel, and a format card and its own open scope
+   panel, now share one visual language site-wide instead of two.
+   [data-cadence].format-card-active reuses the exact v26
+   [data-format].format-card-active "currently open" highlight, just
+   widened to also match cadence cards; .tier-card already carries its
+   own position:relative (styles.css), so no [data-cadence]{position:
+   relative} rule was needed the way [data-format] needed one.
+   .format-detail-columns-3col is the one new rule: the 3-day agenda
+   needs three day-columns side by side where every other agenda (2-day,
+   5-day) needs two, so it's a sibling of the real .outcomes-list-1col
+   modifier pattern rather than a redesign of .format-detail-columns
+   itself; the existing 860px collapse rule for .format-detail-columns
+   already catches it too, since both classes land on the same element
+   and the media rule comes later in source. The toggle button reuses
+   .btn/.btn-secondary/.btn-primary/.btn-sm exactly as #formats' v26
+   consolidated toggle does, not the brief's .btn-cadence-toggle/
+   .active-btn pair, for the same reason: the state is already carried
+   by which real button class is applied, nothing new to add. Losing
+   each card's direct "Select N-Day Cadence" one-click jump is the same
+   trade-off v26 made for "Build this format": the drawer's own "Select
+   N-Day Cadence" button (in .format-detail-head, same slot #formats'
+   "Configure this format" sits in) is now the only way to lock in a
+   cadence from this section, once its agenda is open. */
 .format-detail{
   margin-top:32px; background:#fff; border:1px solid var(--hairline-color);
   border-top:3px solid var(--teal); border-radius:2px; padding:40px 40px 44px;
@@ -428,6 +465,7 @@
 }
 .format-detail-head h3{font-size:1.4rem; margin:0;}
 .format-detail-columns{display:grid; grid-template-columns:1fr 1fr; gap:44px;}
+.format-detail-columns-3col{grid-template-columns:repeat(3,1fr);}
 .format-detail-col h4{
   font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:1rem; color:var(--navy);
   margin:0 0 14px;
