@@ -135,25 +135,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* -----------------------------------------------------------------------
      CALIBRATED FORMATS DETAIL DRAWER (#formats, index.html only): each
-     tier-card's "Inspect full scope" toggle (the real .tier-cta-sub text
-     button) swaps which single .format-detail-panel is shown in the
-     full-width drawer below the grid, and highlights the matching card.
-     Mirrors the FAQ accordion's single-open-at-a-time class toggle above
-     rather than a hand-rolled inline style.display swap. "Build this
-     format" keeps its own separate onclick (selectFormatAndScroll,
-     defined further down) and is untouched by this block.
+     card's single CTA (v25: one consolidated button, replacing the old
+     "Inspect full scope" text link plus a separate "Build this format"
+     button) both toggles which .format-detail-panel is shown in the
+     full-width drawer below the grid and IS the open/closed state
+     indicator, swapping between the real .btn-secondary (closed) and
+     .btn-primary (open) look and its own label/arrow, rather than a
+     separate always-visible "Build this format" button competing next
+     to it. Reaching the configurator directly from this section now
+     happens from the drawer's own "Configure this format" button
+     (selectFormatAndScroll, defined further down), once a card is open,
+     not from the summary card itself. Mirrors the FAQ accordion's
+     single-open-at-a-time class toggle above rather than a hand-rolled
+     inline style.display swap.
      ----------------------------------------------------------------------- */
   const formatToggles = document.querySelectorAll("[data-format-toggle]");
   if (formatToggles.length) {
     const formatCards = document.querySelectorAll("[data-format]");
     const formatPanels = document.querySelectorAll("[data-format-detail]");
+    const FORMAT_TOGGLE_LABELS = {
+      closed: 'Inspect Scope &amp; Curriculum <span class="format-toggle-icon">&darr;</span>',
+      open: 'Viewing Scope Below <span class="format-toggle-icon">&uarr;</span>',
+    };
 
     function activateFormat(formatId) {
       formatCards.forEach(function (card) {
         card.classList.toggle("format-card-active", card.getAttribute("data-format") === formatId);
       });
       formatToggles.forEach(function (btn) {
-        btn.setAttribute("aria-expanded", btn.getAttribute("data-format-toggle") === formatId ? "true" : "false");
+        const isOpen = btn.getAttribute("data-format-toggle") === formatId;
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        btn.classList.toggle("btn-primary", isOpen);
+        btn.classList.toggle("btn-secondary", !isOpen);
+        btn.innerHTML = isOpen ? FORMAT_TOGGLE_LABELS.open : FORMAT_TOGGLE_LABELS.closed;
       });
       formatPanels.forEach(function (panel) {
         panel.hidden = panel.getAttribute("data-format-detail") !== formatId;

@@ -343,35 +343,67 @@
   margin:0 0 18px; padding-bottom:16px; border-bottom:1px solid var(--hairline-color);
 }
 
-/* Calibrated Formats detail drawer, v23 refactor. Each tier-card's own
-   four-item checkmark list has moved out of the card and into a single
-   full-width panel below the grid, so a reader scans three short cards
-   first and opens one deep-spec panel rather than reading four dense
-   lists at once. Nothing new for the card shell itself: the "currently
-   selected" highlight is one small border/shadow addition on the real
-   .tier-card (targeted by its own data-format attribute so it never
-   touches unrelated tier-card usage in #cadence or engagement-models),
-   and the pill row under the mandate reuses .client-badges verbatim,
-   same as .immersion-meta already does elsewhere in this file. The
-   inspect toggle reuses the real .tier-cta-sub text button, defined in
-   the real stylesheet for exactly this .tier-actions slot but never
-   referenced anywhere until now. The panel eyebrow reuses the real,
-   equally-unused .case-docket-badge label from the dormant case-study
-   docket component. The two-column spec lists reuse the real, dormant
-   .outcomes-list checkmark styling (so the checkmark glyph isn't
-   redefined a second time); .outcomes-list-1col only overrides its
-   native two-column grid down to one column per labeled group, since
-   each format here needs two separately headed lists, not one flat
-   checklist. The drawer shell itself, its header row, and the column
-   grid are genuinely new, there's no full-width detail-panel component
-   anywhere in the real stylesheet to borrow. */
-.tier-card[data-format].format-card-active{
+/* Calibrated Formats detail drawer, v23 refactor, card shell reworked in
+   v25. Each format card's own four-item checkmark list moved out of the
+   card and into a single full-width panel below the grid (v23), so a
+   reader scans three short cards first and opens one deep-spec panel
+   rather than reading four dense lists at once.
+
+   v25 polish pass: the card shell moved from .tier-card (padded on all
+   sides, requiring a hand-tuned negative-margin hack per card to bleed
+   the image to the top edge, -36px on plain cards vs -44px on the
+   featured one to clear its extra badge padding) to the real .place-card
+   /.place-image/.place-body system built for #places in v5: zero padding
+   on the outer card plus overflow:hidden does the bleed natively, so
+   every card gets the same aspect-ratio and corner-rounding with no
+   per-card inline math to keep in sync. [data-format] only needs
+   position:relative added here so the featured card's absolutely
+   positioned "Most Requested" .tier-badge-pill still has something to
+   position against; nothing else about .place-card's real styling
+   changed. The "currently selected" highlight (a border/shadow addition)
+   is the same real one-off from v23, its selector just widened from
+   .tier-card[data-format] to plain [data-format] since data-format only
+   ever appears on these three cards anywhere on the site, so the class
+   swap didn't need a second copy of the rule. The metric-pill row used
+   to reuse .client-badges (the grey partner-logo pill look); it now
+   reuses .lang-pill instead (real, from #collective's language chips,
+   navy-on-cream rather than muted grey), which reads as a more
+   purposeful "metric tag" than a client-badge look repurposed for
+   something that isn't a client name; .pill-metrics-row is the one new
+   rule needed, a plain flex-wrap row, since .lang-pill itself has no
+   built-in container.
+
+   The two competing CTAs each card used to carry (a plain-text "Inspect
+   full scope" toggle plus a separate solid "Build this format" button)
+   are now one button: the real .btn/.btn-secondary/.btn-primary/.btn-sm
+   system already used for "Build this format" is reused as the toggle
+   itself, swapping between the outline (.btn-secondary) and solid
+   (.btn-primary) variants in app.js as the open/closed state changes,
+   so "the button is filled in" IS the state indicator, using classes
+   that already exist rather than a new .btn-card-toggle/.active-btn
+   pair. Losing the direct "Build this format" shortcut is a deliberate
+   trade, not an oversight: the drawer's own "Configure this format"
+   button (unchanged since v23) is the only way to jump straight to the
+   configurator from this section now, once a card's detail is open.
+   The old .format-inspect-toggle/.format-inspect-arrow rules (a
+   rotating-arrow animation) are removed as dead code: the button now
+   swaps its whole label, arrow glyph included, so there's nothing left
+   to rotate, and the arrow's spacing comes from .btn's own
+   `gap:8px` rather than a dedicated flex rule. The panel eyebrow reuses
+   the real, equally-unused .case-docket-badge label from the dormant
+   case-study docket component. The two-column spec lists reuse the
+   real, dormant .outcomes-list checkmark styling; .outcomes-list-1col
+   only overrides its native two-column grid down to one column per
+   labeled group, since each format needs two separately headed lists,
+   not one flat checklist. The drawer shell itself, its header row, and
+   the column grid are genuinely new, there's no full-width detail-panel
+   component anywhere in the real stylesheet to borrow. */
+[data-format]{position:relative;}
+[data-format].format-card-active{
   border-color: var(--teal);
   box-shadow: 0 16px 36px -18px rgba(40,64,80,.28);
 }
-.format-inspect-toggle{display:flex; align-items:center; justify-content:center; gap:6px;}
-.format-inspect-arrow{display:inline-block; transition:transform .25s ease;}
-.format-inspect-toggle[aria-expanded="true"] .format-inspect-arrow{transform:rotate(180deg);}
+.pill-metrics-row{display:flex; flex-wrap:wrap; gap:6px;}
 
 .format-detail{
   margin-top:32px; background:#fff; border:1px solid var(--hairline-color);
