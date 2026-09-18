@@ -109,6 +109,18 @@ The dead `.format-inspect-toggle` and `.format-inspect-arrow` CSS rules from v23
 
 Verified: tag-balance check on `index.html` (clean), `configurator.css` brace balance (clean), `node -c app.js`, an image-path-existence check (all 27 image references resolve, no new images added), and a jsdom test confirming each card carries exactly one toggle button, clicking a toggle correctly swaps `.btn-primary`/`.btn-secondary`, `aria-expanded`, and the visible label on all three cards, the matching drawer panel opens and the other two stay hidden, and `selectFormatAndScroll` and the drawer's own "Configure this format" buttons are unaffected.
 
+## Formats summary cards: pills replaced with a checkmark micro-list (v27)
+
+The metric-pill row under each `#formats` card's mandate line is gone. It had already changed treatments twice, `.client-badges` in v23 then `.lang-pill` in v26, and both were horizontal rows of short tags that could still wrap awkwardly mid-phrase inside a compact card, with three cards wrapping differently next to each other. It's replaced with a plain vertical 3-item checklist.
+
+The list reuses the real, dormant `.outcomes-list` checkmark styling verbatim, the same component that already renders the two-column spec lists in the drawer directly below the grid, narrowed to one column with the existing `.outcomes-list-1col` modifier, itself already built in v23. No new list or checkmark style was invented: a card and its own open drawer panel now read with the same checkmark language instead of two different tag treatments. The only new rule is `.card-bottom-lock .outcomes-list`, which zeroes the list's own default browser margin and left indent, since `.outcomes-list` was built for the full-width drawer panel and carries spacing that doesn't belong inside a narrow card body.
+
+`.pill-metrics-row` and the `.lang-pill` markup on these three cards come out entirely. `.lang-pill` itself is untouched and still live at `#collective`'s language row.
+
+Copy for the three list items on each card is a tightened version of the mandate each card already carried, not new claims: co-founders keeps the horizon-labs, founder-stamina, and masia-venue points; C-suite keeps the friction-matrix, RACI, and 90-day-compact points; scale-up keeps the dual-track, turnkey-logistics, and catamaran points.
+
+Verified: tag-balance check on `index.html` (clean, `partners.html` unaffected), `configurator.css` brace balance (clean), `node -c app.js` (unchanged), an image-path-existence check (all 27 image references resolve, no new images added), a grep confirming no remaining `.pill-metrics-row` or `.lang-pill`/`.client-badges` references inside `#formats`, and a jsdom test confirming each card carries exactly one 3-item checklist and one toggle button, and that clicking a toggle still opens the correct drawer panel with `selectFormatAndScroll` unaffected.
+
 ## The experience gallery (#experience-gallery)
 
 The "Inside the Barcelona Experience" cinema filmstrip sits between "Three Places to Go" and "Three Ways to Work With Us." It's two full-bleed horizontal photo tracks (`.filmstrip-track-left` / `.filmstrip-track-right`) that auto-scroll in opposite directions, pause on hover, and fade at both edges — the scroll-loop and gradient-mask technique is the same one already powering the real stylesheet's proof marquee (`.marquee`/`.marquee-track` in `styles.css`), just re-scaled from text to photography and split into two directions instead of one. Each track holds 4 unique frames plus the same 4 duplicated once more (`aria-hidden="true"`) so the loop has no visible seam.

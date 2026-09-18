@@ -364,14 +364,26 @@
    is the same real one-off from v23, its selector just widened from
    .tier-card[data-format] to plain [data-format] since data-format only
    ever appears on these three cards anywhere on the site, so the class
-   swap didn't need a second copy of the rule. The metric-pill row used
-   to reuse .client-badges (the grey partner-logo pill look); it now
-   reuses .lang-pill instead (real, from #collective's language chips,
-   navy-on-cream rather than muted grey), which reads as a more
-   purposeful "metric tag" than a client-badge look repurposed for
-   something that isn't a client name; .pill-metrics-row is the one new
-   rule needed, a plain flex-wrap row, since .lang-pill itself has no
-   built-in container.
+   swap didn't need a second copy of the rule. The metric row went
+   through two treatments before landing on its current one:
+   .client-badges first (the grey partner-logo pill look, v23), then
+   .lang-pill (navy-on-cream chips from #collective's language row,
+   v26). Both were horizontal flex-wrap rows, and both could still wrap
+   a long tag awkwardly mid phrase across two lines at card width, with
+   three differently-wrapping rows next to each other reading as
+   uneven. v27 replaces the pill row with a plain vertical 3-item
+   checklist instead, reusing the real, dormant .outcomes-list
+   checkmark styling verbatim, the same component already powering the
+   drawer's own spec lists below (via its .outcomes-list-1col
+   single-column modifier, also already built, v23), so a card and its
+   own open drawer panel now share one checkmark language instead of
+   two. .pill-metrics-row is removed as dead code along with the
+   .lang-pill markup on these three cards (.lang-pill itself stays live
+   and untouched at #collective). The one addition is
+   `.card-bottom-lock .outcomes-list`, which zeroes out the plain
+   <ul>'s own default browser margin and indent so the list sits flush
+   in the card body instead of carrying the wide left indent and top
+   margin built for the full-width drawer panel it was designed for.
 
    The two competing CTAs each card used to carry (a plain-text "Inspect
    full scope" toggle plus a separate solid "Build this format" button)
@@ -403,7 +415,7 @@
   border-color: var(--teal);
   box-shadow: 0 16px 36px -18px rgba(40,64,80,.28);
 }
-.pill-metrics-row{display:flex; flex-wrap:wrap; gap:6px;}
+.card-bottom-lock .outcomes-list{margin:0 0 18px; padding-left:0;}
 
 .format-detail{
   margin-top:32px; background:#fff; border:1px solid var(--hairline-color);
