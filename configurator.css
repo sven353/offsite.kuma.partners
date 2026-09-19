@@ -1,5 +1,5 @@
 /* =========================================================================
-   configurator.css — supplementary styles ONLY.
+   configurator.css: supplementary styles ONLY.
    Everything else on this page (header, nav, hero, proof/marquee, problem
    grid, tier grid, partner grid, footer) uses the real, unmodified
    styles.css from www.kuma.partners as-is. This file adds only what that
@@ -477,46 +477,82 @@
   .format-detail-columns{grid-template-columns:1fr; gap:28px;}
 }
 
-/* #cadence drawer agendas, v30. Sven asked for an explicit Day 0 arrival
-   evening across all three cadences (so Day 1 opens fresh at 08:30/09:00
-   rather than mid-travel), a firm 18:00 departure anchor on the last
-   working day, the 3-day agenda restructured to three full operational
-   days plus a dedicated half-day Catalan immersion, and the 5-day agenda
-   restructured into three phases (Strategy Days 1-2, Leadership &
-   Immersion Day 3, Execution & Roadmaps Days 4-5) instead of two.
+/* #cadence drawer agendas, v35. Sven asked to redesign the sample agendas
+   into a proper executive timeline: a dedicated monospace time column
+   instead of checkmark bullets, Day 0 pulled out of the day cards into
+   its own full-width arrival banner above the grid, and every day card
+   in a row locked to equal height regardless of how much text it holds.
 
-   The brief's own markup proposed a full parallel system for this
-   (.agenda-timeline-grid/.agenda-day-block/.agenda-schedule/
-   .cadence-meta-badge/.agenda-subhead-pill) with its CSS aimed at
-   styles.css directly. None of it shipped: styles.css never gets
-   edited, and the real v23/v28 drawer shell this page already runs on
-   (.format-detail-head/.format-detail-columns/.format-detail-columns-3col
-   /.format-detail-col/.outcomes-list) covers the same ground. The
-   arrival/duration/departure summary line under each panel's h3 reuses
-   .lang-pill verbatim (built v8, still live at #collective, reused a
-   third time here) rather than a new .cadence-meta-badge, since the
-   brief's own proposed values (3px 8px padding, 2px radius, cream fill,
-   hairline border) are functionally the same rule already sitting in
-   this file. The "Day 0" sub-label nested above Day 1's own heading in
-   the 3-day and 5-day panels reuses .case-docket-badge a second time
-   within the same panel rather than a new .agenda-subhead-pill. The
-   brief's em-dash (&#8212;) list-bullet glyph was dropped in favor of
-   the real .outcomes-list checkmark, both per Sven's standing no-em-dash
-   rule and because every other list in this drawer already speaks that
-   checkmark language. The one new rule is .format-detail-col-boxed: a
-   cream/hairline/2px-radius box, matching this build's house corner
-   radius rather than .case-docket-outcome's 16px (that component is
-   tuned for a single centered stat, not a dense multi-item list), needed
-   because the 2-day panel's first column and the 5-day panel's outer
-   columns now stack two distinct day-blocks each and need a visual
-   seam between them. */
-.format-detail-col-boxed{
+   The brief supplied full replacement agenda copy alongside the
+   restructure. That copy wasn't used verbatim: the real content already
+   live (written in v28, rewritten in v30, and still flagged in Open
+   items as invented sample scheduling pending a factual pass with Sven)
+   was kept as-is and only reformatted into the new time/title/
+   description split, so this round doesn't quietly introduce a second,
+   slightly different version of content that's still waiting on sign-off.
+   Day 0's two old bullets per cadence were condensed into one banner
+   description each, same facts, no new times or venues invented.
+
+   Two genuinely new components, since nothing in styles.css or this file
+   already does a timeline layout: .cadence-arrival-banner (a full-width
+   cream strip with a teal left accent, replacing the old nested
+   .case-docket-badge/plain-paragraph Day 0 treatment) and
+   .agenda-timeline/.agenda-item (a CSS grid list: a fixed monospace time
+   column, then a title-plus-description stack). The real v30
+   .format-detail-col-boxed box moved from a cream fill to white with a
+   2px navy top accent and gained display:flex/height:100% so a short day
+   and a long day in the same row read at the same height. Its old
+   ".format-detail-col-boxed + .format-detail-col-boxed" stacking rule
+   came out as dead code: Day 0 moving to the banner means no column
+   stacks two boxes anymore. ".format-detail-col-boxed h4" came out too,
+   since the heading now lives inside the new .agenda-day-header instead
+   of sitting directly in the box. .format-detail-head/.format-detail-
+   columns/.format-detail-columns-3col/.lang-pill/.case-docket-badge/
+   .cadence-meta are untouched, same real/already-reused components as
+   v28 and v30. */
+.cadence-arrival-banner{
   background:var(--cream); border:1px solid var(--hairline-color);
-  border-radius:2px; padding:22px 20px;
+  border-left:3px solid var(--teal); border-radius:2px;
+  padding:16px 20px; margin-bottom:24px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
 }
-.format-detail-col-boxed + .format-detail-col-boxed{margin-top:20px;}
-.format-detail-col-boxed h4{margin-top:0;}
+.cadence-arrival-tag{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--teal);
+}
+.cadence-arrival-title{
+  font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:.95rem;
+  color:var(--navy); margin:0;
+}
+.cadence-arrival-desc{font-size:.88rem; color:rgba(26,26,26,.75); margin:0;}
+
+.format-detail-col-boxed{
+  background:#fff; border:1px solid var(--hairline-color); border-top:2px solid var(--navy);
+  border-radius:2px; padding:24px 22px; display:flex; flex-direction:column; height:100%;
+}
 .cadence-meta{margin-top:10px;}
+
+.agenda-day-header{margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid var(--hairline-color);}
+.agenda-day-eyebrow{
+  display:block; font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.68rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:4px;
+}
+.agenda-day-header h4{
+  font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:1.1rem; color:var(--navy); margin:0;
+}
+.agenda-timeline{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; flex:1;}
+.agenda-item{display:grid; grid-template-columns:56px 1fr; gap:14px; align-items:start;}
+.agenda-time{
+  font-family:'SFMono-Regular',Consolas,Menlo,monospace; font-size:.8rem; font-weight:700;
+  color:var(--teal); padding-top:2px; letter-spacing:.02em;
+}
+.agenda-content{display:flex; flex-direction:column; gap:3px;}
+.agenda-title{font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:.92rem; color:var(--navy); line-height:1.35;}
+.agenda-desc{font-size:.86rem; line-height:1.5; color:rgba(26,26,26,.72); margin:0;}
+
+@media (max-width:860px){
+  .cadence-arrival-banner{flex-direction:column; align-items:flex-start;}
+}
 
 /* partners.html manifesto pull-quote. The dark full-bleed shell itself is the
    real, dormant .moat-section (eyebrow/h2/p on navy, already defined in
