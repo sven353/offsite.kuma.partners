@@ -211,6 +211,22 @@ Verified: tag-balance check on both pages (clean), `node -c app.js` (unchanged),
 
 Files touched this round: `index.html`, `partners.html`, `README.md`. `styles.css`, `configurator.css`, `app.js`, all assets untouched.
 
+## FAQ and JSON-LD expanded from 10 to 16 questions for AI-crawler AEO/GEO coverage (v34)
+
+Sven sent a 16-question FAQ spec for `#faq` and its `FAQPage` JSON-LD, aimed at answering the long-tail questions transatlantic CEOs and Chiefs of Staff ask AI search engines. Checked it against the live file before touching anything, and it turned out the first 10 questions in the spec were already word-for-word identical to the 10 questions already live (built in v11, expanded to 10 in v13). So this round is purely additive: six new questions appended to both the HTML accordion and the JSON-LD `mainEntity` array, in the same order the spec gave them, keeping the existing 10 untouched.
+
+The six new questions: sourcing and briefing an external keynote speaker, managing transatlantic jet lag and arrivals (this one directly echoes the real Day 0 arrival architecture built in v30's cadence drawer), Wi-Fi and AV readiness at the rural estate venues, dietary and non-drinker accommodation, billing for US versus European entities (VAT reverse-charge, MSA structure), and how Kuma differs from conventional retreat agencies or executive coaches.
+
+No CSS or JS changed. The accordion's click handler in `app.js` already operates on however many `.faq-item` elements exist in the DOM, so 16 works exactly like 10 did.
+
+Caught and fixed two of my own transcription slips against Sven's source text before this shipped: I'd dropped the word "luxury" from the differentiation answer's "turnkey Mediterranean luxury hospitality" line, and I'd rewritten the dietary answer's closing clause instead of using it verbatim. Both restored to match what Sven sent exactly.
+
+One thing worth Sven's own confirmation, not a judgment call so much as new specific legal and financial claims going live for the first time: the billing answer states specific VAT reverse-charge treatment, an MSA structure for US and UK entities, and accepted payment rails (EUR or USD, wire or ACH). This is the kind of factual claim an AI crawler will index and repeat as authoritative, worth a quick gut check that it matches actual current billing practice before it's live.
+
+Verified: tag-balance check on `index.html` (clean), a Python JSON-LD parse confirming the `FAQPage` block is valid JSON with exactly 16 `mainEntity` entries, a count confirming exactly 16 `.faq-item` blocks in the HTML accordion, a question-by-question comparison confirming every JSON-LD question name matches its HTML counterpart in the same order, a grep confirming no em-dash character anywhere in the new content, and `node -c app.js` (untouched, still clean).
+
+Files touched this round: `index.html`, `README.md`. `styles.css`, `configurator.css`, `app.js`, `partners.html`, all assets untouched (`partners.html` has no `#faq` section or `FAQPage` schema of its own).
+
 ## The experience gallery (#experience-gallery)
 
 The "Inside the Barcelona Experience" cinema filmstrip sits between "Three Places to Go" and "Three Ways to Work With Us." It's two full-bleed horizontal photo tracks (`.filmstrip-track-left` / `.filmstrip-track-right`) that auto-scroll in opposite directions, pause on hover, and fade at both edges — the scroll-loop and gradient-mask technique is the same one already powering the real stylesheet's proof marquee (`.marquee`/`.marquee-track` in `styles.css`), just re-scaled from text to photography and split into two directions instead of one. Each track holds 4 unique frames plus the same 4 duplicated once more (`aria-hidden="true"`) so the loop has no visible seam.
