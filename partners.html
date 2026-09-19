@@ -334,91 +334,119 @@
       </div>
       <div class="contact-grid">
         <div class="contact-copy">
+          <div class="intake-partner-cluster">
+            <div class="intake-avatar-stack">
+              <img src="assets/team/dr-sven-mulfinger.jpeg" alt="Dr. Sven Mulfinger">
+              <img src="assets/team/farid.jpeg" alt="Farid Chaouki">
+              <img src="assets/team/luisa-abalo.jpeg" alt="Luisa &Aacute;balo">
+            </div>
+            <div class="intake-partner-meta">
+              <span class="intake-partner-label">Direct Partner Desk</span>
+              <span class="intake-partner-names">Sven, Farid &amp; Luisa</span>
+            </div>
+          </div>
           <p>Speak directly with one of our managing partners. Tell us about your executive cohort, tentative dates, and the primary commercial or relational friction you need resolved.</p>
-          <ul class="contact-reassurance">
-            <li><strong>Direct response.</strong> Sven or Farid personally review every request within 24 business hours.</li>
-            <li><strong>No junior sales reps.</strong> You speak with a managing partner from the first call.</li>
-            <li><strong>Limited quarterly intake.</strong> We cap new engagements each quarter to protect delivery quality.</li>
-          </ul>
+          <div class="intake-trust-grid">
+            <div class="value-card">
+              <h3>Strict Bilateral NDA</h3>
+              <p>Confidentiality guaranteed. All cap table, board, and operational notes are protected under mutual NDA prior to intake.</p>
+            </div>
+            <div class="value-card">
+              <h3>Managing Partner Delivery</h3>
+              <p>We cap capacity at four cohorts per quarter so Sven, Farid, and Luisa personally facilitate in the room.</p>
+            </div>
+            <div class="value-card">
+              <h3>24-Hour Review Cadence</h3>
+              <p>Direct follow-up within 24 business hours from a senior partner. No junior SDR qualification calls.</p>
+            </div>
+          </div>
           <div class="contact-direct-email">Prefer email? Write directly to <a href="mailto:contact@kuma.partners">contact@kuma.partners</a>.</div>
         </div>
         <div class="contact-form-shell">
           <form id="contact-form" class="contact-form" name="discovery-call" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="discovery-call">
             <p style="position:absolute; left:-9999px;"><label>Do not fill this out: <input name="bot-field"></label></p>
-            <div class="field">
-              <label>What Brought You Here? *</label>
-              <div class="select-shell"><select name="trigger_context" required>
-                <option value="" disabled selected>Select one</option>
-                <option value="We need to align as a leadership team">We need to align as a leadership team</option>
-                <option value="We're heading into a major strategic decision">We're heading into a major strategic decision</option>
-                <option value="We want dedicated time away from day-to-day operations">We want dedicated time away from day-to-day operations</option>
-                <option value="Something specific is creating friction we need to work through">Something specific is creating friction we need to work through</option>
-                <option value="Just exploring what this could look like">Just exploring what this could look like</option>
-              </select></div>
-            </div>
-            <div class="field">
-              <label>What's Your Role? *</label>
-              <div class="select-shell"><select name="role" required>
-                <option value="" disabled selected>Select one</option>
-                <option value="Founder / Co-Founder / CEO">Founder / Co-Founder / CEO</option>
-                <option value="C-Suite / Managing Director (COO, CRO, CFO, CTO, CPO)">C-Suite / Managing Director (COO, CRO, CFO, CTO, CPO)</option>
-                <option value="Chief of Staff / VP Strategy / People Partner">Chief of Staff / VP Strategy / People Partner</option>
-                <option value="Board Member / Venture Partner / Lead Investor">Board Member / Venture Partner / Lead Investor</option>
-                <option value="Other Leadership Role">Other Leadership Role</option>
-              </select></div>
-            </div>
-            <div class="field">
-              <label>How Can We Help? *</label>
-              <span class="field-helper">Give us the version you'd tell a trusted advisor.</span>
-              <textarea name="context_notes" rows="3" required placeholder="Describe the core dynamic, operational friction, co-founder tension, or specific outcomes you need delivered in Barcelona."></textarea>
-            </div>
             <div class="field-row">
               <div class="field">
-                <label>How Urgent Is It? *</label>
-                <div class="select-shell"><select name="urgency" required>
+                <label>What's Your Role? *</label>
+                <div class="select-shell"><select name="role" required>
                   <option value="" disabled selected>Select one</option>
-                  <option value="We're dealing with it now">We're dealing with it now</option>
-                  <option value="We need to address it within the next 30 days">We need to address it within the next 30 days</option>
-                  <option value="We see something developing and want to get ahead of it">We see something developing and want to get ahead of it</option>
-                  <option value="We're exploring options">We're exploring options</option>
-                </select></div>
+                  <option value="Founder / Co-Founder / CEO">Founder / Co-Founder / CEO</option>
+                  <option value="C-Suite / VP (COO, CFO, CRO, CTO)">C-Suite / VP (COO, CFO, CRO, CTO)</option>
+                  <option value="Chief of Staff / VP Strategy">Chief of Staff / VP Strategy</option>
+                  <option value="Head of People / VP HR">Head of People / VP HR</option>
+                  <option value="Board Member / Investor">Board Member / Investor</option>
+                  <option value="Other Leadership Role">Other Leadership Role</option>
+                </select><svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
               </div>
+              <div class="field">
+                <label>Company Name *</label>
+                <input type="text" name="company" required placeholder="e.g. Acme Health">
+              </div>
+            </div>
+            <div class="field-row">
               <div class="field">
                 <label>For How Many People? *</label>
                 <div class="select-shell"><select name="cohort_size" required>
                   <option value="" disabled selected>Select cohort size</option>
-                  <option value="2-6 people">2&ndash;6 people (Founder / Executive Committee Reset)</option>
-                  <option value="5-14 people">5&ndash;14 people (C-Suite &amp; Key Functional Leads)</option>
-                  <option value="15-30 people">15&ndash;30 people (Expanded Leadership Bench)</option>
-                  <option value="30-60 people">30&ndash;60 people (Departmental / Cross-Functional Sprints)</option>
-                  <option value="60-100+ people">60&ndash;100+ people (Full Company Momentum Offsite)</option>
-                </select></div>
+                  <option value="2-6 leaders">2&ndash;6 leaders (Founder / ExCo Reset)</option>
+                  <option value="5-14 leaders">5&ndash;14 leaders (C-Suite &amp; Functional)</option>
+                  <option value="15-30 leaders">15&ndash;30 leaders (Expanded Leadership)</option>
+                  <option value="30-60 people">30&ndash;60 people (Departmental Sprints)</option>
+                  <option value="60-100+ people">60&ndash;100+ people (Full Company Momentum)</option>
+                </select><svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+              <div class="field">
+                <label>Target Timeframe *</label>
+                <div class="select-shell"><select name="target_timeframe" required>
+                  <option value="" disabled selected>Select timeframe</option>
+                  <option value="Next 30&ndash;60 days (Urgent)">Next 30&ndash;60 days (Urgent)</option>
+                  <option value="Q1 / Q2">Q1 / Q2</option>
+                  <option value="Q3 / Q4">Q3 / Q4</option>
+                  <option value="Specific dates in mind">Specific dates in mind</option>
+                  <option value="Exploring possibilities">Exploring possibilities</option>
+                </select><svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
               </div>
             </div>
             <div class="field">
-              <label>Estimated Budget</label>
-              <div class="select-shell"><select name="budget_range">
-                <option value="" disabled selected>Select indicative range</option>
-                <option value="&lt; €15,000">&lt; €15,000</option>
-                <option value="€15,000 – €30,000">€15,000 – €30,000</option>
-                <option value="€30,000 – €60,000">€30,000 – €60,000</option>
-                <option value="€60,000 – €100,000">€60,000 – €100,000</option>
-                <option value="€100,000 – €150,000+">€100,000 – €150,000+</option>
-                <option value="Undecided / Need guidance">Undecided / Need guidance</option>
-              </select></div>
+              <label>What Critical Friction Needs Resolving? *</label>
+              <span class="field-helper">Share the core dynamic, co-founder tension, or specific outcomes you need delivered in Barcelona.</span>
+              <textarea name="context_notes" rows="3" required placeholder="Give us the candid version you'd tell a trusted board member or executive advisor."></textarea>
             </div>
             <div class="field-row">
-              <div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="e.g. John Doe"></div>
-              <div class="field"><label>Work Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>
+              <div class="field">
+                <label>Estimated Budget</label>
+                <div class="select-shell"><select name="budget_range">
+                  <option value="" disabled selected>Select indicative range</option>
+                  <option value="&lt; €15,000">&lt; €15,000</option>
+                  <option value="€15,000 – €30,000">€15,000 – €30,000</option>
+                  <option value="€30,000 – €60,000">€30,000 – €60,000</option>
+                  <option value="€60,000 – €100,000">€60,000 – €100,000</option>
+                  <option value="€100,000 – €150,000+">€100,000 – €150,000+</option>
+                  <option value="Undecided / Need guidance">Undecided / Need guidance</option>
+                </select><svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+              <div class="field">
+                <label>Urgency Level</label>
+                <div class="select-shell"><select name="urgency">
+                  <option value="" disabled selected>Select urgency</option>
+                  <option value="Critical &middot; Resolving now">Critical &middot; Resolving now</option>
+                  <option value="Active planning &middot; Next 60 days">Active planning &middot; Next 60 days</option>
+                  <option value="Pre-planning ahead of board/round">Pre-planning ahead of board/round</option>
+                </select><svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Talk to a Managing Partner <span class="arrow">&rarr;</span></button>
-            <p class="contact-form-microcopy">Direct confidential response within 24 business hours. No junior sales reps.</p>
+            <div class="field-row">
+              <div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="e.g. Sarah Jenkins"></div>
+              <div class="field"><label>Work Email *</label><input type="email" name="email" required placeholder="sarah@company.com"></div>
+            </div>
+            <button type="submit" class="btn btn-teal">Request Discovery Call &rarr;</button>
+            <p class="contact-form-microcopy">Strictly confidential under mutual NDA. Direct partner reply within 24 business hours.</p>
             <p class="contact-form-error" id="contact-form-error" hidden>Something went wrong sending your request. Please try again, or email <a href="mailto:contact@kuma.partners">contact@kuma.partners</a> directly.</p>
           </form>
           <div class="contact-success" id="contact-success" hidden>
             <h3>Request received.</h3>
-            <p>Sven or Farid will follow up directly within 24 business hours.</p>
+            <p>Sven, Farid, or Luisa will review your brief and reply directly within 24 business hours.</p>
           </div>
         </div>
       </div>

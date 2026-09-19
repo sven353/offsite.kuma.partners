@@ -577,6 +577,59 @@
    reinforcement, so changing it would move #formats' own drawer without
    Sven asking for that specifically. Left at 44px pending confirmation. */
 
+/* #contact "Direct Partner Intake" left-column refactor, v37. Brief asked for an
+   avatar cluster and trust badges replacing the loose checkmark list, plus a
+   restructured form on the right. Checked styles.css first per house habit, and most
+   of this was already real and dormant: .select-shell already reserves 40px of right
+   padding for a chevron via its own .select-chevron rule (position/size/teal color
+   all already defined), just never once given a matching SVG element in eleven
+   .select-shell instances across this build until now; .btn-teal sits right after
+   .contact-form .btn in the real stylesheet, built for exactly this button and never
+   referenced anywhere; .value-card/.value-grid (#investors, itself fully dormant) is
+   already the translucent glass tile the brief asked for, rgba(255,255,255,.05) fill,
+   hairline border, a border-brighten hover; and .contact-direct-email already does
+   the bordered footer-link treatment the brief's own .intake-channels was reaching
+   for. None of those needed new CSS, only new markup using what was already there.
+
+   Two things are genuinely new, since nothing in the real stylesheet does an
+   overlapping avatar cluster: .intake-partner-cluster/.intake-avatar-stack/
+   .intake-partner-meta/.intake-partner-label/.intake-partner-names, sized and
+   colored off the same tokens the real .partner-photo circles already use. The trust
+   tiles reuse .value-card as-is, background/border/hover all real, with one small
+   additive layer, .intake-trust-grid, that stacks them in a single column instead of
+   .value-grid's 3-up row (this sits in a narrow half-width column, not a full-width
+   section) and adds the teal left-border accent this build already uses for meta
+   call-outs elsewhere (.cadence-arrival-banner, .standard-banner) rather than the
+   brief's own from-scratch glass recipe. .contact-form-shell picked up a resting
+   shadow it didn't have before, using the site's own navy-tinted shadow formula
+   (rgba(40,64,80,...), the same family .partner-card-lg's hover shadow and the
+   scrolled header's shadow already use) instead of the brief's plain black
+   rgba(0,0,0,.35), plus the brief's own mobile padding reduction. */
+.intake-partner-cluster{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+.intake-avatar-stack{display:flex; align-items:center;}
+.intake-avatar-stack img{
+  width:40px; height:40px; border-radius:50%; object-fit:cover;
+  border:2px solid var(--navy); margin-left:-10px; background:var(--cream); display:block;
+}
+.intake-avatar-stack img:first-child{margin-left:0;}
+.intake-partner-meta{display:flex; flex-direction:column; gap:2px;}
+.intake-partner-label{
+  font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.68rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--teal);
+}
+.intake-partner-names{font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:.92rem; color:#fff;}
+
+.intake-trust-grid{display:flex; flex-direction:column; gap:12px; margin:28px 0 24px;}
+.intake-trust-grid .value-card{border-left:3px solid var(--teal); padding:14px 18px;}
+.intake-trust-grid .value-card h3{font-size:.92rem; margin-bottom:3px;}
+.intake-trust-grid .value-card p{font-size:.86rem;}
+
+.contact-form-shell{box-shadow:0 20px 48px -20px rgba(40,64,80,.4);}
+
+@media (max-width:860px){
+  .contact-form-shell{padding:28px 20px;}
+}
+
 /* partners.html manifesto pull-quote. The dark full-bleed shell itself is the
    real, dormant .moat-section (eyebrow/h2/p on navy, already defined in
    styles.css, never used on this build until now), reused as-is rather than
