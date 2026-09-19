@@ -466,6 +466,7 @@
 .format-detail-head h3{font-size:1.4rem; margin:0;}
 .format-detail-columns{display:grid; grid-template-columns:1fr 1fr; gap:44px;}
 .format-detail-columns-3col{grid-template-columns:repeat(3,1fr);}
+.format-detail-col{display:flex; flex-direction:column; height:100%;}
 .format-detail-col h4{
   font-family:'Montserrat',Arial,sans-serif; font-weight:600; font-size:1rem; color:var(--navy);
   margin:0 0 14px;
@@ -553,6 +554,28 @@
 @media (max-width:860px){
   .cadence-arrival-banner{flex-direction:column; align-items:flex-start;}
 }
+
+/* #cadence drawer agendas, v36. Sven resent the same restructure brief
+   with refined agenda copy, taken this time as confirmation to apply his
+   specific wording rather than keep the old content reformatted under it
+   (v35's call). The HTML content across all three cadence panels was
+   swapped to his copy verbatim, house-style normalized (en-dash for
+   Barcelona-El Prat, no slashes, no em-dashes). This is still invented
+   sample scheduling, same as v28/v30/v35: which wording is live changed,
+   the open item asking Sven for a factual pass on times/venues has not.
+
+   One structural addition: .format-detail-col above now gets its own
+   display:flex/flex-direction:column/height:100% so a short column and a
+   long column in the same row both stretch to the row's height, on top of
+   .format-detail-col-boxed's own equal-height rule from v35. This is
+   shared with #formats' own drawer, but it only reinforces the grid's
+   existing default stretch behavior, so no visual change there.
+
+   Not applied: the brief's .format-detail-columns gap change from the
+   real 44px to 32px. That rule is shared with #formats too, and unlike
+   the flex addition above, a gap change is visibly different, not just a
+   reinforcement, so changing it would move #formats' own drawer without
+   Sven asking for that specifically. Left at 44px pending confirmation. */
 
 /* partners.html manifesto pull-quote. The dark full-bleed shell itself is the
    real, dormant .moat-section (eyebrow/h2/p on navy, already defined in

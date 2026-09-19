@@ -243,6 +243,20 @@ Verified: tag-balance check on `index.html` (clean), `configurator.css` brace ba
 
 Files touched this round: `index.html`, `configurator.css`, `README.md`. `styles.css`, `app.js`, `partners.html`, all assets untouched (`partners.html` has no `#cadence` section of its own).
 
+## Cadence drawer agenda copy replaced with Sven's resent brief (v36)
+
+Sven pasted the same restructure brief a second time, with refined agenda copy across all three cadence panels. Taken as confirmation he wants his specific wording live this time, reversing the v35 call to keep the old content under the new layout. The timeline structure built in v35 (arrival banner, `.agenda-timeline` list) is unchanged; only the text inside it changed, across the 2-day, 3-day, and 5-day panels.
+
+The new copy was used verbatim, with house-style normalization applied: en-dash for "Barcelona&ndash;El Prat" (the brief used a plain hyphen), "and" in place of slash-separated pairs like "capital and headcount trade-offs", and curly quotes around the quoted "done" in the 2-day Day 01 copy. The 5-day cadence's last two agenda items (a closing retrospective and a departure) were merged into a single item, matching the brief's own three-item structure for that column rather than the four items the layout otherwise carries per day. This is still invented sample scheduling, same as every round since v28: the wording changed, the open item asking Sven to confirm actual times, venues, and session content has not been resolved by this round.
+
+One CSS addition: `.format-detail-col` (the grid item wrapping each day's box, shared with `#formats`' own drawer) now gets `display:flex; flex-direction:column; height:100%`, on top of `.format-detail-col-boxed`'s own equal-height rule from v35, so short and long days in the same row stretch evenly. This only reinforces the grid's existing stretch default, so `#formats` sees no visual change from it.
+
+Not applied: the brief's `.format-detail-columns` gap change from the real 44px to 32px. That rule is shared with `#formats` too, but unlike the flex addition, a gap change is a visible difference, not a reinforcement of existing behavior, so applying it would move `#formats`' own drawer without Sven asking for that specifically. Left at 44px. Flagging this in case he wants it changed for both sections.
+
+Verified: tag-balance check on `index.html` (clean), `configurator.css` brace balance (clean), `node -c app.js` (unchanged, still clean), a grep confirming zero em-dash characters in `index.html` and no new ones in `configurator.css` (the same 2 pre-existing v7/v8-era instances from v35's sweep are still there, untouched, out of scope), and a check confirming all three `data-cadence-detail` panels kept their exact same `hidden` state (2-day and 5-day hidden, 3-day open by default).
+
+Files touched this round: `index.html`, `configurator.css`, `README.md`. `styles.css`, `app.js`, `partners.html`, all assets untouched.
+
 ## The experience gallery (#experience-gallery)
 
 The "Inside the Barcelona Experience" cinema filmstrip sits between "Three Places to Go" and "Three Ways to Work With Us." It's two full-bleed horizontal photo tracks (`.filmstrip-track-left` / `.filmstrip-track-right`) that auto-scroll in opposite directions, pause on hover, and fade at both edges — the scroll-loop and gradient-mask technique is the same one already powering the real stylesheet's proof marquee (`.marquee`/`.marquee-track` in `styles.css`), just re-scaled from text to photography and split into two directions instead of one. Each track holds 4 unique frames plus the same 4 duplicated once more (`aria-hidden="true"`) so the loop has no visible seam.
