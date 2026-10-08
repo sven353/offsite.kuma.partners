@@ -502,3 +502,9 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - Hero has a "Facilitated in" language line under the buttons.
 - The blueprint shown after the five questions has a fifth row, "Commercial Model", using the published overall range. No per-format price ranges were added.
 - Not added: a calendar booking button (no real booking link exists yet).
+
+## Structured data (Oct 2026)
+
+- `index.html`: placeholder phone number removed from the `ProfessionalService` entity; both provider organisations carry an `@id`; Nonameyet has its LinkedIn company page in `sameAs`; a `hasOfferCatalog` lists the three formats. The 16-question `FAQPage` is unchanged.
+- `partners.html`: `AboutPage` plus `Person` entities for Sven Mulfinger, Farid Chaouki and Luisa Ábalo, using the profile links already on the page.
+- Kuma Partners has no LinkedIn company URL in `sameAs` yet. Add it to the `KUMA` organisation object on both pages once confirmed.

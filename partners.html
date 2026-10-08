@@ -30,15 +30,104 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "Kuma Partners Offsite Leadership & Bench",
-  "url": "https://offsite.kuma.partners/partners.html",
-  "description": "Directory of managing partners and senior specialists facilitating executive leadership retreats in Barcelona.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Kuma Partners",
-    "url": "https://www.kuma.partners"
-  }
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://offsite.kuma.partners/partners.html#about",
+      "url": "https://offsite.kuma.partners/partners.html",
+      "name": "Kuma Partners Offsite Leadership & Bench",
+      "description": "Directory of managing partners and senior specialists facilitating executive leadership retreats in Barcelona.",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.kuma.partners/#organization",
+        "name": "Kuma Partners",
+        "url": "https://www.kuma.partners"
+      },
+      "about": [
+        {
+          "@id": "https://offsite.kuma.partners/partners.html#sven-mulfinger"
+        },
+        {
+          "@id": "https://offsite.kuma.partners/partners.html#farid-chaouki"
+        },
+        {
+          "@id": "https://offsite.kuma.partners/partners.html#luisa-abalo"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://offsite.kuma.partners/partners.html#sven-mulfinger",
+      "name": "Dr. Sven Mulfinger",
+      "jobTitle": "Managing Partner",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://www.kuma.partners/#organization",
+        "name": "Kuma Partners",
+        "url": "https://www.kuma.partners"
+      },
+      "description": "Specializes in high-stakes C-suite mediation, cross-border M&A alignment, and resolving structural co-founder friction. Translates unexpressed executive conflict into binding 90-day execution compacts.",
+      "sameAs": [
+        "https://www.linkedin.com/in/svenmulfinger",
+        "https://www.mulfinger.com"
+      ],
+      "knowsAbout": [
+        "Executive Mediation",
+        "C-Suite Alignment",
+        "Co-Founder Conflict Resolution",
+        "Leadership Offsite Facilitation",
+        "90-Day Execution Compacts",
+        "Decision Rights (RACI)"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://offsite.kuma.partners/partners.html#farid-chaouki",
+      "name": "Farid Chaouki",
+      "jobTitle": "Founder & Strategic Designer",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://www.nonameyet.com/#organization",
+        "name": "Nonameyet",
+        "url": "https://www.nonameyet.com/",
+        "sameAs": [
+          "https://www.linkedin.com/company/nonameyet/"
+        ]
+      },
+      "description": "Guides scale-ups and distributed leadership teams through rapid product innovation, enterprise AI roadmap stress-testing, and venture architecture.",
+      "sameAs": [
+        "https://www.linkedin.com/in/faridchaouki/"
+      ],
+      "knowsAbout": [
+        "Venture Innovation",
+        "Product Sprints",
+        "AI Roadmap Stress-Testing",
+        "Fractional CPO / CIO Advisory"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://offsite.kuma.partners/partners.html#luisa-abalo",
+      "name": "Luisa Ábalo",
+      "jobTitle": "Executive Leadership Chair",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://www.kuma.partners/#organization",
+        "name": "Kuma Partners",
+        "url": "https://www.kuma.partners"
+      },
+      "description": "Specializes in enterprise governance, organizational scaling architecture, and CEO peer dynamics. Drives operational discipline, accountability cadences, and leadership team cohesion across high-growth international executive cohorts.",
+      "sameAs": [
+        "https://www.linkedin.com/in/luisaabaloperez/"
+      ],
+      "knowsAbout": [
+        "Organizational Scaling",
+        "Enterprise Governance",
+        "Accountability Cadences",
+        "CEO Peer Dynamics"
+      ]
+    }
+  ]
 }
 </script>
 </head>
