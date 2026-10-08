@@ -590,3 +590,9 @@ State of the site after this pass:
 - Adrian Perreau de Pinninck added to the bench (fourth). Bench order: Colleen Tartow, Tiffany Missiha, Daniel Pascual, Adrian Perreau de Pinninck, Ofir K., Márcio Marcos, Bryan Kramer.
 - Vincent Azé has a photo, LinkedIn and email link. `assets/team/vincent-aze.jpeg` and `assets/team/adrian.jpeg` are the same photos already published on www.kuma.partners.
 - Language lines normalised on both pages: Sven EN · ES · FR · DE; Farid EN · FR; Luisa EN · ES; Vincent EN · FR; Colleen EN; Tiffany EN; Daniel EN · DE · ES; Adrian EN · ES · CAT; Ofir EN · PT; Márcio EN · PT · ES · DE; Bryan EN.
+
+## Leaner format and agenda cards (Oct 2026)
+
+- `#formats` cards: the italic paragraph moved off each card into the top of its drawer (`.format-detail-intro`). Cards keep photo, name, group size, three bullets and the button.
+- `#cadence` cards: the three bullets moved into the top of each agenda drawer (`.cadence-detail-highlights`). Cards keep name, duration, one line, the Monday deliverable and the button.
+- No text was deleted. The "Most Requested" badge on the format cards is no longer clipped.
