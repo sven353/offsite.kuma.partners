@@ -446,3 +446,12 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 3. Commit directly to `main`.
 4. Netlify redeploys automatically, usually within a minute or two.
 5. Once live, check **Site configuration → Forms** in Netlify to confirm the `offsite-blueprint` form picked up the new `role` and `budget` fields alongside the existing ones.
+
+## Hero, nav, problem and "How It Works" pass (Oct 2026)
+
+- Nav labels are now: The Problem, How It Works, 3 Formats, Venues, Agendas, Partners (both pages).
+- Primary CTA renamed from "Build Your Offsite" to "Configure Your Offsite" everywhere, including the configurator heading and footer. Hero gained a secondary "Talk to a Partner" button that scrolls to `#contact`.
+- H1 unchanged for search. Hero subhead rewritten around the pain, with no fixed number of days.
+- Problem cards rewritten as three problems. The old card 03 described the solution and carried an unsourced "under 48 hours" claim, both removed.
+- New `#process` section between `#problem` and `#formats`, styled at the end of `configurator.css`. Copy holds for all three engagement models.
+- Partner naming aligned to Sven, Farid and Luisa in the FAQ, FAQ schema and configurator intro. Vistage credential changed to past tense.
