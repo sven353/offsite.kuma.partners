@@ -570,3 +570,10 @@ State of the site after this pass:
 - The text "NONAMEYET" wordmark in every header and footer (7 pages) is now the real logo, `assets/logo-nonameyet.png`: a transparent PNG cut from the supplied artwork, 577 x 360px.
 - It is a three-line stacked mark, so it renders 44px tall on desktop and 36px on phones, taller than the 34px and 26px first specified, to keep the lettering legible beside the Kuma lockup.
 - The header bar now has 32px side gutters. `.nav`'s own padding had been cancelling them, which left the logo flush against the screen edge on phones and out of line with the page content on desktop.
+
+## Partner cards: inline bio on hover (Oct 2026)
+
+- Supersedes the always-open editorial cards above. Same card design, but on devices with a mouse at 1101px and wider the bio is collapsed at rest and opens directly under the role on hover or keyboard focus (`.partner-bio-drawer`).
+- Each card sits in a `.partner-card-slot`. `app.js` pins every slot to the shared resting height and adds `.is-pinned` to the grid, so an open card grows over the content below and the page height does not change. It re-measures on load, font load and resize. Without JavaScript the card grows in place.
+- On touch screens and at 1100px and narrower the bio is always open.
+- Portuguese removed from Sven Mulfinger's languages on `index.html` and `partners.html`. The hero language line and the FAQ answer on languages still list Portuguese.

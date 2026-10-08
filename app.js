@@ -436,6 +436,40 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 
   /* -----------------------------------------------------------------------
+     OPERATOR CARDS (#collective): the bio opens on hover through CSS alone.
+     This only pins each card's slot to the shared resting height, so an open
+     card grows over the content below and the page does not move. Applies
+     where CSS collapses the bio (mouse, 1101px and wider); elsewhere the
+     pinning is cleared and the cards flow normally.
+     ----------------------------------------------------------------------- */
+  (function () {
+    const grid = document.querySelector(".partner-grid-4");
+    if (!grid) return;
+    const slots = grid.querySelectorAll(".partner-card-slot");
+    const collapses = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1101px)");
+    function pinSlots() {
+      grid.classList.remove("is-pinned");
+      slots.forEach(function (s) { s.style.height = ""; });
+      if (!collapses.matches) return;
+      grid.classList.add("is-measuring");
+      let rest = 0;
+      slots.forEach(function (s) { rest = Math.max(rest, s.firstElementChild.offsetHeight); });
+      grid.classList.remove("is-measuring");
+      if (!rest) return;
+      slots.forEach(function (s) { s.style.height = rest + "px"; });
+      grid.classList.add("is-pinned");
+    }
+    pinSlots();
+    window.addEventListener("load", pinSlots);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(pinSlots);
+    let pinTimer;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(pinTimer);
+      pinTimer = window.setTimeout(pinSlots, 150);
+    });
+  })();
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
