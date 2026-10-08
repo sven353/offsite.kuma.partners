@@ -473,3 +473,11 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 
 - Section backgrounds on `index.html` are set by id in one block at the end of `configurator.css` and no longer inline. Order: hero off-white, proof strip `#EDF2F7`, problem white, process off-white, formats white, places off-white, cadence white, gallery dark, immersions off-white, engagement models white, FAQ off-white, configurator white, collective off-white, contact dark, footer white.
 - `partners.html` keeps its own inline section backgrounds.
+
+## Progressive disclosure (Oct 2026)
+
+- `#formats` and `#cadence` detail drawers start closed. Clicking a card's button opens its drawer; clicking it again closes it. The drawer shell is hidden while nothing is open.
+- `#places`, `#immersions` and `#engagement-models` are no longer separate sections. They are three tab panels inside `#dossier`, with their original copy unchanged and their original ids kept, so `/#places` style links open the right tab.
+- FAQ shows the first 3 of 16 questions with a "Show all 16 questions" toggle. The other 13 stay in the HTML. The FAQ JSON-LD is untouched.
+- Section backgrounds were re-ordered so they still alternate.
+- Desktop page height at 1280px went from about 15,450px to about 11,250px.

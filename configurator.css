@@ -691,10 +691,10 @@
    with the proof strip one step deeper and two dark navy anchors (gallery,
    contact). Set here by id, not inline, so the order is readable in one place.
    ========================================================================= */
-.hero-editorial, #process, #places, #immersions, #faq, #collective{
+.hero-editorial, #process, #cadence, #faq, #collective{
   background:var(--cream); border-bottom:1px solid var(--hairline-color);
 }
-#problem, #formats, #cadence, #engagement-models, #configurator{
+#problem, #formats, #dossier, #configurator{
   background:#fff; border-bottom:1px solid var(--hairline-color);
 }
 footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
@@ -705,3 +705,44 @@ footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
 }
 .proof p{font-size:.76rem; font-weight:700; letter-spacing:.12em; color:var(--teal); margin-bottom:20px;}
 .marquee-track span{font-size:1.05rem; color:var(--navy); padding:0 40px;}
+
+/* =========================================================================
+   Progressive disclosure: tabbed section (#dossier) holding the venues,
+   social anchors and ways-to-work content, plus the FAQ "show all" toggle.
+   All panels stay in the HTML; only their visibility changes.
+   ========================================================================= */
+.dossier-section{padding:72px 0 88px;}
+.dossier-tabs-nav{display:flex; justify-content:center; margin:0 0 48px;}
+.dossier-tabs-pill{
+  display:inline-flex; gap:4px; padding:4px; background:var(--cream);
+  border:1px solid var(--hairline-color); border-radius:var(--radius-pill);
+}
+.dossier-tab-btn{
+  border:none; background:transparent; cursor:pointer; border-radius:var(--radius-pill);
+  padding:10px 22px; font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.88rem;
+  letter-spacing:.02em; color:var(--navy); transition:background .18s ease, color .18s ease;
+}
+.dossier-tab-btn:hover{color:var(--teal);}
+.dossier-tab-btn.active{background:var(--navy); color:#fff;}
+.dossier-tab-btn:focus-visible, .faq-expand-btn:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+.dossier-tab-panel{animation:fadeInPanel .25s ease;}
+.dossier-tab-panel[hidden]{display:none;}
+@keyframes fadeInPanel{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion: reduce){.dossier-tab-panel, .faq-item-secondary.is-revealed{animation:none;}}
+
+.format-detail[hidden]{display:none;}
+
+.faq-item-secondary{display:none;}
+.faq-item-secondary.is-revealed{display:block; animation:fadeInPanel .2s ease;}
+.faq-expand-wrap{border-top:1px solid rgba(var(--navy-rgb),.12); padding-top:28px; text-align:center;}
+.faq-expand-btn{
+  display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--hairline-color);
+  color:var(--navy); font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.88rem;
+  padding:12px 24px; border-radius:var(--radius-pill); cursor:pointer; transition:border-color .2s ease, color .2s ease;
+}
+.faq-expand-btn:hover{border-color:var(--teal); color:var(--teal);}
+
+@media (max-width:768px){
+  .dossier-tabs-pill{flex-wrap:wrap; justify-content:center; border-radius:var(--radius-md);}
+  .dossier-tab-btn{font-size:.78rem; padding:9px 10px;}
+}

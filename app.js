@@ -172,12 +172,16 @@ document.addEventListener("DOMContentLoaded", function () {
       formatPanels.forEach(function (panel) {
         panel.hidden = panel.getAttribute("data-format-detail") !== formatId;
       });
+      // All drawers start closed; the shared shell only shows while one is open.
+      const formatShell = document.getElementById("format-detail-panel");
+      if (formatShell) formatShell.hidden = !formatId;
     }
 
     formatToggles.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        activateFormat(btn.getAttribute("data-format-toggle"));
-        if (window.innerWidth <= 860) {
+        const wasOpen = btn.getAttribute("aria-expanded") === "true";
+        activateFormat(wasOpen ? null : btn.getAttribute("data-format-toggle"));
+        if (!wasOpen && window.innerWidth <= 860) {
           const panel = document.getElementById("format-detail-panel");
           if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -223,16 +227,74 @@ document.addEventListener("DOMContentLoaded", function () {
       cadencePanels.forEach(function (panel) {
         panel.hidden = panel.getAttribute("data-cadence-detail") !== cadenceId;
       });
+      const cadenceShell = document.getElementById("cadence-detail-panel");
+      if (cadenceShell) cadenceShell.hidden = !cadenceId;
     }
 
     cadenceToggles.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        activateCadence(btn.getAttribute("data-cadence-toggle"));
-        if (window.innerWidth <= 860) {
+        const wasOpen = btn.getAttribute("aria-expanded") === "true";
+        activateCadence(wasOpen ? null : btn.getAttribute("data-cadence-toggle"));
+        if (!wasOpen && window.innerWidth <= 860) {
           const panel = document.getElementById("cadence-detail-panel");
           if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     TABBED SECTION (#dossier): venues, social anchors and ways to work share
+     one section. Every panel is in the static HTML; the tabs only switch
+     which one is visible. The panels keep the ids of the sections they
+     replaced (#places, #immersions, #engagement-models), so old deep links
+     still land on the right tab.
+     ----------------------------------------------------------------------- */
+  const dossierTabs = document.querySelectorAll(".dossier-tab-btn");
+  if (dossierTabs.length) {
+    function showDossierPanel(target) {
+      dossierTabs.forEach(function (b) {
+        const on = b.getAttribute("data-dossier-target") === target;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+        const panel = document.getElementById(b.getAttribute("data-dossier-target"));
+        if (panel) panel.hidden = !on;
+      });
+    }
+    dossierTabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        showDossierPanel(btn.getAttribute("data-dossier-target"));
+      });
+    });
+    function openDossierFromHash() {
+      const id = window.location.hash.slice(1);
+      const match = Array.prototype.some.call(dossierTabs, function (b) {
+        return b.getAttribute("data-dossier-target") === id;
+      });
+      if (!match) return;
+      showDossierPanel(id);
+      const section = document.getElementById("dossier");
+      if (section) section.scrollIntoView({ block: "start" });
+    }
+    openDossierFromHash();
+    window.addEventListener("hashchange", openDossierFromHash);
+  }
+
+  /* -----------------------------------------------------------------------
+     FAQ "SHOW ALL" TOGGLE: the first three questions show on load, the rest
+     stay in the HTML and are revealed by the button.
+     ----------------------------------------------------------------------- */
+  const faqExpandBtn = document.getElementById("faq-expand-btn");
+  if (faqExpandBtn) {
+    faqExpandBtn.addEventListener("click", function () {
+      const isExpanded = faqExpandBtn.getAttribute("aria-expanded") === "true";
+      document.querySelectorAll(".faq-item-secondary").forEach(function (item) {
+        item.classList.toggle("is-revealed", !isExpanded);
+      });
+      faqExpandBtn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+      faqExpandBtn.innerHTML = isExpanded
+        ? "Show all " + faqExpandBtn.getAttribute("data-total") + ' questions <span class="arrow">&darr;</span>'
+        : 'Show fewer questions <span class="arrow">&uarr;</span>';
     });
   }
 
