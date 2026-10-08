@@ -685,3 +685,23 @@
   box-shadow:var(--card-sheen);
 }
 .contact-form-shell, .format-detail, .scorecard-card{border-radius:var(--radius-lg);}
+
+/* =========================================================================
+   Section cadence (index.html): backgrounds alternate off-white and white,
+   with the proof strip one step deeper and two dark navy anchors (gallery,
+   contact). Set here by id, not inline, so the order is readable in one place.
+   ========================================================================= */
+.hero-editorial, #process, #places, #immersions, #faq, #collective{
+  background:var(--cream); border-bottom:1px solid var(--hairline-color);
+}
+#problem, #formats, #cadence, #engagement-models, #configurator{
+  background:#fff; border-bottom:1px solid var(--hairline-color);
+}
+footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
+
+.proof{
+  background:#EDF2F7; padding:36px 0;
+  border-top:1px solid var(--hairline-color); border-bottom:1px solid var(--hairline-color);
+}
+.proof p{font-size:.76rem; font-weight:700; letter-spacing:.12em; color:var(--teal); margin-bottom:20px;}
+.marquee-track span{font-size:1.05rem; color:var(--navy); padding:0 40px;}

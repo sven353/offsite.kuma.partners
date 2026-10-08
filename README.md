@@ -468,3 +468,8 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 
 - Cards 01 and 02 in `#formats` now use real session photos: `assets/formats/offsite-meditation.jpeg` and `assets/formats/offsite-bavaria-session.jpeg` (1600px wide, compressed).
 - The previous images (`slowing-down-session.jpeg`, `strategy-execution-session.jpeg`) are still in the folder but no longer referenced.
+
+## Section cadence and proof strip (Oct 2026)
+
+- Section backgrounds on `index.html` are set by id in one block at the end of `configurator.css` and no longer inline. Order: hero off-white, proof strip `#EDF2F7`, problem white, process off-white, formats white, places off-white, cadence white, gallery dark, immersions off-white, engagement models white, FAQ off-white, configurator white, collective off-white, contact dark, footer white.
+- `partners.html` keeps its own inline section backgrounds.
