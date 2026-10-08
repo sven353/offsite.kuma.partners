@@ -523,3 +523,7 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 ## Third insights article (Oct 2026)
 
 - New page: `insights/c-suite-friction-mediation.html`. The hub shows three cards in a three-column grid, and `sitemap.xml` lists six URLs.
+
+## Fourth insights article (Oct 2026)
+
+- New page: `insights/company-momentum-remote-teams.html`. The hub shows four cards in a two-by-two grid, and `sitemap.xml` lists seven URLs.
