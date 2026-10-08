@@ -487,3 +487,10 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - Step 03 of `#process` has a "See a sample 90-day compact" link that opens a dialog (`#compact-modal`, markup just before the `app.js` script tag). The sample is labelled as illustrative and uses roles, not names.
 - Styles are at the end of `configurator.css`; the open and close logic is in `app.js`.
 - No testimonial section was added. It needs real, attributable client quotes first.
+
+## Mobile-only pass (Oct 2026)
+
+- All rules sit in one block at the end of `configurator.css`, inside `max-width:768px` and `max-width:640px` queries. Layout above 768px measured identical before and after.
+- Hero CTAs go full width; the venue strip, format cards and agenda cards become horizontal swipe rows with the next card peeking in.
+- The 65% stat sits beside its label; agenda times render as chips above each session title; the contact form is tighter.
+- Sticky bottom bar (`#mobile-sticky-bar`) appears after the hero and hides while the configurator or the contact section is on screen. It is `display:none` above 768px.

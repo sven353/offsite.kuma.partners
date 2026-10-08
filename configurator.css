@@ -821,3 +821,91 @@ footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
   .compact-sheet{padding:24px 20px;}
   .compact-sheet-footer{grid-template-columns:1fr;}
 }
+
+/* =========================================================================
+   MOBILE-ONLY REFINEMENTS (<= 768px). Additive: nothing here applies above
+   768px, except the sticky bar being hidden by default.
+   ========================================================================= */
+.mobile-sticky-bar{display:none;}
+
+@media (max-width:768px){
+
+  /* 1. Hero: full-width CTAs, venue strip as a horizontal swipe row */
+  .hero-ctas{flex-direction:column; align-items:stretch; gap:12px;}
+  .hero-ctas .btn{width:100%; min-height:48px; justify-content:center;}
+  .hero-ctas .btn-link{align-self:center; margin-top:6px;}
+
+  .hero-geo-strip{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    gap:14px; margin:36px -32px 0; padding:20px 32px 12px; scroll-padding-left:32px;
+    scrollbar-width:none;
+  }
+  .hero-geo-strip::-webkit-scrollbar{display:none;}
+  .hero-geo-strip .geo-col, .hero-geo-strip .geo-col:not(:first-child){
+    flex:0 0 82%; scroll-snap-align:start; background:#fff;
+    border:1px solid var(--hairline-color); border-radius:var(--radius-md);
+    padding:18px 16px; box-shadow:var(--card-sheen);
+  }
+
+  /* 2. Format and agenda summary cards: swipe row, next card peeking */
+  #formats .tier-grid, #cadence .tier-grid{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    gap:14px; margin-left:-32px; margin-right:-32px; padding:20px 32px 20px; scroll-padding-left:32px;
+    scrollbar-width:none;
+  }
+  #formats .tier-grid::-webkit-scrollbar, #cadence .tier-grid::-webkit-scrollbar{display:none;}
+  #formats .tier-grid > .place-card, #cadence .tier-grid > .tier-card{
+    flex:0 0 85%; scroll-snap-align:start; margin-top:0;
+  }
+
+  /* 3. Problem stat: figure and label side by side */
+  .problem-stat{display:flex; flex-direction:column; gap:18px; padding:24px 0;}
+  .problem-stat-figure{display:flex; flex-direction:row; align-items:center; gap:16px;}
+  .problem-stat-number{font-size:3rem; line-height:1;}
+  .problem-stat-label{margin-top:0; font-size:.95rem; line-height:1.35;}
+
+  /* 4. Contact form: tighter vertical rhythm */
+  .contact-form-shell{padding:24px 18px;}
+  .contact-form .field, .contact-form .field-row{margin-bottom:12px;}
+  .contact-form .field-row{gap:12px;}
+  .contact-form textarea{min-height:72px;}
+  .contact-form button[type="submit"]{min-height:48px;}
+
+  /* 5. Sticky action bar: slides up after the hero, steps aside over the
+     configurator and the contact form so it never covers their buttons. */
+  .mobile-sticky-bar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background:rgba(var(--navy-rgb),.96); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,.12);
+    transform:translateY(100%); visibility:hidden;
+    transition:transform .3s cubic-bezier(.16,1,.3,1), visibility 0s linear .3s;
+  }
+  .mobile-sticky-bar.is-visible{transform:none; visibility:visible; transition:transform .3s cubic-bezier(.16,1,.3,1);}
+  .mobile-sticky-meta{display:flex; flex-direction:column; gap:1px; min-width:0;}
+  .mobile-sticky-label{
+    font-family:'Lato',Arial,sans-serif; font-size:.66rem; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.65);
+  }
+  .mobile-sticky-title{font-family:'Montserrat',Arial,sans-serif; font-size:.82rem; font-weight:600; color:#fff; white-space:nowrap;}
+  .mobile-sticky-btn{
+    background:var(--teal); color:#fff; border:none; border-radius:var(--radius-xs); cursor:pointer;
+    font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.84rem;
+    min-height:44px; padding:10px 16px; white-space:nowrap; flex-shrink:0;
+  }
+  footer.site{padding-bottom:104px;}
+}
+@media (max-width:768px) and (prefers-reduced-motion: reduce){
+  .mobile-sticky-bar, .mobile-sticky-bar.is-visible{transition:none;}
+}
+
+@media (max-width:640px){
+  /* 6. Agenda rows: time as a chip above the session title */
+  .agenda-item{display:flex; flex-direction:column; gap:4px;}
+  .agenda-time{
+    display:inline-block; width:max-content; background:rgba(var(--teal-rgb),.08);
+    border:1px solid rgba(var(--teal-rgb),.2); border-radius:var(--radius-xs);
+    padding:2px 6px; font-size:.74rem; margin-bottom:2px;
+  }
+}

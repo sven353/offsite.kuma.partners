@@ -337,6 +337,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     MOBILE STICKY ACTION BAR: CSS shows it at 768px and below only. It slides
+     in once the hero has left the screen and hides again while the
+     configurator or the contact form is on screen.
+     ----------------------------------------------------------------------- */
+  const mobileBar = document.getElementById("mobile-sticky-bar");
+  if (mobileBar && "IntersectionObserver" in window) {
+    const barBlockers = [
+      document.querySelector(".hero"),
+      document.getElementById("configurator"),
+      document.getElementById("contact"),
+    ].filter(Boolean);
+    const onScreen = new Set();
+    const barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) onScreen.add(entry.target);
+        else onScreen.delete(entry.target);
+      });
+      mobileBar.classList.toggle("is-visible", onScreen.size === 0);
+    });
+    barBlockers.forEach(function (el) { barObserver.observe(el); });
+  }
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
