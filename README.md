@@ -527,3 +527,9 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 ## Fourth insights article (Oct 2026)
 
 - New page: `insights/company-momentum-remote-teams.html`. The hub shows four cards in a two-by-two grid, and `sitemap.xml` lists seven URLs.
+
+## Section gradients and scroll reveal (Oct 2026)
+
+- Light sections on `index.html` now fade between white and `--section-tint` (`#F1F4F8`), with neighbouring sections meeting on the same colour and no hairline between them. The hero has the main site's soft teal wash. Set in the "Section cadence" block of `configurator.css`.
+- Scroll reveal: `app.js` adds `.reveal-item` to section heads and cards below the fold, reveals each once as it enters the viewport (650ms, 90ms stagger, same timing as www.kuma.partners) and then removes the classes. Nothing is hidden without JavaScript or under reduced motion. Tab panels, drawers, hidden FAQ items, the configurator and mobile swipe rows are excluded.
+- Partners page: the specialist bench grid had three columns set inline and overflowed on phones. It now uses `.advisor-grid-3` and collapses to two columns, then one.

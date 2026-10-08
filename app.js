@@ -360,6 +360,82 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     SCROLL REVEAL: section heads and cards fade and rise once as they enter
+     the viewport, with a 90ms stagger across a row. Skipped entirely under
+     prefers-reduced-motion. Not applied to anything inside a tab panel,
+     drawer, hidden FAQ item, the configurator or the sample dialog (those
+     have their own show logic), nor to cards inside the mobile swipe rows.
+     ----------------------------------------------------------------------- */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const REVEAL_SELECTOR =
+      ".section-head, .problem-stat, .problem-col, .process-card, .diagnostic-arc-title, .arc-step, " +
+      ".place-card, .tier-card, .partner-card-lg, .advisor-card, .pricing-pillar, .scorecard-card, " +
+      ".faq-item, .contact-copy, .contact-form-shell, .insight-card";
+    const REVEAL_EXCLUDE =
+      ".dossier-tab-panel, .format-detail, .faq-item-secondary, .compact-modal-overlay, #configurator-app *";
+    const isSwipeLayout = window.matchMedia("(max-width: 768px)").matches;
+    const REVEAL_MS = 650;
+    const STAGGER_MS = 90;
+
+    const targets = Array.prototype.filter.call(document.querySelectorAll(REVEAL_SELECTOR), function (el) {
+      if (el.closest(REVEAL_EXCLUDE)) return false;
+      if (isSwipeLayout && el.parentElement && el.parentElement.matches("#formats .tier-grid, #cadence .tier-grid")) return false;
+      // Leave alone anything already on screen at load: hiding it would flash.
+      const rect = el.getBoundingClientRect();
+      return !(rect.top < window.innerHeight && rect.bottom > 0);
+    });
+    if (!targets.length) return;
+
+    targets.forEach(function (el) {
+      el.classList.add("reveal-item");
+      const siblings = Array.prototype.filter.call(el.parentElement.children, function (s) {
+        return targets.indexOf(s) !== -1;
+      });
+      const index = siblings.indexOf(el);
+      if (siblings.length > 1 && index > 0) el.style.transitionDelay = (index % 4) * STAGGER_MS + "ms";
+    });
+
+    function finish(el) {
+      el.classList.remove("reveal-item", "is-revealed");
+      el.style.transitionDelay = "";
+    }
+    const revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+        el.classList.add("is-revealed");
+        window.setTimeout(function () { finish(el); }, REVEAL_MS + 3 * STAGGER_MS + 100);
+      });
+    }, { rootMargin: "0px 0px -60px 0px", threshold: 0.12 });
+    targets.forEach(function (el) { revealObserver.observe(el); });
+
+    // A jump (anchor link, End key) can carry an element from below the
+    // viewport to above it without it ever intersecting. Anything that ends up
+    // above the viewport is shown straight away, so nothing stays hidden.
+    let sweepQueued = false;
+    window.addEventListener("scroll", function () {
+      if (sweepQueued) return;
+      sweepQueued = true;
+      window.requestAnimationFrame(function () {
+        sweepQueued = false;
+        targets.forEach(function (el) {
+          if (!el.classList.contains("reveal-item") || el.classList.contains("is-revealed")) return;
+          if (el.offsetParent !== null && el.getBoundingClientRect().bottom < 0) {
+            revealObserver.unobserve(el);
+            finish(el);
+          }
+        });
+      });
+    }, { passive: true });
+
+    window.addEventListener("beforeprint", function () { targets.forEach(finish); });
+  })();
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
