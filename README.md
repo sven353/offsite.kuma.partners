@@ -463,3 +463,8 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - Dark sections (`.contact-section`, `.cinema-section`) use the main site's radial navy gradient.
 - White cards (`.place-card`, `.process-card`, `.tier-card`, `.partner-card-lg`, `.partner-card`, `.advisor-card`) get the gradient surface, `--radius-md` and the sheen. The override block sits at the end of `configurator.css`.
 - Where the written brief and the live main site disagreed, the main site won: buttons stay at 2px corners and body text stays `--ink`.
+
+## Format card photography (Oct 2026)
+
+- Cards 01 and 02 in `#formats` now use real session photos: `assets/formats/offsite-meditation.jpeg` and `assets/formats/offsite-bavaria-session.jpeg` (1600px wide, compressed).
+- The previous images (`slowing-down-session.jpeg`, `strategy-execution-session.jpeg`) are still in the folder but no longer referenced.
