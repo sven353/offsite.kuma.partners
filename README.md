@@ -549,3 +549,11 @@ State of the site after this pass:
 - Contextual links (`.inline-guide-link`) from `index.html` into the guides: step 03 of `#process` to the compact guide; the Strategy-to-Execution drawer to the mediation and compact guides; the Company Momentum drawer to the company offsite guide.
 - Partner card grid no longer overflows between 861px and 1000px; it stacks from 1000px down.
 - Visual pass: soft vertical gradients between light sections and a one-time scroll reveal on section heads and cards (see the two sections above).
+
+## Operator cards, fourth partner and hairline pass (Oct 2026)
+
+- `#collective` on `index.html` shows four cards (`.partner-grid-4`): Sven Mulfinger, Farid Chaouki, Luisa Ábalo and Colleen Tartow. Each card is compact at rest (photo, focus, name, role, languages).
+- On devices with a mouse at 1101px and wider, the credentials, bio and links drop down over the content below on hover, keyboard focus or a click on the "Background & links" button, so the page does not move. On touch screens and narrower layouts the cards are shown in full, two across down to 640px and then one.
+- All four cards keep their full text in the HTML.
+- Colleen Tartow has a `Person` entry in the structured data on `partners.html`.
+- Hairline pass: every border on the site is 1px. Cards use the hairline colour on all sides, the featured agenda card has a softer 1px edge and shadow, and the former 2px and 3px accent bars are 1px.
