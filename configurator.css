@@ -1066,3 +1066,42 @@ footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
 @media (max-width:480px){
   .advisor-grid-3{grid-template-columns:1fr;}
 }
+
+/* =========================================================================
+   Seven-item top nav ("Insights" added). Links sit closer together and never
+   wrap, and the hamburger menu now takes over at 1180px instead of 860px:
+   between those widths the bar had already been wrapping onto two lines.
+   ========================================================================= */
+.nav-links{gap:18px;}
+.nav-links a{white-space:nowrap;}
+@media (max-width:1180px){
+  .nav-cta{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-links{
+    display:none; position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:0;
+    background:var(--cream); border-bottom:1px solid var(--hairline-color);
+    padding:6px 32px 24px; box-shadow:0 20px 40px -28px rgba(var(--navy-rgb),.35);
+    max-height:calc(100vh - 79px); overflow-y:auto;
+  }
+  header.site.nav-open .nav-links{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links > li > a{display:block; width:100%; padding:15px 0; border-bottom:1px solid rgba(var(--navy-rgb),.08);}
+  .nav-mobile-only{display:block; margin-top:16px;}
+  .nav-mobile-only .btn{width:100%; justify-content:center;}
+}
+
+/* Contextual links from the landing page into the insights guides */
+.inline-guide-link{color:var(--teal); font-weight:700; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;}
+.inline-guide-link:hover{color:var(--navy);}
+.inline-guide-link-block{display:block; width:max-content; margin-top:8px; font-size:.84rem;}
+
+/* Partner cards: columns could not shrink below their widest unbroken row, so
+   between 861px and about 1000px the grid pushed the page wider than the
+   screen. Columns may now shrink, link rows wrap, and the grid stacks from
+   1000px down. */
+.partner-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+.partner-card-lg .social-row{flex-wrap:wrap; row-gap:6px;}
+@media (max-width:1000px){
+  .partner-grid{grid-template-columns:1fr;}
+}
