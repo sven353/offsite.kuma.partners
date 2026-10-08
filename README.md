@@ -557,3 +557,10 @@ State of the site after this pass:
 - All four cards keep their full text in the HTML.
 - Colleen Tartow has a `Person` entry in the structured data on `partners.html`.
 - Hairline pass: every border on the site is 1px. Cards use the hairline colour on all sides, the featured agenda card has a softer 1px edge and shadow, and the former 2px and 3px accent bars are 1px.
+
+## Editorial partner cards (Oct 2026)
+
+- Supersedes the hover-drawer cards described above: that markup, CSS and the `app.js` handler are removed.
+- `#collective` on `index.html` now has four static cards (`.partner-card-editorial` inside `.partner-grid-4`): 64px portrait, focus line, name, role, bio always visible, then a footer with one language line (`Delivery: EN · DE · FR · PT · ES`, full names in `title` and `aria-label`) and the profile links.
+- Four across from 1101px, two from 641px, one below. Cards in a row share one height and their footers align.
+- The credential chips and per-partner email text links are no longer on the home page cards; `partners.html` keeps its own, older card layout.

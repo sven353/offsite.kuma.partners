@@ -436,21 +436,6 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 
   /* -----------------------------------------------------------------------
-     OPERATOR CARDS (#collective): hover and keyboard focus open a card through
-     CSS alone. The "Background & links" button pins a card open on click and
-     keeps aria-expanded in step, for keyboard and hybrid touch devices.
-     ----------------------------------------------------------------------- */
-  document.querySelectorAll(".partner-card-indicator").forEach(function (btn) {
-    const cardEl = btn.closest(".partner-card-collapsible");
-    if (!cardEl) return;
-    btn.addEventListener("click", function () {
-      const open = cardEl.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      if (!open) btn.blur();
-    });
-  });
-
-  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [
