@@ -13,31 +13,30 @@
    are called out where they diverge from a token.
    ========================================================================= */
 
-/* Co-branded header/footer lockup: the real Kuma Partners mark (an <img>,
-   transparent PNG) plus a hairline divider plus a plain-text "NONAMEYET"
-   wordmark, laid out as siblings rather than pre-composited into one
-   image, so each piece stays crisp and independently styleable. */
+/* Co-branded header/footer lockup: the Kuma Partners mark, a hairline
+   divider and the Nonameyet logo, each its own transparent PNG so every
+   piece stays crisp. The Nonameyet logo is a three-line stacked mark, so it
+   runs taller than the Kuma lockup to keep its lettering legible. */
 .logo-jv{display:inline-flex; align-items:center; text-decoration:none;}
 .logo-lockup-track{display:inline-flex; align-items:center; gap:16px;}
 .logo-kuma{height:36px; width:auto; display:block; object-fit:contain;}
 .logo-divider{
-  display:inline-block; width:1px; height:28px; flex-shrink:0;
-  /* Slightly warmer/darker than --hairline-color (#E2E8F0) so it reads
-     against the frosted header background; not a design-system token. */
+  display:inline-block; width:1px; height:32px; flex-shrink:0;
+  /* Slightly darker than --hairline-color so it reads against the frosted
+     header background; not a design-system token. */
   background:#CBD5E1;
 }
-.logo-nonameyet{
-  font-family:'Montserrat',Arial,sans-serif; font-weight:700; font-size:1.05rem;
-  letter-spacing:.12em; display:inline-block; line-height:1;
-  /* Deeper than --teal (#1D6F8A) to match the reference lockup; a
-     one-off, not a new token. */
-  color:#15556B;
-  text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1.5px;
-}
+.logo-nonameyet{height:44px; width:auto; display:block; object-fit:contain;}
+/* The header bar is <nav class="wrap nav">, and .nav's "padding:16px 0" was
+   cancelling .wrap's side gutters: the logo sat flush against the screen edge
+   on phones and 32px left of the page content on desktop. Gutters restored. */
+header.site .nav{padding:12px 32px;}
+header.site.scrolled .nav{padding:8px 32px;}
 @media (max-width:860px){
-  .logo-kuma{height:30px;}
-  .logo-divider{height:22px;}
-  .logo-nonameyet{font-size:.9rem;}
+  .logo-kuma{height:28px;}
+  .logo-divider{height:26px;}
+  .logo-nonameyet{height:36px;}
+  .logo-lockup-track{gap:12px;}
 }
 
 /* Configurator: monospace two-digit numbering prefix on each scorecard-option,

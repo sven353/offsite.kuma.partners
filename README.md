@@ -564,3 +564,9 @@ State of the site after this pass:
 - `#collective` on `index.html` now has four static cards (`.partner-card-editorial` inside `.partner-grid-4`): 64px portrait, focus line, name, role, bio always visible, then a footer with one language line (`Delivery: EN · DE · FR · PT · ES`, full names in `title` and `aria-label`) and the profile links.
 - Four across from 1101px, two from 641px, one below. Cards in a row share one height and their footers align.
 - The credential chips and per-partner email text links are no longer on the home page cards; `partners.html` keeps its own, older card layout.
+
+## Nonameyet logo and header gutters (Oct 2026)
+
+- The text "NONAMEYET" wordmark in every header and footer (7 pages) is now the real logo, `assets/logo-nonameyet.png`: a transparent PNG cut from the supplied artwork, 577 x 360px.
+- It is a three-line stacked mark, so it renders 44px tall on desktop and 36px on phones, taller than the 34px and 26px first specified, to keep the lettering legible beside the Kuma lockup.
+- The header bar now has 32px side gutters. `.nav`'s own padding had been cancelling them, which left the logo flush against the screen edge on phones and out of line with the page content on desktop.
