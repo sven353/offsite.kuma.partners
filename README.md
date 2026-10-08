@@ -508,3 +508,10 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - `index.html`: placeholder phone number removed from the `ProfessionalService` entity; both provider organisations carry an `@id`; Nonameyet has its LinkedIn company page in `sameAs`; a `hasOfferCatalog` lists the three formats. The 16-question `FAQPage` is unchanged.
 - `partners.html`: `AboutPage` plus `Person` entities for Sven Mulfinger, Farid Chaouki and Luisa Ábalo, using the profile links already on the page.
 - Kuma Partners has no LinkedIn company URL in `sameAs` yet. Add it to the `KUMA` organisation object on both pages once confirmed.
+
+## Insights hub and first guide (Oct 2026)
+
+- New pages: `insights/index.html` (hub) and `insights/barcelona-executive-offsite-guide.html` (planning guide with `Article` schema, authored by Sven Mulfinger). Both reuse the site header, footer, `styles.css`, `configurator.css` and `app.js` via `../` paths. Their styles are at the end of `configurator.css`.
+- "Insights" is linked from the footer on every page. It is not in the top nav: a seventh nav item wraps the header onto two lines at 1280px.
+- `sitemap.xml` lists all four URLs.
+- Kuma Partners' LinkedIn company page is now in `sameAs` on every page's structured data.
