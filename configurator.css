@@ -22,16 +22,16 @@
 .logo-kuma{height:36px; width:auto; display:block; object-fit:contain;}
 .logo-divider{
   display:inline-block; width:1px; height:28px; flex-shrink:0;
-  /* Slightly warmer/darker than --hairline-color (#E2DDD4) so it reads
+  /* Slightly warmer/darker than --hairline-color (#E2E8F0) so it reads
      against the frosted header background; not a design-system token. */
-  background:#D5D0C7;
+  background:#CBD5E1;
 }
 .logo-nonameyet{
   font-family:'Montserrat',Arial,sans-serif; font-weight:700; font-size:1.05rem;
   letter-spacing:.12em; display:inline-block; line-height:1;
-  /* Deeper than --teal (#588088) to match the reference lockup; a
+  /* Deeper than --teal (#1D6F8A) to match the reference lockup; a
      one-off, not a new token. */
-  color:#385E66;
+  color:#15556B;
   text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1.5px;
 }
 @media (max-width:860px){
@@ -69,13 +69,13 @@
    for the 4-block "Recommended Setting / Intellectual Lead / Key Monday
    Deliverable / Hospitality Model" summary. */
 .blueprint-specs{
-  background:var(--cream); border:1px solid var(--hairline-color); border-radius:6px;
+  background:var(--cream); border:1px solid var(--hairline-color); border-radius:var(--radius-md);
   padding:28px 26px; margin:28px 0;
 }
 
 .restart-link{
   display:block; text-align:center; font-size:.85rem; color:var(--navy);
-  text-decoration:none; border-bottom:1px solid rgba(40,64,80,.3); width:max-content;
+  text-decoration:none; border-bottom:1px solid rgba(11,21,35,.3); width:max-content;
   margin:8px auto 0; padding-bottom:2px;
 }
 .restart-link:hover{border-bottom-color:var(--navy);}
@@ -87,11 +87,11 @@
    inset like .tier-card-media does on the format cards. */
 .places-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:stretch;}
 .place-card{
-  background:#fff; border:1px solid var(--hairline-color); border-radius:2px;
+  background:#fff; border:1px solid var(--hairline-color); border-radius:var(--radius-xs);
   overflow:hidden; display:flex; flex-direction:column;
   transition:box-shadow .2s ease, border-color .2s ease;
 }
-.place-card:hover{border-color:rgba(40,64,80,.25); box-shadow:0 16px 36px -20px rgba(40,64,80,.25);}
+.place-card:hover{border-color:rgba(11,21,35,.25); box-shadow:0 16px 36px -20px rgba(11,21,35,.25);}
 .place-image{width:100%; aspect-ratio:16/10; overflow:hidden; background:var(--hairline-color);}
 .place-image img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;}
 .place-card:hover .place-image img{transform:scale(1.03);}
@@ -119,7 +119,7 @@
    only re-scaled for photography and split into two opposing directions. The dark
    navy treatment matches the site's existing full-bleed dark sections (.moat-section,
    .contact-section in styles.css) rather than introducing a new section style. */
-.cinema-section{background:var(--navy); padding:96px 0 100px; overflow:hidden;}
+.cinema-section{background:radial-gradient(120% 85% at 50% 0%, var(--navy-ambient) 0%, var(--navy) 100%); padding:96px 0 100px; overflow:hidden;}
 .cinema-section .eyebrow{color:rgba(255,255,255,.7);}
 .cinema-section .eyebrow::before{background:var(--teal);}
 .cinema-section h2{color:#fff;}
@@ -140,7 +140,7 @@
 
 .filmstrip-frame{
   position:relative; flex-shrink:0; width:360px; aspect-ratio:16/10;
-  border-radius:2px; overflow:hidden; border:1px solid rgba(244,241,235,.15);
+  border-radius:var(--radius-xs); overflow:hidden; border:1px solid rgba(248,249,250,.15);
 }
 .filmstrip-frame img{
   width:100%; height:100%; object-fit:cover; display:block;
@@ -158,7 +158,7 @@
 }
 .filmstrip-caption{
   font-family:'Montserrat',Arial,sans-serif; font-style:italic; font-weight:400;
-  font-size:.88rem; color:rgba(244,241,235,.85);
+  font-size:.88rem; color:rgba(248,249,250,.85);
 }
 
 @keyframes filmstripScrollLeft{
@@ -196,7 +196,7 @@
   font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.72rem;
   letter-spacing:.04em; text-transform:uppercase; color:var(--navy);
   background:var(--cream); border:1px solid var(--hairline-color);
-  padding:3px 8px; border-radius:2px;
+  padding:3px 8px; border-radius:var(--radius-xs);
 }
 
 /* Principal partner cards (v22): bottom-locking the language/social-row footer so
@@ -297,7 +297,7 @@
 .superpower-badge{
   display:inline-block; font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.72rem;
   letter-spacing:.06em; text-transform:uppercase; color:var(--teal);
-  background:rgba(40,64,80,.06); padding:3px 8px; border-radius:2px; margin-bottom:6px;
+  background:rgba(11,21,35,.06); padding:3px 8px; border-radius:var(--radius-xs); margin-bottom:6px;
 }
 
 /* Dual-facilitator delivery-standard banner under the partner grid. Nothing in the real
@@ -308,7 +308,7 @@
    vocabulary (the same left-accent-border idea .problem-callout already uses). */
 .standard-banner{
   margin-top:40px; padding:24px 28px; background:var(--cream);
-  border:1px solid var(--hairline-color); border-left:3px solid var(--teal); border-radius:2px;
+  border:1px solid var(--hairline-color); border-left:3px solid var(--teal); border-radius:var(--radius-xs);
 }
 .standard-banner-head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; flex-wrap:wrap;}
 .standard-banner-label{
@@ -327,7 +327,7 @@
    + top-hairline behavior here, via a second class on the same element so both rules
    apply; .client-badges' own margin-top:16px is overridden by source order (this file
    loads after styles.css), no !important needed. */
-.immersion-meta{margin-top:auto; padding-top:18px; border-top:1px solid rgba(40,64,80,.1);}
+.immersion-meta{margin-top:auto; padding-top:18px; border-top:1px solid rgba(11,21,35,.1);}
 
 /* Calibrated Formats (#formats), v17 refactor. The card shell, badge, label,
    subhead, image treatment, and action row are all the real, already-live
@@ -414,7 +414,7 @@
 [data-format].format-card-active,
 [data-cadence].format-card-active{
   border-color: var(--teal);
-  box-shadow: 0 16px 36px -18px rgba(40,64,80,.28);
+  box-shadow: 0 16px 36px -18px rgba(11,21,35,.28);
 }
 .card-bottom-lock .outcomes-list{margin:0 0 18px; padding-left:0;}
 
@@ -456,7 +456,7 @@
    cadence from this section, once its agenda is open. */
 .format-detail{
   margin-top:32px; background:#fff; border:1px solid var(--hairline-color);
-  border-top:3px solid var(--teal); border-radius:2px; padding:40px 40px 44px;
+  border-top:3px solid var(--teal); border-radius:var(--radius-xs); padding:40px 40px 44px;
 }
 .format-detail-panel[hidden]{display:none;}
 .format-detail-head{
@@ -513,7 +513,7 @@
    v28 and v30. */
 .cadence-arrival-banner{
   background:var(--cream); border:1px solid var(--hairline-color);
-  border-left:3px solid var(--teal); border-radius:2px;
+  border-left:3px solid var(--teal); border-radius:var(--radius-xs);
   padding:16px 20px; margin-bottom:24px;
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
 }
@@ -529,7 +529,7 @@
 
 .format-detail-col-boxed{
   background:#fff; border:1px solid var(--hairline-color); border-top:2px solid var(--navy);
-  border-radius:2px; padding:24px 22px; display:flex; flex-direction:column; height:100%;
+  border-radius:var(--radius-xs); padding:24px 22px; display:flex; flex-direction:column; height:100%;
 }
 .cadence-meta{margin-top:10px;}
 
@@ -602,7 +602,7 @@
    call-outs elsewhere (.cadence-arrival-banner, .standard-banner) rather than the
    brief's own from-scratch glass recipe. .contact-form-shell picked up a resting
    shadow it didn't have before, using the site's own navy-tinted shadow formula
-   (rgba(40,64,80,...), the same family .partner-card-lg's hover shadow and the
+   (rgba(11,21,35,...), the same family .partner-card-lg's hover shadow and the
    scrolled header's shadow already use) instead of the brief's plain black
    rgba(0,0,0,.35), plus the brief's own mobile padding reduction. */
 .intake-partner-cluster{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
@@ -624,7 +624,7 @@
 .intake-trust-grid .value-card h3{font-size:.92rem; margin-bottom:3px;}
 .intake-trust-grid .value-card p{font-size:.86rem;}
 
-.contact-form-shell{box-shadow:0 20px 48px -20px rgba(40,64,80,.4);}
+.contact-form-shell{box-shadow:0 20px 48px -20px rgba(11,21,35,.4);}
 
 @media (max-width:860px){
   .contact-form-shell{padding:28px 20px;}
@@ -650,7 +650,7 @@
 .process-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:44px;}
 .process-card{
   background:#fff; border:1px solid var(--hairline-color); border-top:1px solid var(--teal);
-  border-radius:2px; padding:30px 26px; display:flex; flex-direction:column;
+  border-radius:var(--radius-xs); padding:30px 26px; display:flex; flex-direction:column;
 }
 .process-step-num{
   font-family:'Lato',Arial,sans-serif; font-size:.74rem; font-weight:700;
@@ -673,3 +673,15 @@
 @media (max-width:860px){
   .process-grid{grid-template-columns:1fr; gap:20px;}
 }
+
+/* =========================================================================
+   Card finish aligned with www.kuma.partners: white cards that sit on a
+   white or near-white section get the top-light gradient and --card-sheen,
+   and share the --radius-md corner.
+   ========================================================================= */
+.place-card, .process-card, .tier-card, .partner-card-lg, .partner-card, .advisor-card{
+  background:linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+  border-radius:var(--radius-md);
+  box-shadow:var(--card-sheen);
+}
+.contact-form-shell, .format-detail, .scorecard-card{border-radius:var(--radius-lg);}

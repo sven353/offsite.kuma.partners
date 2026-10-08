@@ -455,3 +455,11 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - Problem cards rewritten as three problems. The old card 03 described the solution and carried an unsourced "under 48 hours" claim, both removed.
 - New `#process` section between `#problem` and `#formats`, styled at the end of `configurator.css`. Copy holds for all three engagement models.
 - Partner naming aligned to Sven, Farid and Luisa in the FAQ, FAQ schema and configurator intro. Vistage credential changed to past tense.
+
+## Design system alignment with www.kuma.partners (Oct 2026)
+
+- `:root` in `styles.css` now carries the main site's tokens: navy `#0B1523`, teal `#1D6F8A`, off-white `#F8F9FA`, hairline `#E2E8F0`, the `--radius-xs/sm/md/lg/pill` scale and `--card-sheen`.
+- All hard-coded legacy colours (hex and rgba) in both stylesheets were mapped to the new palette. Literal corner radii now reference the radius tokens.
+- Dark sections (`.contact-section`, `.cinema-section`) use the main site's radial navy gradient.
+- White cards (`.place-card`, `.process-card`, `.tier-card`, `.partner-card-lg`, `.partner-card`, `.advisor-card`) get the gradient surface, `--radius-md` and the sheen. The override block sits at the end of `configurator.css`.
+- Where the written brief and the live main site disagreed, the main site won: buttons stay at 2px corners and body text stays `--ink`.
