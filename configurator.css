@@ -746,3 +746,78 @@ footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
   .dossier-tabs-pill{flex-wrap:wrap; justify-content:center; border-radius:var(--radius-md);}
   .dossier-tab-btn{font-size:.78rem; padding:9px 10px;}
 }
+
+/* =========================================================================
+   Sample 90-day compact: trigger in #process step 03 and its dialog.
+   ========================================================================= */
+.compact-preview-btn{
+  display:inline-block; background:transparent; border:none; padding:0; margin-top:10px;
+  color:var(--teal); font-family:'Lato',Arial,sans-serif; font-weight:700; font-size:.84rem;
+  cursor:pointer; text-decoration:underline; text-underline-offset:3px; text-align:left;
+}
+.compact-preview-btn:hover{color:var(--navy);}
+.compact-preview-btn:focus-visible, .compact-modal-close:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+
+.compact-modal-overlay{
+  position:fixed; inset:0; z-index:400; background:rgba(var(--navy-rgb),.65);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center; padding:24px;
+  opacity:0; visibility:hidden; transition:opacity .25s ease, visibility 0s linear .25s;
+}
+.compact-modal-overlay.is-open{opacity:1; visibility:visible; transition:opacity .25s ease;}
+.compact-modal{
+  background:#fff; border:1px solid var(--hairline-color); border-radius:var(--radius-lg);
+  width:100%; max-width:780px; max-height:90vh; overflow-y:auto; outline:none;
+  box-shadow:0 24px 60px -20px rgba(var(--navy-rgb),.4);
+  transform:translateY(12px); transition:transform .25s ease;
+}
+.compact-modal-overlay.is-open .compact-modal{transform:none;}
+.compact-modal-header{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 28px;
+  border-bottom:1px solid var(--hairline-color); background:var(--cream);
+}
+.compact-modal-title{font-size:1.05rem; margin:0;}
+.compact-modal-close{
+  background:#fff; border:1px solid var(--hairline-color); border-radius:var(--radius-sm);
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; line-height:1; cursor:pointer; color:var(--navy); flex-shrink:0;
+}
+.compact-modal-close:hover{background:var(--navy); color:#fff;}
+
+.compact-sheet{padding:30px 36px 34px;}
+.compact-sheet-badge{
+  display:inline-block; font-family:'Lato',Arial,sans-serif; font-size:.7rem; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--teal);
+  background:rgba(var(--teal-rgb),.08); border:1px solid rgba(var(--teal-rgb),.2);
+  padding:4px 10px; border-radius:var(--radius-sm); margin-bottom:14px;
+}
+.compact-sheet h4{font-size:1.35rem; margin:0 0 8px;}
+.compact-sheet-intro{font-size:.9rem; line-height:1.55; color:rgba(26,26,26,.7); margin:0 0 22px;}
+.compact-table-wrap{overflow-x:auto; border:1px solid var(--hairline-color); border-radius:var(--radius-sm); margin-bottom:22px;}
+.compact-table{width:100%; min-width:520px; border-collapse:collapse; font-size:.86rem; text-align:left;}
+.compact-table thead th{
+  background:var(--cream); color:var(--navy); font-weight:700; padding:10px 14px;
+  border-bottom:1px solid var(--hairline-color); letter-spacing:.05em; text-transform:uppercase; font-size:.7rem;
+}
+.compact-table td, .compact-table tbody th{
+  padding:12px 14px; border-bottom:1px solid var(--hairline-color); color:var(--navy);
+  vertical-align:top; line-height:1.45;
+}
+.compact-table tbody th{font-weight:700;}
+.compact-table tbody tr:last-child td, .compact-table tbody tr:last-child th{border-bottom:none;}
+.compact-sheet-footer{
+  display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:18px 20px;
+  background:var(--cream); border:1px solid var(--hairline-color); border-radius:var(--radius-sm);
+}
+.compact-footer-col strong{
+  display:block; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); margin-bottom:4px;
+}
+.compact-footer-col p{font-size:.86rem; line-height:1.45; margin:0; color:var(--navy);}
+@media (prefers-reduced-motion: reduce){.compact-modal-overlay, .compact-modal{transition:none;}}
+@media (max-width:860px){
+  .compact-modal-overlay{padding:12px;}
+  .compact-modal{max-height:94vh;}
+  .compact-modal-header{padding:16px 20px;}
+  .compact-sheet{padding:24px 20px;}
+  .compact-sheet-footer{grid-template-columns:1fr;}
+}

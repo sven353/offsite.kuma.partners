@@ -409,6 +409,7 @@
           <div class="process-deliverable">
             <strong>You get</strong>
             A plan with owners and dates, plus formal reviews on the Deep Intervention track.
+            <button type="button" class="compact-preview-btn" id="open-compact-modal" aria-haspopup="dialog">See a sample 90-day compact &rarr;</button>
           </div>
         </div>
       </div>
@@ -1887,6 +1888,65 @@
     </div>
   </div>
 </footer>
+
+<!-- Sample 90-day compact (illustrative) -->
+<div class="compact-modal-overlay" id="compact-modal" aria-hidden="true">
+  <div class="compact-modal" role="dialog" aria-modal="true" aria-labelledby="compact-modal-title" tabindex="-1">
+    <div class="compact-modal-header">
+      <h3 class="compact-modal-title" id="compact-modal-title">Sample 90-Day Compact</h3>
+      <button type="button" class="compact-modal-close" id="close-compact-modal" aria-label="Close sample compact">&times;</button>
+    </div>
+    <div class="compact-sheet">
+      <span class="compact-sheet-badge">Illustrative example</span>
+      <h4>Q3 Execution Compact</h4>
+      <p class="compact-sheet-intro">One page, signed by the leadership team on the last day. It names one owner per strategic bet, what the team stops doing to make room and where each bet should stand at day 90. The company and figures here are fictional.</p>
+
+      <div class="compact-table-wrap">
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th scope="col">Strategic bet</th>
+              <th scope="col">Single owner</th>
+              <th scope="col">What we stop</th>
+              <th scope="col">Day 90 target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">US go-to-market</th>
+              <td>VP Sales</td>
+              <td>Direct outbound to EU mid-market</td>
+              <td>Five enterprise pilots live in New York</td>
+            </tr>
+            <tr>
+              <th scope="row">Platform migration</th>
+              <td>CTO</td>
+              <td>Custom integrations for tier-2 customers</td>
+              <td>Legacy stack switched off</td>
+            </tr>
+            <tr>
+              <th scope="row">Leadership rhythm</th>
+              <td>Chief of Staff</td>
+              <td>Fortnightly cross-team status meetings</td>
+              <td>One shared execution dashboard in use</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compact-sheet-footer">
+        <div class="compact-footer-col">
+          <strong>Signed by</strong>
+          <p>The CEO and every member of the leadership team, before anyone leaves the room.</p>
+        </div>
+        <div class="compact-footer-col">
+          <strong>Review dates</strong>
+          <p>Day 30 &middot; Day 60 &middot; Day 90. Kuma partners join the day 30 and day 60 reviews on the Deep Intervention track.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>

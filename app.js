@@ -299,6 +299,44 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* -----------------------------------------------------------------------
+     SAMPLE 90-DAY COMPACT DIALOG (#compact-modal): opened from step 03 of
+     #process. Closes on the close button, a backdrop click or Escape, and
+     returns focus to the button that opened it.
+     ----------------------------------------------------------------------- */
+  const compactModal = document.getElementById("compact-modal");
+  const openCompactBtn = document.getElementById("open-compact-modal");
+  if (compactModal && openCompactBtn) {
+    const compactDialog = compactModal.querySelector(".compact-modal");
+    const closeCompactBtn = document.getElementById("close-compact-modal");
+    function openCompact() {
+      compactModal.classList.add("is-open");
+      compactModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("scan-modal-locked");
+      if (closeCompactBtn) closeCompactBtn.focus();
+    }
+    function closeCompact() {
+      compactModal.classList.remove("is-open");
+      compactModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("scan-modal-locked");
+      openCompactBtn.focus();
+    }
+    openCompactBtn.addEventListener("click", openCompact);
+    if (closeCompactBtn) closeCompactBtn.addEventListener("click", closeCompact);
+    compactModal.addEventListener("click", function (e) {
+      if (e.target === compactModal) closeCompact();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (!compactModal.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeCompact();
+      // Keep Tab inside the dialog: the close button is its only control.
+      if (e.key === "Tab" && compactDialog) {
+        e.preventDefault();
+        if (closeCompactBtn) closeCompactBtn.focus();
+      }
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      CONFIGURATOR: STEP DATA
      ----------------------------------------------------------------------- */
   const STEPS = [

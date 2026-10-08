@@ -481,3 +481,9 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - FAQ shows the first 3 of 16 questions with a "Show all 16 questions" toggle. The other 13 stay in the HTML. The FAQ JSON-LD is untouched.
 - Section backgrounds were re-ordered so they still alternate.
 - Desktop page height at 1280px went from about 15,450px to about 11,250px.
+
+## Sample 90-day compact (Oct 2026)
+
+- Step 03 of `#process` has a "See a sample 90-day compact" link that opens a dialog (`#compact-modal`, markup just before the `app.js` script tag). The sample is labelled as illustrative and uses roles, not names.
+- Styles are at the end of `configurator.css`; the open and close logic is in `app.js`.
+- No testimonial section was added. It needs real, attributable client quotes first.
