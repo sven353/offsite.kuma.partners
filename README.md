@@ -519,3 +519,7 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 ## Second insights article (Oct 2026)
 
 - New page: `insights/90-day-execution-compact.html`, same template as the first guide. The hub card for it is live, the first guide links to it and `sitemap.xml` lists five URLs.
+
+## Third insights article (Oct 2026)
+
+- New page: `insights/c-suite-friction-mediation.html`. The hub shows three cards in a three-column grid, and `sitemap.xml` lists six URLs.
