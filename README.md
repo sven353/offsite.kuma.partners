@@ -515,3 +515,7 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - "Insights" is linked from the footer on every page. It is not in the top nav: a seventh nav item wraps the header onto two lines at 1280px.
 - `sitemap.xml` lists all four URLs.
 - Kuma Partners' LinkedIn company page is now in `sameAs` on every page's structured data.
+
+## Second insights article (Oct 2026)
+
+- New page: `insights/90-day-execution-compact.html`, same template as the first guide. The hub card for it is live, the first guide links to it and `sitemap.xml` lists five URLs.
