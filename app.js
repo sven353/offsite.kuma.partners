@@ -443,11 +443,12 @@ document.addEventListener("DOMContentLoaded", function () {
      pinning is cleared and the cards flow normally.
      ----------------------------------------------------------------------- */
   (function () {
-    const grid = document.querySelector(".partner-grid-4");
-    if (!grid) return;
-    const slots = grid.querySelectorAll(".partner-card-slot");
+    const grids = document.querySelectorAll(".partner-grid-4, .bench-grid");
+    if (!grids.length) return;
     const collapses = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1101px)");
-    function pinSlots() {
+    function pinSlots() { grids.forEach(pinGrid); }
+    function pinGrid(grid) {
+      const slots = grid.querySelectorAll(".partner-card-slot");
       grid.classList.remove("is-pinned");
       slots.forEach(function (s) { s.style.height = ""; });
       if (!collapses.matches) return;

@@ -577,3 +577,16 @@ State of the site after this pass:
 - Each card sits in a `.partner-card-slot`. `app.js` pins every slot to the shared resting height and adds `.is-pinned` to the grid, so an open card grows over the content below and the page height does not change. It re-measures on load, font load and resize. Without JavaScript the card grows in place.
 - On touch screens and at 1100px and narrower the bio is always open.
 - Portuguese removed from Sven Mulfinger's languages on `index.html` and `partners.html`. The hero language line and the FAQ answer on languages still list Portuguese.
+
+## Specialist bench: Ofir K. replaces Angus Nelson (Oct 2026)
+
+- `partners.html`, `#bench`: the Angus Nelson card is replaced by Ofir K., Chief Product Officer and Partner at Nonameyet. The bench now reads Colleen Tartow, Tiffany Missiha, Daniel Pascual, Ofir K., Márcio Marcos, Bryan Kramer. Earlier sections of this README that mention Angus Nelson describe the roster before this change.
+- New headshot at `assets/team/ofir.jpeg` (400 x 400). `assets/team/angus-nelson.png` is no longer referenced and has been removed from this working copy; delete it from the repository too, since uploading files does not remove old ones.
+
+## Partners page: editorial cards, Adrian, photos and languages (Oct 2026)
+
+- `partners.html` now uses the same editorial card as the home page in both grids: principal partners (`.partner-grid-4`) and the specialist bench (`.bench-grid`, three across). Bio opens under the name on hover or keyboard focus on devices with a mouse at 1101px and wider; always open elsewhere. `app.js` pins the card slots in both grids so the page does not move.
+- Bench cards carry the language line and client badges in the footer and are keyboard-focusable (`tabindex="0"`), since they have no links.
+- Adrian Perreau de Pinninck added to the bench (fourth). Bench order: Colleen Tartow, Tiffany Missiha, Daniel Pascual, Adrian Perreau de Pinninck, Ofir K., Márcio Marcos, Bryan Kramer.
+- Vincent Azé has a photo, LinkedIn and email link. `assets/team/vincent-aze.jpeg` and `assets/team/adrian.jpeg` are the same photos already published on www.kuma.partners.
+- Language lines normalised on both pages: Sven EN · ES · FR · DE; Farid EN · FR; Luisa EN · ES; Vincent EN · FR; Colleen EN; Tiffany EN; Daniel EN · DE · ES; Adrian EN · ES · CAT; Ofir EN · PT; Márcio EN · PT · ES · DE; Bryan EN.
