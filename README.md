@@ -494,3 +494,11 @@ Already connected to Netlify via continuous deployment from `sven353/offsite.kum
 - Hero CTAs go full width; the venue strip, format cards and agenda cards become horizontal swipe rows with the next card peeking in.
 - The 65% stat sits beside its label; agenda times render as chips above each session title; the contact form is tighter.
 - Sticky bottom bar (`#mobile-sticky-bar`) appears after the hero and hides while the configurator or the contact section is on screen. It is `display:none` above 768px.
+
+## Conversion pass (Oct 2026)
+
+- `#configurator` is a dark navy stage with the white configurator card on top. Two pricing pillars and the published overall price range sit above the card.
+- `#process` gained a four-step strip describing how tension is handled on the Deep Intervention track.
+- Hero has a "Facilitated in" language line under the buttons.
+- The blueprint shown after the five questions has a fifth row, "Commercial Model", using the published overall range. No per-format price ranges were added.
+- Not added: a calendar booking button (no real booking link exists yet).

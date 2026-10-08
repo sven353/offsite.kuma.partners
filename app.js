@@ -548,6 +548,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { label: "Intellectual Lead", value: facilitationOpt.title, sub: facilitationOpt.desc },
         { label: "Key Monday Deliverable", value: DELIVERABLE_MATRIX[tensionId] || "Tailored Operating Brief", sub: tensionOpt.desc },
         { label: "Hospitality Model", value: hospitalityOpt.title, sub: hospitalityOpt.desc },
+        {
+          label: "Commercial Model",
+          value: "Fixed advisory fee, hospitality at cost",
+          sub: "Most engagements land between €15,000 and €150,000, depending on cohort size and venue. Your tailored brief carries the exact figure.",
+        },
       ],
     };
   }
@@ -775,7 +780,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "</select></div></div>" +
       "</div>" +
       '<button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Reserve Dates &amp; Request Tailored Brief</button>' +
-      '<p class="debrief-form-microcopy">We limit engagements each quarter to protect delivery quality. Sven &amp; Farid personally review all briefs within 24 business hours.</p>' +
+      '<p class="debrief-form-microcopy">We limit engagements each quarter to protect delivery quality. Sven, Farid or Luisa personally reviews every brief within 24 business hours.</p>' +
       '<p class="debrief-form-error" id="form-error" hidden>Something went wrong sending your request. Please try again, or email <a href="mailto:contact@kuma.partners">contact@kuma.partners</a> directly.</p>' +
       "</form>";
 
@@ -819,7 +824,7 @@ document.addEventListener("DOMContentLoaded", function () {
     wrap.innerHTML =
       '<div class="debrief-success" style="padding-top:20px;">' +
       "<h3>Your blueprint is on its way.</h3>" +
-      "<p>Sven and Farid personally review every brief. Expect a reply within 24 business hours with your tailored PDF and next steps.</p>" +
+      "<p>Sven, Farid or Luisa personally reviews every brief. Expect a reply within 24 business hours with your tailored PDF and next steps.</p>" +
       "</div>";
   }
 
