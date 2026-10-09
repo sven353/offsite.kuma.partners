@@ -100,13 +100,60 @@ document.addEventListener("DOMContentLoaded", function () {
      swaps in an inline confirmation instead of a full-page reload, but the
      form works as a plain Netlify Forms POST without it.
      ----------------------------------------------------------------------- */
+  /* Anti-spam helpers shared by both forms.
+     - Honeypot: each form has an off-screen "company_tax_id" field no person
+       sees. If it has a value, the sender is a script: nothing is sent and the
+       normal confirmation is shown, so the script learns nothing. Netlify also
+       filters on the same field server-side (netlify-honeypot).
+     - Burst limit: at most 3 successful submissions per 10 minutes per browser.
+       This only stops accidental repeats from a real browser; it is not a
+       security control, since a script never runs this code. */
+  const SUBMISSION_KEY = "kuma_submission_timestamps";
+  const SUBMISSION_WINDOW_MS = 10 * 60 * 1000;
+  const SUBMISSION_MAX = 3;
+  const RATE_LIMIT_MESSAGE = "Too many requests submitted recently. Please wait a few minutes or email contact@kuma.partners directly.";
+  function honeypotTripped(form) {
+    const field = form.querySelector('[name="company_tax_id"]');
+    return !!(field && field.value);
+  }
+  function recentSubmissions() {
+    try {
+      const now = Date.now();
+      return JSON.parse(window.localStorage.getItem(SUBMISSION_KEY) || "[]").filter(function (t) {
+        return typeof t === "number" && now - t < SUBMISSION_WINDOW_MS;
+      });
+    } catch (err) { return []; }
+  }
+  function rateLimited() { return recentSubmissions().length >= SUBMISSION_MAX; }
+  function recordSubmission() {
+    try {
+      const stamps = recentSubmissions(); stamps.push(Date.now());
+      window.localStorage.setItem(SUBMISSION_KEY, JSON.stringify(stamps));
+    } catch (err) { /* storage unavailable: skip the burst limit */ }
+  }
+  function requireOk(response) {
+    if (!response.ok) throw new Error("Form endpoint returned " + response.status);
+    return response;
+  }
+
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
+    const contactErrorDefault = (document.getElementById("contact-form-error") || {}).innerHTML;
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const errorEl = document.getElementById("contact-form-error");
       const successEl = document.getElementById("contact-success");
+      if (honeypotTripped(contactForm)) {
+        contactForm.hidden = true;
+        if (successEl) successEl.hidden = false;
+        return;
+      }
+      if (rateLimited()) {
+        if (errorEl) { errorEl.textContent = RATE_LIMIT_MESSAGE; errorEl.hidden = false; }
+        return;
+      }
+      if (errorEl && contactErrorDefault) errorEl.innerHTML = contactErrorDefault;
       const data = new FormData(contactForm);
       const body = Array.from(data.entries())
         .map(function (kv) { return encodeURIComponent(kv[0]) + "=" + encodeURIComponent(kv[1]); })
@@ -121,7 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body,
       })
+        .then(requireOk)
         .then(function () {
+          recordSubmission();
           contactForm.hidden = true;
           if (successEl) successEl.hidden = false;
         })
@@ -843,9 +892,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderLeadForm(bp) {
     const wrap = document.getElementById("lead-form-wrap");
     wrap.innerHTML =
-      '<form id="lead-form" class="debrief-form" name="offsite-blueprint" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="border-top:1px solid var(--hairline-color); padding-top:28px; margin-top:8px;">' +
+      '<form id="lead-form" class="debrief-form" name="offsite-blueprint" method="POST" data-netlify="true" netlify-honeypot="company_tax_id" style="border-top:1px solid var(--hairline-color); padding-top:28px; margin-top:8px;">' +
       '<input type="hidden" name="form-name" value="offsite-blueprint">' +
-      '<p style="position:absolute; left:-9999px;"><label>Do not fill this out: <input name="bot-field"></label></p>' +
+      '<div style="position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none;" aria-hidden="true"><label for="hp-blueprint">Do not fill this field</label><input type="text" id="hp-blueprint" name="company_tax_id" tabindex="-1" autocomplete="off" value=""></div>' +
       '<input type="hidden" name="blueprint_title" value="' + bp.title + '">' +
       '<input type="hidden" name="selection_archetype" value="' + (state.selections.archetype || "") + '">' +
       '<input type="hidden" name="selection_tension" value="' + (state.selections.tension || "") + '">' +
@@ -911,6 +960,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitBtn = form.querySelector('button[type="submit"]');
     const errorEl = document.getElementById("form-error");
 
+    if (honeypotTripped(form)) { showConfirmation(); return; }
+    if (errorEl && !errorEl.dataset.defaultHtml) errorEl.dataset.defaultHtml = errorEl.innerHTML;
+    if (rateLimited()) {
+      if (errorEl) { errorEl.textContent = RATE_LIMIT_MESSAGE; errorEl.hidden = false; }
+      return;
+    }
+    if (errorEl) errorEl.innerHTML = errorEl.dataset.defaultHtml;
+
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
     if (errorEl) errorEl.hidden = true;
@@ -922,7 +979,8 @@ document.addEventListener("DOMContentLoaded", function () {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encodeFormData(form),
     })
-      .then(function () { showConfirmation(); })
+      .then(requireOk)
+      .then(function () { recordSubmission(); showConfirmation(); })
       .catch(function () {
         submitBtn.disabled = false;
         submitBtn.textContent = "Reserve Dates & Request Tailored Brief";

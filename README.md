@@ -596,3 +596,10 @@ State of the site after this pass:
 - `#formats` cards: the italic paragraph moved off each card into the top of its drawer (`.format-detail-intro`). Cards keep photo, name, group size, three bullets and the button.
 - `#cadence` cards: the three bullets moved into the top of each agenda drawer (`.cadence-detail-highlights`). Cards keep name, duration, one line, the Monday deliverable and the button.
 - No text was deleted. The "Most Requested" badge on the format cards is no longer clipped.
+
+## Form spam protection (Oct 2026)
+
+- Honeypot field renamed from `bot-field` to `company_tax_id` in every form: the static `offsite-blueprint` form and `discovery-call` form in `index.html`, the `discovery-call` form in `partners.html` and the configurator form rendered by `app.js`. Each `<form>` carries `netlify-honeypot="company_tax_id"`, so Netlify filters on it server-side.
+- `app.js`: if the honeypot has a value, nothing is sent and the normal confirmation is shown. A burst limit allows 3 successful submissions per 10 minutes per browser (`localStorage`, key `kuma_submission_timestamps`); this is a convenience guard, not a security control.
+- Both submit handlers now check the HTTP status. Before, any response, including an error page, was treated as success and showed the confirmation.
+- Cloudflare Turnstile is not installed. It needs a real site key and a server-side check of each token (for example a Netlify Function calling Cloudflare's `siteverify` with the secret key); without that check it blocks nothing.
