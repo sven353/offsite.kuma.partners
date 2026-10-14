@@ -2,25 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  /* Served under www.kuma.partners/offsite/ by a Netlify proxy. Netlify cannot
+     redirect /offsite to /offsite/ (it treats both as the same path, so the
+     rule loops), so a missing trailing slash is added here instead; without
+     it the relative CSS, image and link paths would resolve outside /offsite/. */
+  (function () {
+    var p = window.location.pathname;
+    if (/\/(offsite|insights)$/.test(p)) window.location.replace(p + "/" + window.location.search + window.location.hash);
+  })();
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Primary SEO tags -->
 <title>High-Stakes Leadership Offsites in Barcelona | Kuma Partners &amp; Nonameyet</title>
 <meta name="description" content="Operator-led executive offsites and C-suite alignment in Barcelona. Turning strategic friction into binding 90-day execution compacts for scale-stage leadership teams.">
-<link rel="canonical" href="https://offsite.kuma.partners/">
+<link rel="canonical" href="https://www.kuma.partners/offsite/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://offsite.kuma.partners/">
+<meta property="og:url" content="https://www.kuma.partners/offsite/">
 <meta property="og:title" content="High-Stakes Leadership Offsites in Barcelona">
 <meta property="og:description" content="Where venture-backed founders and C-suites dismantle operational drag and lock in binding 90-day compacts.">
-<meta property="og:image" content="https://offsite.kuma.partners/assets/environments/masia-barcelona.jpeg">
+<meta property="og:image" content="https://www.kuma.partners/offsite/assets/environments/masia-barcelona.jpeg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="High-Stakes Leadership Offsites in Barcelona">
 <meta name="twitter:description" content="Operator-led executive offsites and strategic mediation across Barcelona and secluded private masia estates.">
-<meta name="twitter:image" content="https://offsite.kuma.partners/assets/environments/masia-barcelona.jpeg">
+<meta name="twitter:image" content="https://www.kuma.partners/offsite/assets/environments/masia-barcelona.jpeg">
 
 <link rel="icon" href="assets/logo-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -36,10 +47,10 @@
   "@graph": [
     {
       "@type": "ProfessionalService",
-      "@id": "https://offsite.kuma.partners/#service",
+      "@id": "https://www.kuma.partners/offsite/#service",
       "name": "Operator-Led Offsites Barcelona",
-      "url": "https://offsite.kuma.partners",
-      "image": "https://offsite.kuma.partners/assets/environments/masia-barcelona.jpeg",
+      "url": "https://www.kuma.partners/offsite/",
+      "image": "https://www.kuma.partners/offsite/assets/environments/masia-barcelona.jpeg",
       "description": "Turnkey executive retreats, closed-door C-suite alignment, and leadership offsites in Barcelona and rural Catalonia.",
       "address": {
         "@type": "PostalAddress",
@@ -99,7 +110,7 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://offsite.kuma.partners/#faq",
+      "@id": "https://www.kuma.partners/offsite/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -1868,7 +1879,7 @@
 
     <div class="footer-bottom">
       <span>&copy; 2026 Kuma Partners &times; Nonameyet. All rights reserved.</span>
-      <span>offsite.kuma.partners &middot; Operating across Barcelona</span>
+      <span>kuma.partners/offsite &middot; Operating across Barcelona</span>
     </div>
   </div>
 </footer>

@@ -17,4 +17,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://offsite.kuma.partners/sitemap.xml
+Sitemap: https://www.kuma.partners/offsite/sitemap.xml

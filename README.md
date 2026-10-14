@@ -610,3 +610,10 @@ State of the site after this pass:
 - Format cards' "Configure this format" pre-selects the matching mandate and starts at question 1.
 - `#contact` on `index.html` is no longer a form: it is a direct-contact block (email the partners, or go back to the configurator). The `discovery-call` form remains on `partners.html`, so Netlify still registers it.
 - Colleen corrected throughout: Colleen Connors, Senior Advisor (former CEO and COO, 15+ years coaching global leaders, founder of Coaching Leaders Global). The photo file keeps its old name, `assets/team/colleen-tartow.png`.
+
+## Served under www.kuma.partners/offsite/ (Oct 2026)
+
+- The main site proxies `/offsite/*` to this site with a 200 rewrite. All internal links and assets are relative.
+- Canonical, Open Graph, structured-data and sitemap URLs point to `https://www.kuma.partners/offsite/...`.
+- `index.html` and `insights/index.html` carry a small script that adds a missing trailing slash (`/offsite` to `/offsite/`, `/insights` to `/insights/`). Netlify cannot do this with a redirect rule: it treats both forms as one path, so the rule loops. That loop was the `ERR_TOO_MANY_REDIRECTS` cause, in the main site's `_redirects`.
+- This repo has no redirect rules and must not get one pointing back to kuma.partners.
