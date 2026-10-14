@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.textContent = "Sending…";
       if (errorEl) errorEl.hidden = true;
 
-      fetch("/", {
+      fetch(window.location.pathname, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body,
@@ -894,7 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitBtn.textContent = "Sending…";
     if (errorEl) errorEl.hidden = true;
 
-    const endpoint = FORM_WEBHOOK_URL || "/";
+    const endpoint = FORM_WEBHOOK_URL || window.location.pathname;
 
     fetch(endpoint, {
       method: "POST",
