@@ -603,3 +603,10 @@ State of the site after this pass:
 - `app.js`: if the honeypot has a value, nothing is sent and the normal confirmation is shown. A burst limit allows 3 successful submissions per 10 minutes per browser (`localStorage`, key `kuma_submission_timestamps`); this is a convenience guard, not a security control.
 - Both submit handlers now check the HTTP status. Before, any response, including an error page, was treated as success and showed the confirmation.
 - Cloudflare Turnstile is not installed. It needs a real site key and a server-side check of each token (for example a Netlify Function calling Cloudflare's `siteverify` with the secret key); without that check it blocks nothing.
+
+## One lead path, five questions, direct contact block (Oct 2026)
+
+- Configurator (`app.js` STEPS) now asks: role, mandate, indicative budget, venue status, facilitation depth. The blueprint and the hidden form fields (`selection_role`, `selection_mandate`, `selection_budget`, `selection_location`, `selection_facilitation`) carry the chosen labels. The final form asks name, work email, company, group size, timeframe and optional context. The static Netlify copy of `offsite-blueprint` in `index.html` matches.
+- Format cards' "Configure this format" pre-selects the matching mandate and starts at question 1.
+- `#contact` on `index.html` is no longer a form: it is a direct-contact block (email the partners, or go back to the configurator). The `discovery-call` form remains on `partners.html`, so Netlify still registers it.
+- Colleen corrected throughout: Colleen Connors, Senior Advisor (former CEO and COO, 15+ years coaching global leaders, founder of Coaching Leaders Global). The photo file keeps its old name, `assets/team/colleen-tartow.png`.

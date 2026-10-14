@@ -524,142 +524,70 @@ document.addEventListener("DOMContentLoaded", function () {
      ----------------------------------------------------------------------- */
   const STEPS = [
     {
-      key: "archetype",
-      title: "Who is entering the room?",
-      subtitle: "Select your team composition to calibrate facilitation depth and venue scale.",
-      metaLabel: "Scale",
+      key: "role",
+      metaLabel: "Your Role",
+      title: "What is your role within the organisation?",
+      subtitle: "Helps us calibrate governance depth, decision authority and confidentiality.",
       options: [
-        {
-          id: "cofounders",
-          num: "01",
-          title: "Co-Founders & Executive Committee",
-          meta: "2–5 leaders",
-          desc: "Relational alignment, founder dynamics, equity and vision clarity.",
-        },
-        {
-          id: "csuite",
-          num: "02",
-          title: "C-Suite & Functional Leadership",
-          meta: "6–12 executives",
-          desc: "Strategy-to-execution, decision rights (RACI), operational friction resolution.",
-        },
-        {
-          id: "scaleup",
-          num: "03",
-          title: "Cross-Functional Scale-Up",
-          meta: "15–35+ people",
-          desc: "Remote-first cohesion, cultural integration, operating rhythms.",
-        },
+        { id: "ceo", title: "Founder / Chief Executive", desc: "Direct decision-maker seeking executive alignment, clarity and execution speed." },
+        { id: "csuite", title: "C-Suite / VP / Board Member", desc: "Cross-functional leader addressing departmental bottlenecks and strategic delivery." },
+        { id: "people", title: "People Director / Chief of Staff", desc: "Internal sponsor orchestrating the programme, logistics and leadership flow." },
+        { id: "facilitator", title: "External Facilitator / Strategic Partner", desc: "Advisor looking for Catalan venues, co-facilitation or local production support." },
+        { id: "other", title: "Other Role", desc: "Business unit lead, project sponsor or exploring on behalf of a wider group." },
       ],
     },
     {
-      key: "tension",
-      title: "What is the critical tension to resolve?",
-      subtitle: "Choose the primary operational outcome required for this engagement.",
-      metaLabel: "Focus",
+      key: "mandate",
+      metaLabel: "Primary Mandate",
+      title: "What is the primary objective of this offsite?",
+      subtitle: "Defines the facilitation model, the closed-door agenda and the outputs you leave with.",
       options: [
-        {
-          id: "governance",
-          num: "01",
-          title: "Strategy-to-Execution & RACI",
-          desc: "Resolving decision latency, eliminating silos, locking in a binding 90-day board-ready compact.",
-        },
-        {
-          id: "friction",
-          num: "02",
-          title: "Leadership Friction & Co-Founder Reset",
-          desc: "Surfacing unexpressed conflict, clarifying role boundaries, restoring executive trust.",
-        },
-        {
-          id: "innovation",
-          num: "03",
-          title: "Product Innovation & Roadmap Lab",
-          desc: "Divergent creative sprints, market repositioning, stress-testing new product bets.",
-        },
-        {
-          id: "remote",
-          num: "04",
-          title: "Remote Team Culture & Momentum",
-          desc: "Rebuilding trust across distributed functions with zero internal planning overhead.",
-        },
+        { id: "alignment", title: "Executive Alignment & Friction Mediation", desc: "Unblocking decision deadlock, agreeing who decides what and settling priority trade-offs." },
+        { id: "culture", title: "Culture, Cohesion & Remote Team Momentum", desc: "Reconnecting distributed teams through shared context, without forced fun." },
+        { id: "product_ai", title: "Product Kick-Off & AI Sprint", desc: "Roadmap stress-testing, commercial viability work and technology governance." },
+        { id: "co_founder", title: "Co-Founder Reset", desc: "Confidential working retreat for 2 to 6 founders resolving relational friction." },
+        { id: "celebration", title: "Milestone Celebration & Strategic Horizons", desc: "Marking a funding round or transition, balanced with forward-looking strategy." },
+        { id: "other", title: "Other Mandate", desc: "Post-merger integration, crisis mediation or another specific context." },
       ],
     },
     {
-      key: "setting",
-      title: "Where does your team operate best?",
-      subtitle: "Matching physical geography to your strategic objective.",
-      metaLabel: "Setting",
+      key: "budget",
+      metaLabel: "Investment Scope",
+      title: "What indicative budget have you set aside?",
+      subtitle: "Total for the offsite: venue, hospitality, logistics and facilitation.",
       options: [
-        {
-          id: "masia",
-          num: "01",
-          title: "Secluded Catalan Masia",
-          desc: "Historic private estate (Solsona / Costa Brava / Girona). Total seclusion, private chef, zero urban distraction.",
-        },
-        {
-          id: "urban",
-          num: "02",
-          title: "Dynamic Urban Atelier",
-          desc: "Creative Poblenou loft / Norrsken House Barcelona overlooking the sea. High-energy creative friction.",
-        },
-        {
-          id: "winery",
-          num: "03",
-          title: "Penedès Winery & Coastal Villa",
-          desc: "Secluded estate among vineyards near Sitges. Deep focus balanced with open-air gastronomy.",
-        },
+        { id: "under_20k", title: "Under €20,000", desc: "Typically a short format for a small leadership team." },
+        { id: "20k_45k", title: "€20,000 to €45,000", desc: "" },
+        { id: "45k_90k", title: "€45,000 to €90,000", desc: "" },
+        { id: "over_90k", title: "€90,000+", desc: "Typically larger groups or longer formats." },
+        { id: "outcome_led", title: "Open / Outcome-Led", desc: "To be set once we have recommended a format." },
+        { id: "other", title: "Other Arrangement", desc: "Co-funded programmes, several cost centres or staged across fiscal years." },
       ],
     },
     {
-      key: "hospitality",
-      title: "How should the table be set?",
-      subtitle: "Select the culinary experience tailored to your team's culture.",
-      metaLabel: "Model",
+      key: "location",
+      metaLabel: "Venue",
+      title: "Where do you stand on the venue?",
+      subtitle: "We work with private estates and city venues across Barcelona, the Penedès, Girona and the coast.",
       options: [
-        {
-          id: "chef",
-          num: "01",
-          title: "Private Executive Chef & Sommelier",
-          desc: "100% turnkey open-hearth dining, wine pairings, and continuous hospitality.",
-        },
-        {
-          id: "grounded",
-          num: "02",
-          title: "Grounded & Collaborative",
-          desc: "Open-fire culinary masterclass, shared preparation, and authentic communal connection.",
-        },
-        {
-          id: "city",
-          num: "03",
-          title: "City Gastronomy & Sea Immersion",
-          desc: "Curated dining in El Born paired with a private sunset Mediterranean catamaran charter.",
-        },
+        { id: "masia", title: "Secluded Catalan Masia / Country Estate", desc: "Full privacy, about 45 to 60 minutes from Barcelona." },
+        { id: "urban", title: "Barcelona City Atelier (22@ / Poblenou)", desc: "Creative working spaces in the city, with hotels nearby." },
+        { id: "secured", title: "Venue Already Booked", desc: "We bring the facilitation, agenda design and delivery on site." },
+        { id: "open", title: "Open to Recommendations", desc: "We suggest the setting that fits your group size and working pace." },
+        { id: "other", title: "Specific Preference", desc: "A particular region, several venues or special technical requirements." },
       ],
     },
     {
       key: "facilitation",
-      title: "What level of in-room moderation is required?",
-      subtitle: "Our engagements are led directly by former C-suite operators and venture studio designers.",
-      metaLabel: "Depth",
+      metaLabel: "Facilitation",
+      title: "How much facilitation do you need from us?",
+      subtitle: "Our partners personally design and lead the sessions in the room.",
       options: [
-        {
-          id: "operator",
-          num: "01",
-          title: "Former C-Suite Operator Mediation",
-          desc: "Confidential 1:1 intake, hard commercial debate moderation, binding compact delivery.",
-        },
-        {
-          id: "venture",
-          num: "02",
-          title: "Venture Studio Innovation Facilitation",
-          desc: "Design thinking, divergent roadmap labs, rapid prototyping, and GTM stress-testing.",
-        },
-        {
-          id: "culture",
-          num: "03",
-          title: "Turnkey Culture & Connection Facilitation",
-          desc: "Light-touch alignment workshops (25%) + 75% team bonding and experiential program.",
-        },
+        { id: "deep_intervention", title: "Full Intervention", desc: "Confidential 1:1 interviews under NDA, closed-room mediation and a signed 90-day compact." },
+        { id: "co_design", title: "Co-Design & Session Moderation", desc: "We design the agenda with you and steer the sessions throughout." },
+        { id: "production_only", title: "Venue & Production Only", desc: "Your team leads the agenda; we handle the venue, catering, AV and hospitality." },
+        { id: "hybrid", title: "Undecided", desc: "You would like to talk the options through with a partner first." },
+        { id: "other", title: "Other Scope", desc: "Specialist sessions, multilingual delivery or another arrangement." },
       ],
     },
   ];
@@ -667,53 +595,56 @@ document.addEventListener("DOMContentLoaded", function () {
   /* -----------------------------------------------------------------------
      BLUEPRINT COMPILATION
      ----------------------------------------------------------------------- */
-  const TITLE_MATRIX = {
-    governance: { masia: "Executive Strategy Masia Sprint", urban: "Strategy Atelier Intensive", winery: "Coastal Governance Retreat" },
-    friction: { masia: "Founder Reset Masia Retreat", urban: "Urban Founder Realignment", winery: "Penedès Trust Retreat" },
-    innovation: { masia: "Masia Innovation Sprint", urban: "Barcelona Urban Innovation Atelier", winery: "Coastal Innovation Lab" },
-    remote: { masia: "Masia Culture Reset", urban: "Urban Momentum Atelier", winery: "Penedès Reconnection Retreat" },
+  const MANDATE_TITLES = {
+    alignment: "Executive Alignment Offsite",
+    culture: "Company Momentum Offsite",
+    product_ai: "Product & AI Sprint",
+    co_founder: "Co-Founder Reset",
+    celebration: "Milestone & Strategy Offsite",
+    other: "Tailored Executive Offsite",
   };
-  const DELIVERABLE_MATRIX = {
-    governance: "Signed Binding 90-Day Board Compact & Decision RACI",
-    friction: "Signed Binding Peer Compact",
-    innovation: "Validated Roadmap & GTM Stress-Test Brief",
-    remote: "Remote Operating Charter",
+  const SETTING_SUFFIX = { masia: " at a Catalan Masia", urban: " in Barcelona" };
+  const MANDATE_DELIVERABLES = {
+    alignment: "A signed 90-day compact: one owner per decision, a stop list and review dates",
+    culture: "Shared priorities and team-level plans owned by each department lead",
+    product_ai: "A stress-tested roadmap with named owners",
+    co_founder: "A signed co-founder compact",
+    celebration: "A refreshed strategic direction the team leaves aligned on",
+    other: "Agreed in your tailored brief",
   };
 
   function findOption(stepKey, optionId) {
     const step = STEPS.find(function (s) { return s.key === stepKey; });
-    return step.options.find(function (o) { return o.id === optionId; });
+    return (step && step.options.find(function (o) { return o.id === optionId; })) || { title: "", desc: "" };
   }
 
   function compileBlueprint(selections) {
-    const tensionId = selections.tension;
-    const settingId = selections.setting;
-    const titleCore = (TITLE_MATRIX[tensionId] && TITLE_MATRIX[tensionId][settingId]) || "Tailored Executive Offsite";
-
-    const settingOpt = findOption("setting", settingId);
-    const tensionOpt = findOption("tension", tensionId);
-    const hospitalityOpt = findOption("hospitality", selections.hospitality);
-    const facilitationOpt = findOption("facilitation", selections.facilitation);
-
+    const role = findOption("role", selections.role);
+    const mandate = findOption("mandate", selections.mandate);
+    const budget = findOption("budget", selections.budget);
+    const location = findOption("location", selections.location);
+    const facilitation = findOption("facilitation", selections.facilitation);
     return {
-      title: "The " + titleCore,
+      title: "Your " + (MANDATE_TITLES[selections.mandate] || MANDATE_TITLES.other) + (SETTING_SUFFIX[selections.location] || ""),
       pills: [
-        { label: "Setting", value: settingOpt.title },
-        { label: "Focus", value: tensionOpt.title },
-        { label: "Hospitality", value: hospitalityOpt.title },
-        { label: "Facilitation", value: facilitationOpt.title },
+        { label: "Role", value: role.title },
+        { label: "Mandate", value: mandate.title },
+        { label: "Budget", value: budget.title },
+        { label: "Venue", value: location.title },
+        { label: "Facilitation", value: facilitation.title },
       ],
       specs: [
-        { label: "Recommended Setting", value: settingOpt.title, sub: settingOpt.desc },
-        { label: "Intellectual Lead", value: facilitationOpt.title, sub: facilitationOpt.desc },
-        { label: "Key Monday Deliverable", value: DELIVERABLE_MATRIX[tensionId] || "Tailored Operating Brief", sub: tensionOpt.desc },
-        { label: "Hospitality Model", value: hospitalityOpt.title, sub: hospitalityOpt.desc },
+        { label: "Primary Mandate", value: mandate.title, sub: mandate.desc },
+        { label: "Venue", value: location.title, sub: location.desc },
+        { label: "Facilitation", value: facilitation.title, sub: facilitation.desc },
+        { label: "What You Leave With", value: MANDATE_DELIVERABLES[selections.mandate] || MANDATE_DELIVERABLES.other, sub: "Confirmed with you before the offsite." },
         {
           label: "Commercial Model",
           value: "Fixed advisory fee, hospitality at cost",
-          sub: "Most engagements land between €15,000 and €150,000, depending on cohort size and venue. Your tailored brief carries the exact figure.",
+          sub: "Your indicative budget: " + budget.title + ". Most engagements land between €15,000 and €150,000, depending on group size and venue; your tailored brief carries the exact figure.",
         },
       ],
+      labels: { role: role.title, mandate: mandate.title, budget: budget.title, location: location.title, facilitation: facilitation.title },
     };
   }
 
@@ -745,15 +676,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedId = state.selections[step.key];
 
     const optionsHTML = step.options
-      .map(function (opt) {
+      .map(function (opt, i) {
         const isSelected = opt.id === selectedId;
+        const num = opt.num || (i < 9 ? "0" : "") + (i + 1);
         return (
           '<button type="button" class="scorecard-option' + (isSelected ? " selected" : "") + '" data-option-id="' + opt.id + '" aria-pressed="' + isSelected + '">' +
-          '<span class="sc-option-num">' + opt.num + " &middot;</span>" +
+          '<span class="sc-option-num">' + num + " &middot;</span>" +
           '<span class="sc-option-body">' +
           '<span class="sc-option-title">' + opt.title + "</span>" +
           (opt.meta ? '<span class="sc-option-meta">' + opt.meta + "</span>" : "") +
-          '<span class="sc-option-desc">' + opt.desc + "</span>" +
+          (opt.desc ? '<span class="sc-option-desc">' + opt.desc + "</span>" : "") +
           "</span>" +
           "</button>"
         );
@@ -802,19 +734,16 @@ document.addEventListener("DOMContentLoaded", function () {
      inline onclick (exposed on window since it's referenced from markup
      outside this closure, and defined here rather than earlier in the file
      so it can close over STEPS/state/renderStep/configuratorRoot, all of
-     which exist by this point). Pre-selects the matching team archetype for
-     Step 1 and jumps straight to Step 2 (tension), rather than just
-     scrolling to an empty configurator. The #formats markup (v17) now calls
-     this with the archetype id directly ("cofounders" / "csuite" /
-     "scaleup"), the same ids STEPS[0]'s options already use, so there is no
-     longer a separate format-key-to-archetype lookup table to keep in sync.
+     which exist by this point).
      ----------------------------------------------------------------------- */
-  const VALID_ARCHETYPES = ["cofounders", "csuite", "scaleup"];
+  // Format cards' "Configure this format" pre-selects the matching mandate
+  // (shown highlighted at step 2) and starts the questions at step 1.
+  const FORMAT_TO_MANDATE = { cofounders: "co_founder", csuite: "alignment", scaleup: "culture" };
 
-  window.selectFormatAndScroll = function (archetypeId) {
-    if (VALID_ARCHETYPES.indexOf(archetypeId) !== -1) {
-      state.selections = { archetype: archetypeId };
-      state.stepIndex = 1;
+  window.selectFormatAndScroll = function (formatId) {
+    if (FORMAT_TO_MANDATE[formatId]) {
+      state.selections = { mandate: FORMAT_TO_MANDATE[formatId] };
+      state.stepIndex = 0;
       els.blueprintWrap.hidden = true;
       els.blueprintWrap.innerHTML = "";
       els.stepsWrap.hidden = false;
@@ -889,56 +818,49 @@ document.addEventListener("DOMContentLoaded", function () {
     configuratorRoot.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function attr(v) {
+    return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  }
+
   function renderLeadForm(bp) {
     const wrap = document.getElementById("lead-form-wrap");
     wrap.innerHTML =
       '<form id="lead-form" class="debrief-form" name="offsite-blueprint" method="POST" data-netlify="true" netlify-honeypot="company_tax_id" style="border-top:1px solid var(--hairline-color); padding-top:28px; margin-top:8px;">' +
       '<input type="hidden" name="form-name" value="offsite-blueprint">' +
       '<div style="position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none;" aria-hidden="true"><label for="hp-blueprint">Do not fill this field</label><input type="text" id="hp-blueprint" name="company_tax_id" tabindex="-1" autocomplete="off" value=""></div>' +
-      '<input type="hidden" name="blueprint_title" value="' + bp.title + '">' +
-      '<input type="hidden" name="selection_archetype" value="' + (state.selections.archetype || "") + '">' +
-      '<input type="hidden" name="selection_tension" value="' + (state.selections.tension || "") + '">' +
-      '<input type="hidden" name="selection_setting" value="' + (state.selections.setting || "") + '">' +
-      '<input type="hidden" name="selection_hospitality" value="' + (state.selections.hospitality || "") + '">' +
-      '<input type="hidden" name="selection_facilitation" value="' + (state.selections.facilitation || "") + '">' +
+      '<input type="hidden" name="blueprint_title" value="' + attr(bp.title) + '">' +
+      '<input type="hidden" name="selection_role" value="' + attr(bp.labels.role) + '">' +
+      '<input type="hidden" name="selection_mandate" value="' + attr(bp.labels.mandate) + '">' +
+      '<input type="hidden" name="selection_budget" value="' + attr(bp.labels.budget) + '">' +
+      '<input type="hidden" name="selection_location" value="' + attr(bp.labels.location) + '">' +
+      '<input type="hidden" name="selection_facilitation" value="' + attr(bp.labels.facilitation) + '">' +
       '<div class="field-row">' +
-      '<div class="field"><label>Work Email *</label><input type="email" name="email" required placeholder="you@company.com"></div>' +
-      '<div class="field"><label>Full Name *</label><input type="text" name="name" required placeholder="Full name"></div>' +
+      '<div class="field"><label>Full Name *</label><input type="text" name="name" required autocomplete="name" placeholder="Full name"></div>' +
+      '<div class="field"><label>Work Email *</label><input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></div>' +
       "</div>" +
       '<div class="field-row">' +
-      '<div class="field"><label>Role / Title *</label>' +
-      '<div class="select-shell"><select name="role" required>' +
-      '<option value="">Select a role</option>' +
-      '<option value="Founder / CEO">Founder / CEO</option>' +
-      '<option value="C-Suite / VP">C-Suite / VP</option>' +
-      '<option value="Head of People / HR">Head of People / HR</option>' +
-      '<option value="Chief of Staff">Chief of Staff</option>' +
-      '<option value="Investor / Board">Investor / Board</option>' +
-      '<option value="Other">Other</option>' +
+      '<div class="field"><label>Company *</label><input type="text" name="company" required autocomplete="organization" placeholder="Company"></div>' +
+      '<div class="field"><label>Group Size *</label>' +
+      '<div class="select-shell"><select name="group_size" required>' +
+      '<option value="">Select a size</option>' +
+      '<option value="2-6">2 to 6 people</option>' +
+      '<option value="7-14">7 to 14 people</option>' +
+      '<option value="15-30">15 to 30 people</option>' +
+      '<option value="31-60">31 to 60 people</option>' +
+      '<option value="60+">60+ people</option>' +
       "</select></div></div>" +
-      '<div class="field"><label>Company Name *</label><input type="text" name="company" required placeholder="Company"></div>' +
       "</div>" +
-      '<div class="field-row">' +
-      '<div class="field"><label>Target Quarter *</label>' +
+      '<div class="field"><label>Target Timeframe *</label>' +
       '<div class="select-shell"><select name="timeline" required>' +
       '<option value="">Select a timeframe</option>' +
+      '<option value="Next 60 days">Within the next 60 days</option>' +
       '<option value="Q1 2027">Q1 2027</option>' +
       '<option value="Q2 2027">Q2 2027</option>' +
       '<option value="Q3 2027">Q3 2027</option>' +
-      '<option value="Q4 2027">Q4 2027</option>' +
+      '<option value="Q4 2027 or later">Q4 2027 or later</option>' +
       '<option value="Specific dates in mind">Specific dates in mind</option>' +
       "</select></div></div>" +
-      '<div class="field"><label>Approximate Budget *</label>' +
-      '<div class="select-shell"><select name="budget" required>' +
-      '<option value="">Select a range</option>' +
-      '<option value="&lt; €15,000">&lt; €15,000</option>' +
-      '<option value="€15,000 – €30,000">€15,000 – €30,000</option>' +
-      '<option value="€30,000 – €60,000">€30,000 – €60,000</option>' +
-      '<option value="€60,000 – €100,000">€60,000 – €100,000</option>' +
-      '<option value="€100,000 – €150,000+">€100,000 – €150,000+</option>' +
-      '<option value="Undecided / Need guidance">Undecided / Need guidance</option>' +
-      "</select></div></div>" +
-      "</div>" +
+      '<div class="field"><label>Anything we should know? <span class="field-optional">(optional)</span></label><textarea name="context" rows="3" placeholder="Dates, constraints or the situation you want to resolve."></textarea></div>' +
       '<button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Reserve Dates &amp; Request Tailored Brief</button>' +
       '<p class="debrief-form-microcopy">We limit engagements each quarter to protect delivery quality. Sven, Farid or Luisa personally reviews every brief within 24 business hours.</p>' +
       '<p class="debrief-form-error" id="form-error" hidden>Something went wrong sending your request. Please try again, or email <a href="mailto:contact@kuma.partners">contact@kuma.partners</a> directly.</p>' +

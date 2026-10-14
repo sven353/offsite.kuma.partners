@@ -1227,3 +1227,47 @@ footer.site{background:#fff; border-top:1px solid var(--hairline-color);}
    overflow:hidden (there to round the photo) was cutting it in half. */
 #formats .place-card{overflow:visible;}
 #formats .place-card .place-image{border-radius:var(--radius-md) var(--radius-md) 0 0;}
+
+/* =========================================================================
+   Direct contact block on index.html (#contact), replacing the old intake
+   form. The configurator is now the only form on the home page.
+   ========================================================================= */
+.section-contact{background:linear-gradient(180deg, #FFFFFF 0%, var(--section-tint) 100%); padding:80px 0 100px;}
+.contact-concierge-card{
+  display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:center;
+  padding:56px 48px; border-radius:var(--radius-lg); color:#fff;
+  background:radial-gradient(120% 85% at 50% 0%, var(--navy-ambient) 0%, var(--navy) 100%);
+  box-shadow:0 24px 48px -18px rgba(var(--navy-rgb),.25);
+}
+.badge-pill.badge-pill-inverse{background:transparent; border-color:rgba(255,255,255,.35); color:#fff;}
+.contact-concierge-left h2{color:#fff; font-size:2.2rem; line-height:1.2; margin:16px 0 12px;}
+.contact-concierge-left .subhead{color:rgba(255,255,255,.82); font-size:1.05rem; line-height:1.6; margin:0;}
+.concierge-guarantees{list-style:none; margin:28px 0 0; padding:0; display:flex; flex-direction:column; gap:18px;}
+.guarantee-item{display:flex; gap:14px; align-items:flex-start;}
+.guarantee-bullet{color:#7CC4DA; font-size:1.4rem; line-height:1;}
+.guarantee-item strong{display:block; font-size:.95rem; color:#fff; margin-bottom:2px;}
+.guarantee-item p{margin:0; font-size:.86rem; line-height:1.5; color:rgba(255,255,255,.72);}
+.concierge-action-box{
+  background:#fff; color:var(--navy); text-align:center; border-radius:var(--radius-md);
+  padding:36px 30px; box-shadow:0 16px 32px -12px rgba(0,0,0,.2);
+}
+.concierge-action-box h3{font-size:1.25rem; margin:0 0 8px;}
+.concierge-action-box p{font-size:.9rem; line-height:1.5; color:rgba(26,26,26,.75); margin:0 0 22px;}
+.btn.btn-block{display:flex; width:100%; justify-content:center;}
+.concierge-email{display:block; margin-top:10px; font-size:.82rem; color:rgba(var(--navy-rgb),.6);}
+.concierge-divider{
+  display:flex; align-items:center; margin:20px 0 16px; color:rgba(var(--navy-rgb),.45);
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.08em;
+}
+.concierge-divider::before, .concierge-divider::after{content:""; flex:1; border-bottom:1px solid var(--hairline-color);}
+.concierge-divider span{padding:0 12px;}
+.concierge-meta{display:block; margin-top:12px; font-size:.76rem; color:rgba(var(--navy-rgb),.55);}
+.field-optional{font-weight:400; text-transform:none; letter-spacing:0; color:rgba(var(--navy-rgb),.5);}
+.debrief-form textarea{
+  width:100%; padding:12px 14px; border:1px solid var(--hairline-color); border-radius:var(--radius-xs);
+  font-family:'Lato',Arial,sans-serif; font-size:.95rem; color:var(--navy); background:#fff; resize:vertical;
+}
+@media (max-width:900px){
+  .contact-concierge-card{grid-template-columns:1fr; gap:32px; padding:36px 24px;}
+  .contact-concierge-left h2{font-size:1.8rem;}
+}
